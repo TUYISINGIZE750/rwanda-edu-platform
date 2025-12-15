@@ -179,8 +179,8 @@
           <p class="text-xl text-gray-600 dark:text-gray-300">{{ t('showcase.subtitle') }}</p>
         </div>
         <div class="grid md:grid-cols-2 gap-8">
-          <img src="/images to use/IMG-20241006-WA0051.jpg" alt="TVET Workshop" class="rounded-2xl shadow-xl w-full h-80 object-cover" />
-          <img src="/images to use/home_page_3.jpg" alt="Students Learning" class="rounded-2xl shadow-xl w-full h-80 object-cover" />
+          <img src="/images/IMG-20241006-WA0051.jpg" alt="TVET Workshop" class="rounded-2xl shadow-xl w-full h-80 object-cover" />
+          <img src="/images/home_page_3.jpg" alt="Students Learning" class="rounded-2xl shadow-xl w-full h-80 object-cover" />
         </div>
       </div>
     </section>
@@ -263,10 +263,10 @@ import fr from '../locales/fr.json'
 const translations = { en, rw, fr }
 const language = ref('en')
 const images = ref([
-  '/images to use/DSC_0106.JPG',
-  '/images to use/IMG-20241006-WA0079.jpg',
-  '/images to use/IMG-20241006-WA0051.jpg',
-  '/images to use/home_page_3.jpg'
+  '/images/DSC_0106.JPG',
+  '/images/IMG-20241006-WA0079.jpg',
+  '/images/IMG-20241006-WA0051.jpg',
+  '/images/home_page_3.jpg'
 ])
 
 const currentImageIndex = ref(0)
