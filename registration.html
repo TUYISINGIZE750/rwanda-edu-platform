@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>Rwanda Education Platform - Registration v2.0</title>
+    <link rel="stylesheet" href="rwanda_locations.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin: -30px -30px 30px -30px;
+        }
+        .form-section {
+            margin-bottom: 25px;
+        }
+        .form-section h3 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 15px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+        .btn {
+            background: #3498db;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s;
+        }
+        .btn:hover {
+            background: #2980b9;
+        }
+        .btn-success {
+            background: #27ae60;
+        }
+        .btn-success:hover {
+            background: #229954;
+        }
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🇷🇼 Rwanda Education Platform</h1>
+            <p>Student Registration System</p>
+        </div>
+
+        <!-- Rwanda Stats Display -->
+        <div class="rwanda-stats">
+            <h3>Complete Rwanda Administrative Data</h3>
+            <p id="locationStats">Loading location data...</p>
+        </div>
+
+        <form id="studentRegistrationForm">
+            <!-- Personal Information -->
+            <div class="form-section">
+                <h3>📋 Personal Information</h3>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="firstName">First Name *</label>
+                        <input type="text" id="firstName" name="firstName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Last Name *</label>
+                        <input type="text" id="lastName" name="lastName" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number *</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="dateOfBirth">Date of Birth *</label>
+                        <input type="date" id="dateOfBirth" name="dateOfBirth" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="gender">Gender *</label>
+                        <select id="gender" name="gender" required>
+                            <option value="">Select Gender</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Location Information - UPDATED -->
+            <div class="form-section">
+                <h3>📍 Location & School Information - UPDATED</h3>
+                <div class="form-group">
+                    <label for="province">Province *</label>
+                    <select id="province" name="province" required onchange="loadDistricts()">
+                        <option value="">Select Province</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="district">District *</label>
+                    <select id="district" name="district" required disabled onchange="loadSchools()">
+                        <option value="">Select District</option>
+                    </select>
+                </div>
+                <div class="form-group" id="schoolSection" style="display:none;">
+                    <label for="school">School * <span id="schoolCount" style="color: green;"></span></label>
+                    <select id="school" name="school" required>
+                        <option value="">Select School</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Education Information -->
+            <div class="form-section">
+                <h3>🎓 Education Information</h3>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="educationLevel">Education Level *</label>
+                        <select id="educationLevel" name="educationLevel" required>
+                            <option value="">Select Education Level</option>
+                            <option value="primary">Primary School</option>
+                            <option value="secondary">Secondary School</option>
+                            <option value="university">University</option>
+                            <option value="vocational">Vocational Training</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="institution">Institution Name</label>
+                        <input type="text" id="institution" name="institution">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="fieldOfStudy">Field of Study</label>
+                    <input type="text" id="fieldOfStudy" name="fieldOfStudy">
+                </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div style="text-align: center; margin-top: 30px;">
+                <button type="submit" class="btn btn-success">
+                    Register Student
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        const API_URL = 'http://localhost:8080/api/v1';
+        let provinces = [];
+        let districts = [];
+        let schools = [];
+
+        // Load provinces on page load
+        document.addEventListener('DOMContentLoaded', async function() {
+            console.log('🚀 REGISTRATION PAGE LOADED - UPDATED VERSION');
+            await loadProvinces();
+        });
+
+        async function loadProvinces() {
+            try {
+                const response = await fetch(`${API_URL}/locations/provinces`);
+                provinces = await response.json();
+                const select = document.getElementById('province');
+                provinces.forEach(p => {
+                    const option = document.createElement('option');
+                    option.value = p.name;
+                    option.textContent = p.name;
+                    select.appendChild(option);
+                });
+                console.log('✅ Loaded', provinces.length, 'provinces');
+            } catch (error) {
+                console.error('❌ Error loading provinces:', error);
+            }
+        }
+
+        async function loadDistricts() {
+            const province = document.getElementById('province').value;
+            const districtSelect = document.getElementById('district');
+            const schoolSection = document.getElementById('schoolSection');
+            
+            districtSelect.innerHTML = '<option value="">Select District</option>';
+            districtSelect.disabled = !province;
+            schoolSection.style.display = 'none';
+            
+            if (!province) return;
+            
+            console.log('🔍 Loading districts for:', province);
+            
+            try {
+                const response = await fetch(`${API_URL}/locations/districts/${encodeURIComponent(province)}`);
+                districts = await response.json();
+                districts.forEach(d => {
+                    const option = document.createElement('option');
+                    option.value = d.name;
+                    option.textContent = d.name;
+                    districtSelect.appendChild(option);
+                });
+                console.log('✅ Loaded', districts.length, 'districts');
+            } catch (error) {
+                console.error('❌ Error loading districts:', error);
+            }
+        }
+
+        async function loadSchools() {
+            const province = document.getElementById('province').value;
+            const district = document.getElementById('district').value;
+            const schoolSelect = document.getElementById('school');
+            const schoolSection = document.getElementById('schoolSection');
+            const schoolCount = document.getElementById('schoolCount');
+            
+            schoolSelect.innerHTML = '<option value="">Select School</option>';
+            schoolSection.style.display = 'none';
+            
+            if (!province || !district) return;
+            
+            console.log('🔍 Loading schools for:', province, district);
+            
+            // Map province names
+            let apiProvince = province;
+            if (province === 'Southern Province') apiProvince = 'South';
+            if (province === 'Western Province') apiProvince = 'West';
+            if (province === 'Northern Province') apiProvince = 'North';
+            if (province === 'Eastern Province') apiProvince = 'East';
+            if (province === 'Kigali City') apiProvince = 'Kigali city';
+            
+            const url = `${API_URL}/registration/schools/${province}/${district}`;
+            console.log('🔍 REGISTRATION API URL:', url);
+            
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+                console.log('📦 API Response:', data);
+                schools = data.schools || [];
+                
+                console.log('✅ Loaded', schools.length, 'schools');
+                
+                if (schools.length > 0) {
+                    schools.forEach(s => {
+                        const option = document.createElement('option');
+                        option.value = s.id;
+                        option.textContent = `${s.name} (${s.type})`;
+                        schoolSelect.appendChild(option);
+                    });
+                    schoolSection.style.display = 'block';
+                    schoolCount.textContent = `(${schools.length} schools available)`;
+                } else {
+                    schoolCount.textContent = '(No schools found)';
+                }
+            } catch (error) {
+                console.error('❌ Error loading schools:', error);
+                schoolCount.textContent = '(Error loading schools)';
+            }
+        }
+
+        // Handle form submission
+        document.getElementById('studentRegistrationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+            const studentData = Object.fromEntries(formData);
+            alert('✅ Registration Successful!\n\nName: ' + studentData.firstName + ' ' + studentData.lastName);
+            console.log('Student Data:', studentData);
+        });
+    </script>
+</body>
+</html>

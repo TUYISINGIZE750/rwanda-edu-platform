@@ -1,0 +1,37 @@
+{
+  "name": "tssanywhere-frontend",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "update-deps": "npm update && npm audit fix",
+    "check-updates": "npm outdated",
+    "auto-update": "node auto-update.js",
+    "fresh-start": "npm run auto-update && npm run dev"
+  },
+  "dependencies": {
+    "@heroicons/vue": "^2.2.0",
+    "@jitsi/react-sdk": "^1.4.4",
+    "@vueuse/core": "^10.7.0",
+    "autoprefixer": "^10.4.16",
+    "axios": "latest",
+    "emoji-picker-element": "^1.28.0",
+    "idb": "latest",
+    "pinia": "latest",
+    "postcss": "^8.4.32",
+    "socket.io-client": "^4.7.4",
+    "tailwindcss": "^3.4.0",
+    "vue": "latest",
+    "vue-i18n": "latest",
+    "vue-router": "latest",
+    "vue-virtual-scroller": "^2.0.0-beta.8",
+    "vue3-emoji-picker": "^1.1.8"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "latest",
+    "vite": "latest",
+    "vite-plugin-pwa": "latest"
+  }
+}

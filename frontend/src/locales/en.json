@@ -1,0 +1,54 @@
+{
+  "nav": {
+    "login": "Login",
+    "getStarted": "Get Started"
+  },
+  "hero": {
+    "badge": "Rwanda's TVET/TSS Platform",
+    "title": "Master Technical Skills Anytime, Anywhere",
+    "description": "Connect with 165 TVET/TSS schools across Rwanda. Learn during holidays, after school, or anytime that works for you. Your technical education journey never stops.",
+    "startLearning": "Start Learning Now",
+    "signIn": "Sign In",
+    "schools": "TVET Schools"
+  },
+  "stats": {
+    "schools": "TVET Schools",
+    "provinces": "Provinces",
+    "trades": "Trade Programs",
+    "access": "Access"
+  },
+  "features": {
+    "title": "Learn Without Limits",
+    "subtitle": "Comprehensive tools for continuous technical education - holidays, weekends, anytime",
+    "communication": "Real-Time Communication",
+    "communicationDesc": "Connect instantly with teachers and classmates. Share ideas, ask questions, and collaborate on projects through our advanced messaging system.",
+    "resources": "Rich Learning Resources",
+    "resourcesDesc": "Access comprehensive study materials, videos, and documents. Download resources for offline learning and stay ahead in your trade.",
+    "video": "Live Video Sessions",
+    "videoDesc": "Join interactive live classes with end-to-end encryption. Participate in real-time discussions and practical demonstrations.",
+    "network": "Inter-School Network",
+    "networkDesc": "Connect with students and teachers from all 165 TVET schools. Build your professional network across Rwanda.",
+    "security": "Secure & Private",
+    "securityDesc": "Your data is protected with enterprise-grade security. Role-based access ensures safe and appropriate interactions.",
+    "progress": "Track Your Progress",
+    "progressDesc": "Monitor your learning journey with detailed analytics. Stay motivated with achievements and milestone tracking."
+  },
+  "showcase": {
+    "title": "Never Stop Learning",
+    "subtitle": "Technical skills development that fits your schedule - anytime, anywhere"
+  },
+  "cta": {
+    "title": "Start Learning Today",
+    "subtitle": "Join TSSANYWHERE - Where technical education never stops, even during holidays",
+    "button": "Create Your Free Account"
+  },
+  "footer": {
+    "description": "Rwanda's TVET/TSS platform for continuous learning - anytime, anywhere, even during holidays.",
+    "quickLinks": "Quick Links",
+    "contact": "Contact",
+    "copyright": "© 2024 TSSANYWHERE • Technical Skills & Learning Anytime, Anywhere • Vision 2050",
+    "developer": "Developed by Trainer Leonard TUYISINGIZE",
+    "aboutDeveloper": "About Developer",
+    "contactLink": "Contact"
+  }
+}

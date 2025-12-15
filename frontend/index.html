@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#3b82f6" />
+  <meta name="description" content="TSSANYWHERE - Technical Skills & Learning, Anytime, Anywhere" />
+  
+  <!-- PWA Meta Tags -->
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="TSSANYWHERE" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content="TSSANYWHERE" />
+  <meta property="og:description" content="Technical Skills & Learning for Rwanda's TVET/TSS Students - Anytime, Anywhere" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="http://localhost:5173" />
+  
+  <!-- Preload critical resources -->
+  <link rel="preload" href="/src/main.js" as="script" />
+  <link rel="preload" href="/src/style.css" as="style" />
+  
+  <!-- Manifest for PWA -->
+  <link rel="manifest" href="/manifest.json" />
+  
+  <title>TSSANYWHERE - Learn Anytime, Anywhere</title>
+  
+  <style>
+    /* Loading screen styles */
+    #loading-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      color: white;
+    }
+    
+    .loading-spinner {
+      width: 50px;
+      height: 50px;
+      border: 4px solid rgba(255, 255, 255, 0.3);
+      border-top: 4px solid white;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-bottom: 20px;
+    }
+    
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    
+    .loading-text {
+      font-size: 18px;
+      font-weight: 500;
+      margin-bottom: 10px;
+    }
+    
+    .loading-subtext {
+      font-size: 14px;
+      opacity: 0.8;
+    }
+    
+    /* Hide loading screen when app loads */
+    .app-loaded #loading-screen {
+      display: none;
+    }
+    
+    /* Prevent flash of unstyled content */
+    #app {
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out;
+    }
+    
+    .app-loaded #app {
+      opacity: 1;
+    }
+    
+    /* Mobile viewport fixes */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+        sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+    
+    /* iOS Safari specific fixes */
+    @supports (-webkit-touch-callout: none) {
+      body {
+        height: -webkit-fill-available;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Loading Screen -->
+  <div id="loading-screen">
+    <div class="loading-spinner"></div>
+    <div class="loading-text">TSSANYWHERE</div>
+    <div class="loading-subtext">Technical Skills & Learning - Anytime, Anywhere</div>
+  </div>
+  
+  <!-- Main App -->
+  <div id="app"></div>
+  
+  <!-- Fallback for users with JavaScript disabled -->
+  <noscript>
+    <div style="text-align: center; padding: 50px; font-family: Arial, sans-serif;">
+      <h1>JavaScript Required</h1>
+      <p>This application requires JavaScript to run. Please enable JavaScript in your browser.</p>
+    </div>
+  </noscript>
+  
+  <script type="module" src="/src/main.js"></script>
+  
+  <script>
+    // Remove loading screen when app is ready
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.body.classList.add('app-loaded');
+      }, 500);
+    });
+    
+    // Handle app install prompt
+    let deferredPrompt;
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      // Show install button or banner
+      console.log('App can be installed');
+    });
+    
+    // Handle successful app install
+    window.addEventListener('appinstalled', (evt) => {
+      console.log('App was installed');
+    });
+    
+    // Prevent zoom on iOS
+    document.addEventListener('gesturestart', function (e) {
+      e.preventDefault();
+    });
+    
+    // Handle viewport height changes on mobile
+    function setViewportHeight() {
+      let vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty('--vh', `${vh}px`);
+    }
+    
+    setViewportHeight();
+    window.addEventListener('resize', setViewportHeight);
+    window.addEventListener('orientationchange', setViewportHeight);
+  </script>
+</body>
+</html>

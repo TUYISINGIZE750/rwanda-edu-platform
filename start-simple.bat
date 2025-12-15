@@ -1,0 +1,9 @@
+@echo off
+echo Starting Simple Backend Server...
+cd backend
+
+echo Killing existing processes...
+taskkill /f /im python.exe 2>nul
+
+echo Starting simple server...
+python simple_server.py

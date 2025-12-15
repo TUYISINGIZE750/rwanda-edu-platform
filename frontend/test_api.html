@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Schools API</title>
+</head>
+<body>
+    <h1>Test Schools Loading</h1>
+    <select id="province" onchange="loadDistricts()">
+        <option value="">Select Province</option>
+        <option value="Kigali city">Kigali City</option>
+        <option value="South">South</option>
+    </select>
+    
+    <select id="district" onchange="loadSchools()">
+        <option value="">Select District</option>
+    </select>
+    
+    <div id="result"></div>
+    
+    <script>
+        const districts = {
+            'Kigali city': ['GASABO', 'KICUKIRO', 'NYARUGENGE'],
+            'South': ['NYANZA', 'GISAGARA']
+        };
+        
+        function loadDistricts() {
+            const province = document.getElementById('province').value;
+            const districtSelect = document.getElementById('district');
+            
+            districtSelect.innerHTML = '<option value="">Select District</option>';
+            
+            if (province && districts[province]) {
+                districts[province].forEach(district => {
+                    const option = document.createElement('option');
+                    option.value = district;
+                    option.textContent = district;
+                    districtSelect.appendChild(option);
+                });
+            }
+        }
+        
+        async function loadSchools() {
+            const province = document.getElementById('province').value;
+            const district = document.getElementById('district').value;
+            const result = document.getElementById('result');
+            
+            if (!province || !district) return;
+            
+            result.innerHTML = 'Loading...';
+            
+            try {
+                const url = `http://localhost:8080/api/v1/schools-by-district/district/${province}/${district}`;
+                console.log('Calling:', url);
+                
+                const response = await fetch(url);
+                const data = await response.json();
+                
+                console.log('Response:', data);
+                
+                if (data.schools) {
+                    result.innerHTML = `
+                        <h3>Found ${data.schools_count} schools in ${district}:</h3>
+                        <ul>
+                            ${data.schools.map(school => 
+                                `<li>${school.name} (${school.type}) - ${school.trades_count} trades</li>`
+                            ).join('')}
+                        </ul>
+                    `;
+                } else {
+                    result.innerHTML = 'No schools found';
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                result.innerHTML = 'Error: ' + error.message;
+            }
+        }
+    </script>
+</body>
+</html>

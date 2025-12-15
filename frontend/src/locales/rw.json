@@ -1,0 +1,54 @@
+{
+  "nav": {
+    "login": "Injira",
+    "getStarted": "Tangira"
+  },
+  "hero": {
+    "badge": "Urwego rw'Igihugu rw'Amashuri ya Tekinike n'ubumenyingiro",
+    "title": "Iga Ubwenge bw'Ikoranabuhanga Igihe cyose, Ahantu cyose",
+    "description": "Guhuza n'amashuri 165 y'ubwenge n'ikoranabuhanga mu Rwanda. Komeza kwiga igihe cyose, ahantu cyose.",
+    "startLearning": "Tangira Kwiga Ubu",
+    "signIn": "Injira",
+    "schools": "Amashuri y'Ubwenge"
+  },
+  "stats": {
+    "schools": "Amashuri y'Ubwenge",
+    "provinces": "Intara",
+    "trades": "Ikoranabuhanga",
+    "access": "Igihe cyose"
+  },
+  "features": {
+    "title": "Kwiga Nta Nzira",
+    "subtitle": "Ibikoresho byuzuye byo kwiga ubwenge bw'ikoranabuhanga",
+    "communication": "Iyandikana Mu Gihe Cyakuri",
+    "communicationDesc": "Guhuza vuba n'abigisha n'abanyeshuri. Gabana ibitekerezo, aza ibibazo, kandi wubaka hamwe mu nzira y'iyandikana.",
+    "resources": "Ibikoresho by'Amashuri Byuzuye",
+    "resourcesDesc": "Reba ibikoresho by'amashuri, amavideo, n'inyandiko. Kuraho ibikoresho kugira ngo wiga igihe cyose.",
+    "video": "Isiganwa Simu Mu Gihe Cyakuri",
+    "videoDesc": "Injira mu isomo imbonankubone hamwe na mwarimu we. Kwitabira mu nzira y'iyandikana n'ubwenge.",
+    "network": "Urwego rw'Amashuri",
+    "networkDesc": "Guhuza n'abanyeshuri n'abigisha kuva mu mashuri 165. Ubaka urwego rw'ubwenge mu Rwanda.",
+    "security": "Ubwiyunge n'Ubwenge",
+    "securityDesc": "Amakuru yose arinzwe neza. Ubwiyunge bw'ubwenge bw'ubwiyunge bw'ikoranabuhanga.",
+    "progress": "Menya Uko Wiyambaye",
+    "progressDesc": "Menya inzira yawe y'amashuri hamwe n'ubwiyunge bw'ubwenge."
+  },
+  "showcase": {
+    "title": "Kwiga Nta Nzira",
+    "subtitle": "Ubwenge bw'ikoranabuhanga bw'ubwiyunge bw'igihe cyawe"
+  },
+  "cta": {
+    "title": "Tangira Kwiga Ubu",
+    "subtitle": "Injira TSSANYWHERE - Aho ubwenge bw'ikoranabuhanga ntiyahagarika",
+    "button": "Ubaka Konti Yawe"
+  },
+  "footer": {
+    "description": "Urwego rw'Igihugu rw'Amashuri y'Ubwenge - igihe cyose, ahantu cyose.",
+    "quickLinks": "Ihuza Vuba",
+    "contact": "Guhuza",
+    "copyright": "© 2024 TSSANYWHERE • Ubwenge bw'Ikoranabuhanga Igihe cyose, Ahantu cyose • Igitekerezo 2050",
+    "developer": "Yubatswe na Trainer Leonard TUYISINGIZE",
+    "aboutDeveloper": "Kubyerekeye Umwubatsi",
+    "contactLink": "Guhuza"
+  }
+}

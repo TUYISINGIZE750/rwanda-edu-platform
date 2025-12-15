@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced Registration Demo - Rwanda Education Platform</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .demo-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 1rem;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .demo-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .demo-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .demo-subtitle {
+            font-size: 1.125rem;
+            opacity: 0.9;
+        }
+
+        .demo-content {
+            padding: 2rem;
+        }
+
+        .step-section {
+            background: #f8fafc;
+            border-radius: 0.75rem;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-left: 4px solid #3b82f6;
+        }
+
+        .step-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #1f2937;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .step-number {
+            background: #3b82f6;
+            color: white;
+            width: 2rem;
+            height: 2rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 1rem;
+        }
+
+        .location-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-label {
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-select {
+            padding: 0.75rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            transition: all 0.2s ease;
+        }
+
+        .form-select:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        .schools-display {
+            background: white;
+            border: 2px solid #e5e7eb;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            min-height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6b7280;
+            font-style: italic;
+        }
+
+        .schools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1rem;
+        }
+
+        .school-card {
+            background: white;
+            border: 2px solid #e5e7eb;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .school-card:hover {
+            border-color: #3b82f6;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);
+        }
+
+        .school-name {
+            font-weight: bold;
+            color: #1f2937;
+            margin-bottom: 0.5rem;
+        }
+
+        .school-info {
+            color: #6b7280;
+            font-size: 0.875rem;
+        }
+
+        .trades-count {
+            color: #059669;
+            font-weight: 500;
+        }
+
+        .api-info {
+            background: #f0f9ff;
+            border: 1px solid #0ea5e9;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin-top: 1rem;
+        }
+
+        .api-title {
+            font-weight: bold;
+            color: #0c4a6e;
+            margin-bottom: 0.5rem;
+        }
+
+        .api-endpoint {
+            font-family: 'Courier New', monospace;
+            background: #e0f2fe;
+            padding: 0.5rem;
+            border-radius: 0.25rem;
+            font-size: 0.875rem;
+            color: #0c4a6e;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .feature-list li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #e5e7eb;
+            display: flex;
+            align-items: center;
+        }
+
+        .feature-list li:last-child {
+            border-bottom: none;
+        }
+
+        .feature-icon {
+            color: #10b981;
+            margin-right: 0.75rem;
+            font-weight: bold;
+        }
+
+        .demo-button {
+            background: #3b82f6;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-top: 1rem;
+        }
+
+        .demo-button:hover {
+            background: #2563eb;
+            transform: translateY(-1px);
+        }
+
+        @media (max-width: 768px) {
+            .location-form {
+                grid-template-columns: 1fr;
+            }
+            
+            .schools-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-container">
+        <div class="demo-header">
+            <h1 class="demo-title">Enhanced Registration System</h1>
+            <p class="demo-subtitle">Automatic School Display by District Selection</p>
+        </div>
+
+        <div class="demo-content">
+            <!-- Step 1: Location Selection -->
+            <div class="step-section">
+                <h2 class="step-title">
+                    <span class="step-number">1</span>
+                    Select Your Location
+                </h2>
+                
+                <div class="location-form">
+                    <div class="form-group">
+                        <label class="form-label">Province</label>
+                        <select id="provinceSelect" class="form-select" onchange="loadDistricts()">
+                            <option value="">Choose Province</option>
+                            <option value="Kigali city">Kigali City</option>
+                            <option value="South">Southern Province</option>
+                            <option value="West">Western Province</option>
+                            <option value="North">Northern Province</option>
+                            <option value="East">Eastern Province</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">District</label>
+                        <select id="districtSelect" class="form-select" onchange="loadSchools()" disabled>
+                            <option value="">Choose District</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="api-info">
+                    <div class="api-title">API Endpoint Used:</div>
+                    <div class="api-endpoint">GET /api/v1/schools-by-district/district/{province}/{district}</div>
+                </div>
+            </div>
+
+            <!-- Step 2: Schools Auto-Display -->
+            <div class="step-section">
+                <h2 class="step-title">
+                    <span class="step-number">2</span>
+                    Schools Auto-Display
+                </h2>
+                
+                <div id="schoolsDisplay" class="schools-display">
+                    Select a province and district to see available TVET/TSS schools
+                </div>
+
+                <ul class="feature-list">
+                    <li><span class="feature-icon">✓</span> Automatic display when district is selected</li>
+                    <li><span class="feature-icon">✓</span> Shows school name, type, and category</li>
+                    <li><span class="feature-icon">✓</span> Displays number of available trades</li>
+                    <li><span class="feature-icon">✓</span> Preview of available trades</li>
+                </ul>
+            </div>
+
+            <!-- Step 3: Registration Flow -->
+            <div class="step-section">
+                <h2 class="step-title">
+                    <span class="step-number">3</span>
+                    Complete Registration Flow
+                </h2>
+                
+                <ul class="feature-list">
+                    <li><span class="feature-icon">→</span> User selects school → System shows all trades in that school</li>
+                    <li><span class="feature-icon">→</span> User selects trade → System shows all levels (Level 1-6)</li>
+                    <li><span class="feature-icon">→</span> User selects level → Registration complete</li>
+                </ul>
+
+                <button class="demo-button" onclick="openFullDemo()">
+                    Open Full Registration Demo
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_URL = 'http://localhost:8080';
+
+        // District data by province
+        const districtsByProvince = {
+            'Kigali city': ['GASABO', 'KICUKIRO', 'NYARUGENGE'],
+            'South': ['NYANZA', 'GISAGARA', 'NYARUGURU', 'HUYE', 'NYAMAGABE', 'RUHANGO', 'Ruhango', 'MUHANGA', 'KAMONYI'],
+            'West': ['KARONGI', 'RUTSIRO', 'RUBAVU', 'NYABIHU', 'Nyabihu', 'NGORORERO', 'Ngororero', 'RUSIZI', 'NYAMASHEKE', 'Nyamasheke'],
+            'North': ['Rulindo', 'RULINDO', 'GAKENKE', 'MUSANZE', 'Burera', 'GICUMBI'],
+            'East': ['Rwamagana', 'NYAGATARE', 'GATSIBO', 'KAYONZA', 'KIREHE', 'NGOMA', 'BUGESERA', 'Bugesera']
+        };
+
+        function loadDistricts() {
+            const provinceSelect = document.getElementById('provinceSelect');
+            const districtSelect = document.getElementById('districtSelect');
+            const schoolsDisplay = document.getElementById('schoolsDisplay');
+            
+            const selectedProvince = provinceSelect.value;
+            
+            // Clear districts and schools
+            districtSelect.innerHTML = '<option value="">Choose District</option>';
+            districtSelect.disabled = !selectedProvince;
+            schoolsDisplay.innerHTML = 'Select a province and district to see available TVET/TSS schools';
+            
+            if (selectedProvince && districtsByProvince[selectedProvince]) {
+                districtsByProvince[selectedProvince].forEach(district => {
+                    const option = document.createElement('option');
+                    option.value = district;
+                    option.textContent = district;
+                    districtSelect.appendChild(option);
+                });
+            }
+        }
+
+        async function loadSchools() {
+            const provinceSelect = document.getElementById('provinceSelect');
+            const districtSelect = document.getElementById('districtSelect');
+            const schoolsDisplay = document.getElementById('schoolsDisplay');
+            
+            const selectedProvince = provinceSelect.value;
+            const selectedDistrict = districtSelect.value;
+            
+            if (!selectedProvince || !selectedDistrict) {
+                schoolsDisplay.innerHTML = 'Select a province and district to see available TVET/TSS schools';
+                return;
+            }
+            
+            schoolsDisplay.innerHTML = '<div style="text-align: center; padding: 2rem;"><div style="width: 2rem; height: 2rem; border: 3px solid #e5e7eb; border-top: 3px solid #3b82f6; border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 1rem;"></div>Loading schools...</div>';
+            
+            try {
+                const response = await fetch(`${API_URL}/api/v1/schools-by-district/district/${selectedProvince}/${selectedDistrict}`);
+                
+                if (!response.ok) {
+                    throw new Error('Failed to load schools');
+                }
+                
+                const data = await response.json();
+                displaySchools(data.schools, selectedDistrict);
+                
+            } catch (error) {
+                console.error('Error loading schools:', error);
+                schoolsDisplay.innerHTML = `
+                    <div style="text-align: center; color: #ef4444;">
+                        <strong>Error loading schools</strong><br>
+                        <small>Make sure the backend server is running on ${API_URL}</small>
+                    </div>
+                `;
+            }
+        }
+
+        function displaySchools(schools, district) {
+            const schoolsDisplay = document.getElementById('schoolsDisplay');
+            
+            if (!schools || schools.length === 0) {
+                schoolsDisplay.innerHTML = `<div style="text-align: center; color: #6b7280;">No TVET/TSS schools found in ${district}</div>`;
+                return;
+            }
+            
+            const schoolsHTML = `
+                <div style="margin-bottom: 1rem; font-weight: bold; color: #1f2937;">
+                    Found ${schools.length} TVET/TSS schools in ${district}
+                </div>
+                <div class="schools-grid">
+                    ${schools.map(school => `
+                        <div class="school-card" onclick="selectSchool(${school.id}, '${school.name}')">
+                            <div class="school-name">${school.name}</div>
+                            <div class="school-info">
+                                <div>Type: ${school.type} | Category: ${school.category}</div>
+                                <div class="trades-count">${school.trades_count} trades available</div>
+                                ${school.trades.length > 0 ? `
+                                    <div style="margin-top: 0.5rem; font-size: 0.875rem;">
+                                        <strong>Trades:</strong> ${school.trades.slice(0, 3).join(', ')}
+                                        ${school.trades.length > 3 ? `... (+${school.trades.length - 3} more)` : ''}
+                                    </div>
+                                ` : ''}
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+            
+            schoolsDisplay.innerHTML = schoolsHTML;
+        }
+
+        function selectSchool(schoolId, schoolName) {
+            alert(`School selected: ${schoolName} (ID: ${schoolId})\\n\\nNext steps:\\n1. Load trades for this school\\n2. User selects trade\\n3. Load levels (Level 1-6)\\n4. Complete registration`);
+        }
+
+        function openFullDemo() {
+            // In a real implementation, this would navigate to the full registration page
+            alert('This would open the full registration component with Vue.js\\n\\nFeatures:\\n• Complete cascading selection\\n• Real-time API integration\\n• Responsive design\\n• Form validation');
+        }
+
+        // Add CSS animation for spinner
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes spin {
+                to { transform: rotate(360deg); }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

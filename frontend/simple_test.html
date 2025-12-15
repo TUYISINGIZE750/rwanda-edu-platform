@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple School Test</title>
+</head>
+<body>
+    <h1>Simple School Loading Test</h1>
+    
+    <div>
+        <label>Province:</label>
+        <select id="province" onchange="loadDistricts()">
+            <option value="">Select Province</option>
+            <option value="South">South</option>
+            <option value="Kigali city">Kigali City</option>
+        </select>
+    </div>
+    
+    <div>
+        <label>District:</label>
+        <select id="district" onchange="loadSchools()">
+            <option value="">Select District</option>
+        </select>
+    </div>
+    
+    <div>
+        <label>School:</label>
+        <select id="school">
+            <option value="">Select School</option>
+        </select>
+    </div>
+    
+    <div id="debug"></div>
+    
+    <script>
+        const districts = {
+            'South': ['NYANZA', 'GISAGARA'],
+            'Kigali city': ['GASABO', 'KICUKIRO']
+        };
+        
+        function loadDistricts() {
+            const province = document.getElementById('province').value;
+            const districtSelect = document.getElementById('district');
+            const schoolSelect = document.getElementById('school');
+            
+            districtSelect.innerHTML = '<option value="">Select District</option>';
+            schoolSelect.innerHTML = '<option value="">Select School</option>';
+            
+            if (districts[province]) {
+                districts[province].forEach(district => {
+                    const option = document.createElement('option');
+                    option.value = district;
+                    option.textContent = district;
+                    districtSelect.appendChild(option);
+                });
+            }
+        }
+        
+        async function loadSchools() {
+            const province = document.getElementById('province').value;
+            const district = document.getElementById('district').value;
+            const schoolSelect = document.getElementById('school');
+            const debug = document.getElementById('debug');
+            
+            schoolSelect.innerHTML = '<option value="">Loading...</option>';
+            
+            if (!province || !district) return;
+            
+            try {
+                const url = `http://localhost:8080/api/v1/schools-by-district/district/${province}/${district}`;
+                debug.innerHTML = `Calling: ${url}`;
+                
+                const response = await fetch(url);
+                const data = await response.json();
+                
+                schoolSelect.innerHTML = '<option value="">Select School</option>';
+                
+                if (data.schools && data.schools.length > 0) {
+                    data.schools.forEach(school => {
+                        const option = document.createElement('option');
+                        option.value = school.id;
+                        option.textContent = `${school.name} (${school.type})`;
+                        schoolSelect.appendChild(option);
+                    });
+                    debug.innerHTML += `<br>✅ Loaded ${data.schools.length} schools`;
+                } else {
+                    debug.innerHTML += '<br>❌ No schools found';
+                }
+            } catch (error) {
+                debug.innerHTML += `<br>❌ Error: ${error.message}`;
+                schoolSelect.innerHTML = '<option value="">Error loading schools</option>';
+            }
+        }
+    </script>
+</body>
+</html>

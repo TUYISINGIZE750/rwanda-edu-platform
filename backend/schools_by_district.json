@@ -1,0 +1,1589 @@
+{
+  "provinces": [
+    {
+      "name": "Kigali city",
+      "districts": [
+        {
+          "name": "NYARUGENGE",
+          "schools_count": 1,
+          "schools": [
+            {
+              "id": 1,
+              "name": "KANYINYA TVET",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            }
+          ]
+        },
+        {
+          "name": "GASABO",
+          "schools_count": 2,
+          "schools": [
+            {
+              "id": 2,
+              "name": "FOREVER TVET INSTITUTE",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 3,
+              "name": "International Technical School of Kigali",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            }
+          ]
+        },
+        {
+          "name": "KICUKIRO",
+          "schools_count": 2,
+          "schools": [
+            {
+              "id": 4,
+              "name": "Lycee de Kicukiro APADE",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 5,
+              "name": "ESSA Nyarugunga",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "South",
+      "districts": [
+        {
+          "name": "NYANZA",
+          "schools_count": 9,
+          "schools": [
+            {
+              "id": 6,
+              "name": "Maranatha TVET School",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 7,
+              "name": "Hanika TSS",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 8,
+              "name": "ESPANYA",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 9,
+              "name": "KAVUMU TVET SCHOOL",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 10,
+              "name": "BUSASAMANA TVET SCHOOL",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 11,
+              "name": "College Ste Trinite de Nyanza",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 12,
+              "name": "NYANZA TVET SCHOOL",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 13,
+              "name": "Lycee de Nyanza",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 14,
+              "name": "HVP GATAGARA TVET SCHOOL",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            }
+          ]
+        },
+        {
+          "name": "GISAGARA",
+          "schools_count": 8,
+          "schools": [
+            {
+              "id": 15,
+              "name": "GIKONKO TVET SCHOOL",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 16,
+              "name": "GIKONKO TVETSCHOOL",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 17,
+              "name": "COLLEGE SAINT JOSEPH KANSI  TVET",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 18,
+              "name": "COLLEGE SAINT JOSEPH KANSI",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 19,
+              "name": "KIGEMBE TVET SCHOOL",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 20,
+              "name": "MUGOMBWA TVET SCHOOL",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 21,
+              "name": "MUSHA ADVENTIST TVET SCHOOL",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 22,
+              "name": "SAINT KIZITO SAVE TVET SCHOOL",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            }
+          ]
+        },
+        {
+          "name": "NYARUGURU",
+          "schools_count": 5,
+          "schools": [
+            {
+              "id": 23,
+              "name": "KIBEHO TVET SCHOOL",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 24,
+              "name": "MUTOVU TVET SCHOOL",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 25,
+              "name": "TVET NYAGISOZI",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 26,
+              "name": "BTR RWAMIKO TVET SCHOOL",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 27,
+              "name": "BTR RWAMIKO TVET",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            }
+          ]
+        },
+        {
+          "name": "HUYE",
+          "schools_count": 4,
+          "schools": [
+            {
+              "id": 28,
+              "name": "MARABA TVET",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 29,
+              "name": "Groupe Scolaire des parents",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 30,
+              "name": "KABUTARE TVET SCHOOL",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 31,
+              "name": "RWABUYE TVET SCHOOL",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            }
+          ]
+        },
+        {
+          "name": "NYAMAGABE",
+          "schools_count": 8,
+          "schools": [
+            {
+              "id": 32,
+              "name": "GSNDP CYANIKA",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 33,
+              "name": "CYANIKA TVET SCHOOL",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 34,
+              "name": "ES BISHYIGA",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 35,
+              "name": "DON BSOCO NYAMAGABE TVET SCHOOL",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 36,
+              "name": "KADUHA TVET",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 37,
+              "name": "MWOGO TVET SCHOOL",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 38,
+              "name": "KIBUMBWE  TVET SCHOOL",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 39,
+              "name": "UWINKINGI TVET SCHOOL",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            }
+          ]
+        },
+        {
+          "name": "RUHANGO",
+          "schools_count": 4,
+          "schools": [
+            {
+              "id": 40,
+              "name": "MPANDA TVET SCHOOL",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 41,
+              "name": "E. S KINAZI TVET  SCHOOL",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 47,
+              "name": "KINAZI TVET SCHOOL A",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 48,
+              "name": "E.S KINAZI TVET",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            }
+          ]
+        },
+        {
+          "name": "Ruhango",
+          "schools_count": 5,
+          "schools": [
+            {
+              "id": 42,
+              "name": "E. S KINAZI TVET  SCHOOL",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 43,
+              "name": "Vunga TVET",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 44,
+              "name": "Ecole Technique Ste Trinite de Ruhango",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 45,
+              "name": "GS Indangaburezi",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 46,
+              "name": "Lycee de Ruhango Ikirezi",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            }
+          ]
+        },
+        {
+          "name": "MUHANGA",
+          "schools_count": 10,
+          "schools": [
+            {
+              "id": 49,
+              "name": "St Sylvain TVET",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 50,
+              "name": "NYABIKENKE TVET  SCHOOL",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 51,
+              "name": "NYABIKENKE TVET School",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 52,
+              "name": "KIYUMBA TVET School",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 53,
+              "name": "ACEJ KARAMA TVET SCHOOL",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 54,
+              "name": "ACEJ KARAMA TVET",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 55,
+              "name": "BULINGA TVET SCHOOL",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 56,
+              "name": "BURINGA TVET School",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 57,
+              "name": "RWANDA SCHOOL OF CREATIVE ARTS AND MUSIC",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 58,
+              "name": "Jam Fred Nkunda",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            }
+          ]
+        },
+        {
+          "name": "KAMONYI",
+          "schools_count": 5,
+          "schools": [
+            {
+              "id": 59,
+              "name": "KAYENZI TVET SCHOOL",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 60,
+              "name": "FR. RAMON KABUGA TVET SCHOOL",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 61,
+              "name": "KIGESE TVET SCHOOL",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 62,
+              "name": "COLLEGE APPEC REMERA RUKOMA TVET SCHOOL",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 63,
+              "name": "RUNDA TVET",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "West",
+      "districts": [
+        {
+          "name": "KARONGI",
+          "schools_count": 6,
+          "schools": [
+            {
+              "id": 64,
+              "name": "ESA BIRAMBO",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 65,
+              "name": "RUBENGERA  II TVET SCHOOL",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 66,
+              "name": "ES Rubengera  School",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 67,
+              "name": "ES RUBENGERA",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 68,
+              "name": "ES NGOMA",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 69,
+              "name": "Gisovu TVET School",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            }
+          ]
+        },
+        {
+          "name": "RUTSIRO",
+          "schools_count": 4,
+          "schools": [
+            {
+              "id": 70,
+              "name": "COLLEGE INDASHYIKIRWA",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 71,
+              "name": "GS BUMBA TVET School",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 72,
+              "name": "BUMBA TVET SCHOOL",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 73,
+              "name": "ES KABONA",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            }
+          ]
+        },
+        {
+          "name": "RUBAVU",
+          "schools_count": 5,
+          "schools": [
+            {
+              "id": 74,
+              "name": "ESTG",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 75,
+              "name": "St Martin TVET Gisenyi",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 76,
+              "name": "APEFOC KanamaTVET",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 77,
+              "name": "ETAG",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 78,
+              "name": "ECOLE D'ART DE NYUNDO",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            }
+          ]
+        },
+        {
+          "name": "NYABIHU",
+          "schools_count": 6,
+          "schools": [
+            {
+              "id": 79,
+              "name": "EAV BIGOGWE",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 81,
+              "name": "NYABIHU TVET SCHOOL",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 82,
+              "name": "RWANDA CODING ACADEMY",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 83,
+              "name": "KISISABO TVET SCHOOL",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 84,
+              "name": "KIBISABO TVET School",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 86,
+              "name": "KIBIHEKANE TVET",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            }
+          ]
+        },
+        {
+          "name": "Nyabihu",
+          "schools_count": 2,
+          "schools": [
+            {
+              "id": 80,
+              "name": "BIGOGWE TVET",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 85,
+              "name": "KIBIHEKANE TVET School",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            }
+          ]
+        },
+        {
+          "name": "NGORORERO",
+          "schools_count": 4,
+          "schools": [
+            {
+              "id": 87,
+              "name": "GATUMBA TVET SCHOOL",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 88,
+              "name": "MUHORORO TVET",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 89,
+              "name": "College APEJERWA Nyange TVET",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 92,
+              "name": "EAV KIVUMU",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            }
+          ]
+        },
+        {
+          "name": "Ngororero",
+          "schools_count": 2,
+          "schools": [
+            {
+              "id": 90,
+              "name": "College APEJERWA Nyange TVET",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 91,
+              "name": "EAV KIVUMU",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            }
+          ]
+        },
+        {
+          "name": "RUSIZI",
+          "schools_count": 7,
+          "schools": [
+            {
+              "id": 93,
+              "name": "MIBILIZI SAINT AUGUSTIN TVET",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 94,
+              "name": "GIHEKE TVET SCHOOL",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 95,
+              "name": "Jill Barham TVET",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 96,
+              "name": "TVET MIZERO",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 97,
+              "name": "MUGANZA TVET SCHOOL",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 98,
+              "name": "MATARE TVET SCHOOL",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 100,
+              "name": "COLLEGE LA LUMIERE DE GASHONGA",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            }
+          ]
+        },
+        {
+          "name": "Rusizi",
+          "schools_count": 1,
+          "schools": [
+            {
+              "id": 99,
+              "name": "MATARE TVET SCHOOL",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            }
+          ]
+        },
+        {
+          "name": "NYAMASHEKE",
+          "schools_count": 4,
+          "schools": [
+            {
+              "id": 101,
+              "name": "TVET TYAZO",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 102,
+              "name": "KARENGERA TVET",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 104,
+              "name": "EAV NTENDEZI",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 105,
+              "name": "SHANGI TVET SCHOOL",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            }
+          ]
+        },
+        {
+          "name": "Nyamasheke",
+          "schools_count": 1,
+          "schools": [
+            {
+              "id": 103,
+              "name": "EAV Ntendezi",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "North",
+      "districts": [
+        {
+          "name": "Rulindo",
+          "schools_count": 1,
+          "schools": [
+            {
+              "id": 106,
+              "name": "KISARO TVET",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            }
+          ]
+        },
+        {
+          "name": "RULINDO",
+          "schools_count": 4,
+          "schools": [
+            {
+              "id": 107,
+              "name": "BUYOGA TVET",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 108,
+              "name": "Kinihira TVET",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 109,
+              "name": "TVET Kisaro",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 110,
+              "name": "APEKI TUMBA",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            }
+          ]
+        },
+        {
+          "name": "GAKENKE",
+          "schools_count": 6,
+          "schools": [
+            {
+              "id": 111,
+              "name": "JANJA TVET",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 112,
+              "name": "NEMBA TVET",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 113,
+              "name": "EAV RUSHASHI",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 114,
+              "name": "EAV Rushashi",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 115,
+              "name": "GS APAPEM MUHOND",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 116,
+              "name": "Muhabura Integrated Polytechnic",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            }
+          ]
+        },
+        {
+          "name": "MUSANZE",
+          "schools_count": 3,
+          "schools": [
+            {
+              "id": 117,
+              "name": "Muhabura Integrated Polytechnic",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 118,
+              "name": "ESTB BUSOGO",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 119,
+              "name": "ETEFOP",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            }
+          ]
+        },
+        {
+          "name": "Burera",
+          "schools_count": 6,
+          "schools": [
+            {
+              "id": 120,
+              "name": "COLLEGE GEORGE FOX DE BUTARO",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 121,
+              "name": "ES GAHUNGA",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 122,
+              "name": "ETEKA( Ecole Technique de Karuganda)",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 123,
+              "name": "ETKaruganda",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 124,
+              "name": "CEPEM",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 126,
+              "name": "Kabona TVET",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            }
+          ]
+        },
+        {
+          "name": "BURERA",
+          "schools_count": 1,
+          "schools": [
+            {
+              "id": 125,
+              "name": "CEPEM TVET SCHOOL",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            }
+          ]
+        },
+        {
+          "name": "GICUMBI",
+          "schools_count": 9,
+          "schools": [
+            {
+              "id": 127,
+              "name": "ES BUKURE",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 129,
+              "name": "Cyumba TVET",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 130,
+              "name": "Kageyo",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 131,
+              "name": "Mulindi TVET",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 132,
+              "name": "Mukarange TVET",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 133,
+              "name": "Collegegio Santo Maria Zaccaria",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 134,
+              "name": "College Saint Laurent de Gaseke",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 135,
+              "name": "APAPEGI Cyuru",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 136,
+              "name": "College APEGIRUBUKI",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            }
+          ]
+        },
+        {
+          "name": "Gicumbi",
+          "schools_count": 1,
+          "schools": [
+            {
+              "id": 128,
+              "name": "BUKURE TVET SCHOOL",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "East",
+      "districts": [
+        {
+          "name": "Rwamagana",
+          "schools_count": 5,
+          "schools": [
+            {
+              "id": 137,
+              "name": "APPEGA GAHENGERI TVET SCHOOL",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 138,
+              "name": "APEGA GAHENGERI",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 139,
+              "name": "LYCEE DU LAC MUHAZI (ASPEJ)",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 140,
+              "name": "CENTER FOR CHAMPIONS TVET",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 141,
+              "name": "ET St Kizito Musha",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            }
+          ]
+        },
+        {
+          "name": "NYAGATARE",
+          "schools_count": 2,
+          "schools": [
+            {
+              "id": 142,
+              "name": "ETP Nyarurema",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 143,
+              "name": "CYONDO TVET SCHOOL",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            }
+          ]
+        },
+        {
+          "name": "GATSIBO",
+          "schools_count": 8,
+          "schools": [
+            {
+              "id": 144,
+              "name": "CYONDO TVET SCHOOL",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 145,
+              "name": "EFA NYAGAHANGA",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 146,
+              "name": "GATSIBO TVET",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 147,
+              "name": "GITUZA TVET",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 148,
+              "name": "GAKONI TVET",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 149,
+              "name": "UMUTARA POLYTECHNIC -GAKONI",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 150,
+              "name": "LYCEE St ALEXANDRE SAULI DE MUHURA",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 151,
+              "name": "NGARAMA TVET SCHOOL",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            }
+          ]
+        },
+        {
+          "name": "KAYONZA",
+          "schools_count": 4,
+          "schools": [
+            {
+              "id": 152,
+              "name": "NGARAMA TVET SCHOOL",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 153,
+              "name": "Don Bosco TSS Kabarondo",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 154,
+              "name": "NYAMIRAMA TVET SCHOOL",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 155,
+              "name": "St Christopher TVET",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            }
+          ]
+        },
+        {
+          "name": "KIREHE",
+          "schools_count": 3,
+          "schools": [
+            {
+              "id": 156,
+              "name": "St Anastase Gahara TVET SCHOOL",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 157,
+              "name": "KIREHE Adventist TVET",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 158,
+              "name": "APENA TVET",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            }
+          ]
+        },
+        {
+          "name": "Kirehe",
+          "schools_count": 1,
+          "schools": [
+            {
+              "id": 159,
+              "name": "APENA TVET",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            }
+          ]
+        },
+        {
+          "name": "NGOMA",
+          "schools_count": 3,
+          "schools": [
+            {
+              "id": 160,
+              "name": "MUTENDERI TVET",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 161,
+              "name": "GITWE TVET",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 162,
+              "name": "KIGARAMA TVET",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            }
+          ]
+        },
+        {
+          "name": "BUGESERA",
+          "schools_count": 2,
+          "schools": [
+            {
+              "id": 163,
+              "name": "NYAMATA TVET SCHOOL",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            },
+            {
+              "id": 164,
+              "name": "NELSON MANDELA TVET SCHOOL",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            }
+          ]
+        },
+        {
+          "name": "Bugesera",
+          "schools_count": 1,
+          "schools": [
+            {
+              "id": 165,
+              "name": "APEBU Nyamata TVET",
+              "type": "TVET",
+              "category": "Public",
+              "trades": [],
+              "trades_count": 0
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

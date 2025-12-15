@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-Time Chat Test</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; background: #f0f2f5; }
+        .container { max-width: 800px; margin: 20px auto; background: white; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; border-radius: 10px 10px 0 0; }
+        .status { padding: 10px 20px; background: #f8f9fa; border-bottom: 1px solid #dee2e6; }
+        .status.connected { background: #d4edda; color: #155724; }
+        .status.disconnected { background: #f8d7da; color: #721c24; }
+        .messages { height: 400px; overflow-y: auto; padding: 20px; }
+        .message { margin-bottom: 15px; padding: 10px; background: #f8f9fa; border-radius: 8px; }
+        .message.own { background: #e3f2fd; margin-left: 50px; }
+        .message.system { background: #fff3cd; text-align: center; font-style: italic; }
+        .message-header { font-weight: bold; margin-bottom: 5px; color: #495057; }
+        .message-time { font-size: 11px; color: #6c757d; }
+        .input-area { padding: 20px; border-top: 1px solid #dee2e6; display: flex; gap: 10px; }
+        .input-area input { flex: 1; padding: 12px; border: 2px solid #dee2e6; border-radius: 8px; font-size: 14px; }
+        .input-area button { padding: 12px 24px; background: #667eea; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; }
+        .input-area button:hover { background: #5568d3; }
+        .input-area button:disabled { background: #ccc; cursor: not-allowed; }
+        .online-users { padding: 10px 20px; background: #e7f3ff; border-bottom: 1px solid #bee5eb; font-size: 14px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚀 Real-Time Chat Test</h1>
+            <p>Testing WebSocket connection for holiday learning collaboration</p>
+        </div>
+        
+        <div id="status" class="status disconnected">
+            ⚠️ Disconnected - Connecting...
+        </div>
+        
+        <div id="onlineUsers" class="online-users" style="display:none;">
+            👥 Online: <span id="userCount">0</span> users
+        </div>
+        
+        <div id="messages" class="messages"></div>
+        
+        <div class="input-area">
+            <input type="text" id="userName" placeholder="Your name" style="max-width: 150px;">
+            <input type="text" id="messageInput" placeholder="Type your message..." disabled>
+            <button id="sendBtn" disabled>Send</button>
+        </div>
+    </div>
+
+    <script>
+        let ws = null;
+        let userName = '';
+        const channelId = 1; // Test channel
+        
+        const statusEl = document.getElementById('status');
+        const messagesEl = document.getElementById('messages');
+        const messageInput = document.getElementById('messageInput');
+        const userNameInput = document.getElementById('userName');
+        const sendBtn = document.getElementById('sendBtn');
+        const onlineUsersEl = document.getElementById('onlineUsers');
+        const userCountEl = document.getElementById('userCount');
+        
+        // Connect when user enters name
+        userNameInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' && userNameInput.value.trim()) {
+                userName = userNameInput.value.trim();
+                userNameInput.disabled = true;
+                connect();
+            }
+        });
+        
+        function connect() {
+            const wsUrl = `ws://localhost:8080/ws/channels/${channelId}?user_id=1&user_name=${encodeURIComponent(userName)}`;
+            console.log('🔌 Connecting to:', wsUrl);
+            
+            ws = new WebSocket(wsUrl);
+            
+            ws.onopen = () => {
+                console.log('✅ Connected!');
+                statusEl.className = 'status connected';
+                statusEl.textContent = '✅ Connected - Real-time chat active!';
+                messageInput.disabled = false;
+                sendBtn.disabled = false;
+                onlineUsersEl.style.display = 'block';
+                messageInput.focus();
+                
+                addSystemMessage('Connected to real-time chat!');
+            };
+            
+            ws.onmessage = (event) => {
+                console.log('📨 Message received:', event.data);
+                const data = JSON.parse(event.data);
+                
+                if (data.type === 'user_joined') {
+                    addSystemMessage(`${data.user} joined the chat`);
+                } else if (data.type === 'user_left') {
+                    addSystemMessage(`${data.user} left the chat`);
+                } else if (data.type === 'message') {
+                    addMessage(data);
+                }
+            };
+            
+            ws.onerror = (error) => {
+                console.error('❌ WebSocket error:', error);
+                statusEl.className = 'status disconnected';
+                statusEl.textContent = '❌ Connection error';
+            };
+            
+            ws.onclose = () => {
+                console.log('🔌 Disconnected');
+                statusEl.className = 'status disconnected';
+                statusEl.textContent = '⚠️ Disconnected';
+                messageInput.disabled = true;
+                sendBtn.disabled = true;
+                onlineUsersEl.style.display = 'none';
+            };
+        }
+        
+        function sendMessage() {
+            const content = messageInput.value.trim();
+            if (!content || !ws || ws.readyState !== WebSocket.OPEN) return;
+            
+            const message = {
+                type: 'message',
+                content: content,
+                author: userName,
+                timestamp: new Date().toISOString()
+            };
+            
+            console.log('📤 Sending:', message);
+            ws.send(JSON.stringify(message));
+            
+            // Add own message immediately
+            addMessage(message, true);
+            messageInput.value = '';
+        }
+        
+        function addMessage(data, isOwn = false) {
+            const div = document.createElement('div');
+            div.className = 'message' + (isOwn ? ' own' : '');
+            
+            const time = new Date(data.timestamp).toLocaleTimeString();
+            
+            div.innerHTML = `
+                <div class="message-header">${data.author} <span class="message-time">${time}</span></div>
+                <div>${data.content}</div>
+            `;
+            
+            messagesEl.appendChild(div);
+            messagesEl.scrollTop = messagesEl.scrollHeight;
+        }
+        
+        function addSystemMessage(text) {
+            const div = document.createElement('div');
+            div.className = 'message system';
+            div.textContent = text;
+            messagesEl.appendChild(div);
+            messagesEl.scrollTop = messagesEl.scrollHeight;
+        }
+        
+        sendBtn.addEventListener('click', sendMessage);
+        messageInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') sendMessage();
+        });
+        
+        console.log('🎯 Real-Time Chat Test Ready!');
+        console.log('📝 Enter your name and press Enter to connect');
+    </script>
+</body>
+</html>

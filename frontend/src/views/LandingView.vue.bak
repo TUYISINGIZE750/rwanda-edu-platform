@@ -1,0 +1,428 @@
+<template>
+  <div class="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50">
+    <!-- Header -->
+    <header class="bg-white shadow-sm">
+      <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+        <div class="flex items-center space-x-2">
+          <div class="w-10 h-10 bg-gradient-to-br from-blue-600 to-green-600 rounded-lg flex items-center justify-center">
+            <span class="text-white font-bold text-xl">RE</span>
+          </div>
+          <span class="text-xl font-bold text-gray-800">Rwanda Edu</span>
+        </div>
+        <div class="flex space-x-4">
+          <button @click="showLogin = true" class="px-6 py-2 text-blue-600 hover:text-blue-700 font-medium">
+            Login
+          </button>
+          <button @click="showRegister = true" class="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium">
+            Register
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="max-w-7xl mx-auto px-4 py-20 text-center">
+      <h1 class="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
+        Rwanda National Education<br/>
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-green-600">
+          Communication Platform
+        </span>
+      </h1>
+      <p class="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
+        Connecting 10 pilot schools across Rwanda. Safe, moderated communication for students and teachers. 
+        Supporting Vision 2050 education goals.
+      </p>
+      <div class="flex justify-center space-x-4">
+        <button @click="showQuickLogin = true" class="px-8 py-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-semibold text-lg shadow-lg">
+          Quick Login
+        </button>
+        <button @click="scrollToFeatures" class="px-8 py-4 bg-white text-blue-600 border-2 border-blue-600 rounded-lg hover:bg-blue-50 font-semibold text-lg">
+          Learn More
+        </button>
+      </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="max-w-7xl mx-auto px-4 py-12">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+        <div class="text-center">
+          <div class="text-4xl font-bold text-blue-600">10</div>
+          <div class="text-gray-600 mt-2">Pilot Schools</div>
+        </div>
+        <div class="text-center">
+          <div class="text-4xl font-bold text-green-600">560</div>
+          <div class="text-gray-600 mt-2">Total Users</div>
+        </div>
+        <div class="text-center">
+          <div class="text-4xl font-bold text-purple-600">3</div>
+          <div class="text-gray-600 mt-2">Languages</div>
+        </div>
+        <div class="text-center">
+          <div class="text-4xl font-bold text-orange-600">100%</div>
+          <div class="text-gray-600 mt-2">Safe & Moderated</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section ref="featuresSection" class="max-w-7xl mx-auto px-4 py-20">
+      <h2 class="text-4xl font-bold text-center mb-12">Platform Features</h2>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="bg-white p-6 rounded-xl shadow-md">
+          <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-2">Safe Communication</h3>
+          <p class="text-gray-600">All student messages are moderated by teachers before being visible to others.</p>
+        </div>
+
+        <div class="bg-white p-6 rounded-xl shadow-md">
+          <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-2">Controlled DM Requests</h3>
+          <p class="text-gray-600">Students request permission for direct messages with time-limited windows.</p>
+        </div>
+
+        <div class="bg-white p-6 rounded-xl shadow-md">
+          <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-2">Offline Support</h3>
+          <p class="text-gray-600">Works offline with automatic sync when connection is restored.</p>
+        </div>
+
+        <div class="bg-white p-6 rounded-xl shadow-md">
+          <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-2">Resource Sharing</h3>
+          <p class="text-gray-600">Teachers share educational materials with students securely.</p>
+        </div>
+
+        <div class="bg-white p-6 rounded-xl shadow-md">
+          <div class="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-2">Content Flagging</h3>
+          <p class="text-gray-600">Report inappropriate content for immediate teacher review.</p>
+        </div>
+
+        <div class="bg-white p-6 rounded-xl shadow-md">
+          <div class="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-2">Multi-Language</h3>
+          <p class="text-gray-600">Full support for Kinyarwanda, English, and French.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Schools Section -->
+    <section class="bg-white py-20">
+      <div class="max-w-7xl mx-auto px-4">
+        <h2 class="text-4xl font-bold text-center mb-12">Pilot Schools</h2>
+        <div class="grid md:grid-cols-5 gap-6">
+          <div v-for="school in schools" :key="school.id" class="text-center p-4">
+            <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-green-500 rounded-full mx-auto mb-3 flex items-center justify-center text-white font-bold text-xl">
+              {{ school.id }}
+            </div>
+            <h3 class="font-semibold text-sm">{{ school.name }}</h3>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quick Login Modal -->
+    <div v-if="showQuickLogin" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" @click.self="showQuickLogin = false">
+      <div class="bg-white rounded-xl max-w-2xl w-full p-8">
+        <div class="flex justify-between items-center mb-6">
+          <h2 class="text-2xl font-bold">Quick Login</h2>
+          <button @click="showQuickLogin = false" class="text-gray-500 hover:text-gray-700">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+            </svg>
+          </button>
+        </div>
+
+        <div class="space-y-4">
+          <div>
+            <h3 class="font-semibold mb-2 text-lg">👨‍💼 Admin</h3>
+            <button @click="quickLogin('admin@school1.rw', 'admin123')" class="w-full text-left p-4 border-2 border-gray-200 rounded-lg hover:border-blue-500 hover:bg-blue-50">
+              <div class="font-medium">admin@school1.rw</div>
+              <div class="text-sm text-gray-600">Password: admin123</div>
+            </button>
+          </div>
+
+          <div>
+            <h3 class="font-semibold mb-2 text-lg">👨‍🏫 Teachers</h3>
+            <div class="grid md:grid-cols-2 gap-3">
+              <button @click="quickLogin('teacher1@school1.rw', 'teacher123')" class="text-left p-4 border-2 border-gray-200 rounded-lg hover:border-green-500 hover:bg-green-50">
+                <div class="font-medium">teacher1@school1.rw</div>
+                <div class="text-sm text-gray-600">Password: teacher123</div>
+              </button>
+              <button @click="quickLogin('teacher2@school1.rw', 'teacher123')" class="text-left p-4 border-2 border-gray-200 rounded-lg hover:border-green-500 hover:bg-green-50">
+                <div class="font-medium">teacher2@school1.rw</div>
+                <div class="text-sm text-gray-600">Password: teacher123</div>
+              </button>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="font-semibold mb-2 text-lg">👨‍🎓 Students</h3>
+            <div class="grid md:grid-cols-2 gap-3">
+              <button @click="quickLogin('student11@school1.rw', 'student123')" class="text-left p-4 border-2 border-gray-200 rounded-lg hover:border-purple-500 hover:bg-purple-50">
+                <div class="font-medium">student11@school1.rw</div>
+                <div class="text-sm text-gray-600">Grade S1 - Password: student123</div>
+              </button>
+              <button @click="quickLogin('student21@school1.rw', 'student123')" class="text-left p-4 border-2 border-gray-200 rounded-lg hover:border-purple-500 hover:bg-purple-50">
+                <div class="font-medium">student21@school1.rw</div>
+                <div class="text-sm text-gray-600">Grade S2 - Password: student123</div>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-6 text-center">
+          <button @click="showQuickLogin = false; showLogin = true" class="text-blue-600 hover:text-blue-700 font-medium">
+            Or login with custom credentials →
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div v-if="showLogin" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" @click.self="showLogin = false">
+      <div class="bg-white rounded-xl max-w-md w-full p-8">
+        <div class="flex justify-between items-center mb-6">
+          <h2 class="text-2xl font-bold">Login</h2>
+          <button @click="showLogin = false" class="text-gray-500 hover:text-gray-700">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+            </svg>
+          </button>
+        </div>
+
+        <form @submit.prevent="handleLogin" class="space-y-4">
+          <div>
+            <label class="block text-sm font-medium mb-1">Email</label>
+            <input v-model="loginEmail" type="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" required />
+          </div>
+          
+          <div>
+            <label class="block text-sm font-medium mb-1">Password</label>
+            <input v-model="loginPassword" type="password" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" required />
+          </div>
+          
+          <button type="submit" class="w-full py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-semibold" :disabled="loading">
+            {{ loading ? 'Logging in...' : 'Login' }}
+          </button>
+          
+          <p v-if="error" class="text-red-600 text-sm text-center">{{ error }}</p>
+        </form>
+
+        <div class="mt-4 text-center">
+          <button @click="showLogin = false; showRegister = true" class="text-blue-600 hover:text-blue-700 text-sm">
+            Don't have an account? Register
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div v-if="showRegister" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" @click.self="showRegister = false">
+      <div class="bg-white rounded-xl max-w-md w-full p-8 max-h-[90vh] overflow-y-auto">
+        <div class="flex justify-between items-center mb-6">
+          <h2 class="text-2xl font-bold">Register</h2>
+          <button @click="showRegister = false" class="text-gray-500 hover:text-gray-700">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+            </svg>
+          </button>
+        </div>
+
+        <form @submit.prevent="handleRegister" class="space-y-4">
+          <div>
+            <label class="block text-sm font-medium mb-1">Full Name</label>
+            <input v-model="registerData.full_name" type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" required />
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium mb-1">Email</label>
+            <input v-model="registerData.email" type="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" required />
+          </div>
+          
+          <div>
+            <label class="block text-sm font-medium mb-1">Password</label>
+            <input v-model="registerData.password" type="password" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" required />
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium mb-1">Role</label>
+            <select v-model="registerData.role" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" required>
+              <option value="">Select role</option>
+              <option value="student">Student</option>
+              <option value="teacher">Teacher</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium mb-1">School</label>
+            <select v-model="registerData.school_id" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" required>
+              <option value="">Select school</option>
+              <option v-for="school in schools" :key="school.id" :value="school.id">{{ school.name }}</option>
+            </select>
+          </div>
+
+          <div v-if="registerData.role === 'student'">
+            <label class="block text-sm font-medium mb-1">Grade</label>
+            <select v-model="registerData.grade" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" required>
+              <option value="">Select grade</option>
+              <option value="1">S1</option>
+              <option value="2">S2</option>
+              <option value="3">S3</option>
+              <option value="4">S4</option>
+              <option value="5">S5</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium mb-1">Language</label>
+            <select v-model="registerData.locale" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+              <option value="rw">Kinyarwanda</option>
+              <option value="en">English</option>
+              <option value="fr">French</option>
+            </select>
+          </div>
+          
+          <button type="submit" class="w-full py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 font-semibold" :disabled="loading">
+            {{ loading ? 'Registering...' : 'Register' }}
+          </button>
+          
+          <p v-if="error" class="text-red-600 text-sm text-center">{{ error }}</p>
+        </form>
+
+        <div class="mt-4 text-center">
+          <button @click="showRegister = false; showLogin = true" class="text-blue-600 hover:text-blue-700 text-sm">
+            Already have an account? Login
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+      <div class="max-w-7xl mx-auto px-4 text-center">
+        <p class="text-lg mb-2">Rwanda National Education Communication Platform</p>
+        <p class="text-gray-400">Supporting Vision 2050 • Ministry of Education</p>
+        <p class="text-gray-500 text-sm mt-4">© 2024 Rwanda Education Platform. All rights reserved.</p>
+      </div>
+    </footer>
+  </div>
+</template>
+
+<script setup>
+import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+import { useAuthStore } from '../stores/auth'
+import api from '../utils/api'
+
+const router = useRouter()
+const authStore = useAuthStore()
+
+const showQuickLogin = ref(false)
+const showLogin = ref(false)
+const showRegister = ref(false)
+const loading = ref(false)
+const error = ref('')
+
+const loginEmail = ref('')
+const loginPassword = ref('')
+
+const registerData = ref({
+  full_name: '',
+  email: '',
+  password: '',
+  role: '',
+  school_id: '',
+  grade: null,
+  locale: 'rw'
+})
+
+const featuresSection = ref(null)
+
+const schools = [
+  { id: 1, name: 'Kigali Secondary' },
+  { id: 2, name: 'Musanze High' },
+  { id: 3, name: 'Huye Academy' },
+  { id: 4, name: 'Rubavu Secondary' },
+  { id: 5, name: 'Nyagatare School' },
+  { id: 6, name: 'Muhanga High' },
+  { id: 7, name: 'Karongi Academy' },
+  { id: 8, name: 'Rwamagana Secondary' },
+  { id: 9, name: 'Bugesera High' },
+  { id: 10, name: 'Nyanza Secondary' }
+]
+
+function scrollToFeatures() {
+  featuresSection.value?.scrollIntoView({ behavior: 'smooth' })
+}
+
+async function quickLogin(email, password) {
+  loginEmail.value = email
+  loginPassword.value = password
+  showQuickLogin.value = false
+  await handleLogin()
+}
+
+async function handleLogin() {
+  loading.value = true
+  error.value = ''
+  
+  try {
+    await authStore.login(loginEmail.value, loginPassword.value)
+    showLogin.value = false
+    router.push('/')
+  } catch (err) {
+    error.value = err.response?.data?.detail || 'Invalid credentials'
+  } finally {
+    loading.value = false
+  }
+}
+
+async function handleRegister() {
+  loading.value = true
+  error.value = ''
+  
+  try {
+    const payload = {
+      ...registerData.value,
+      school_id: parseInt(registerData.value.school_id),
+      grade: registerData.value.role === 'student' ? parseInt(registerData.value.grade) : null
+    }
+    
+    await api.post('/auth/register', payload)
+    
+    // Auto login after registration
+    await authStore.login(registerData.value.email, registerData.value.password)
+    showRegister.value = false
+    router.push('/')
+  } catch (err) {
+    error.value = err.response?.data?.detail || 'Registration failed'
+  } finally {
+    loading.value = false
+  }
+}
+</script>

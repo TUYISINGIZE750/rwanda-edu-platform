@@ -1,0 +1,132 @@
+/* Rwanda Locations Styling */
+.rwanda-locations {
+    display: grid;
+    gap: 15px;
+    max-width: 600px;
+}
+
+.rwanda-locations select {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #e1e5e9;
+    border-radius: 6px;
+    font-size: 14px;
+    background-color: #fff;
+    transition: border-color 0.3s ease;
+}
+
+.rwanda-locations select:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+}
+
+.rwanda-locations select:disabled {
+    background-color: #f8f9fa;
+    color: #6c757d;
+    cursor: not-allowed;
+}
+
+.rwanda-locations label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+    color: #495057;
+}
+
+/* Location Form Group */
+.location-group {
+    margin-bottom: 20px;
+}
+
+.location-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.location-group select {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    background: #fff;
+    transition: all 0.3s ease;
+}
+
+.location-group select:focus {
+    border-color: #3498db;
+    box-shadow: 0 0 10px rgba(52, 152, 219, 0.2);
+}
+
+.location-group select:disabled {
+    background: #f8f9fa;
+    color: #999;
+}
+
+/* Rwanda Flag Colors */
+.rwanda-theme select {
+    border-left: 4px solid #00a1de;
+}
+
+.rwanda-theme select:focus {
+    border-left-color: #ffda00;
+}
+
+/* Responsive Design */
+@media (min-width: 768px) {
+    .rwanda-locations-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .rwanda-locations-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Loading State */
+.rwanda-locations select.loading {
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHZpZXdCb3g9IjAgMCAyMCAyMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxjaXJjbGUgY3g9IjEwIiBjeT0iMTAiIHI9IjgiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzk5OSIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtZGFzaGFycmF5PSI1IDUiPgogICAgICAgIDxhbmltYXRlVHJhbnNmb3JtIGF0dHJpYnV0ZU5hbWU9InRyYW5zZm9ybSIgdHlwZT0icm90YXRlIiB2YWx1ZXM9IjAgMTAgMTA7MzYwIDEwIDEwIiBkdXI9IjFzIiByZXBlYXRDb3VudD0iaW5kZWZpbml0ZSIvPgogICAgPC9jaXJjbGU+Cjwvc3ZnPg==');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 20px;
+}
+
+/* Success State */
+.rwanda-locations select.success {
+    border-color: #28a745;
+    background-color: #f8fff9;
+}
+
+/* Error State */
+.rwanda-locations select.error {
+    border-color: #dc3545;
+    background-color: #fff8f8;
+}
+
+/* Stats Display */
+.rwanda-stats {
+    background: linear-gradient(135deg, #00a1de, #ffda00);
+    color: white;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.rwanda-stats h3 {
+    margin: 0 0 10px 0;
+    font-size: 18px;
+}
+
+.rwanda-stats p {
+    margin: 0;
+    font-size: 14px;
+    opacity: 0.9;
+}

@@ -1,0 +1,54 @@
+{
+  "nav": {
+    "login": "Connexion",
+    "getStarted": "Commencer"
+  },
+  "hero": {
+    "badge": "Plateforme TVET/TSS du Rwanda",
+    "title": "Maitrisez les Competences Techniques N'importe Quand, N'importe Ou",
+    "description": "Connectez-vous avec 165 ecoles TVET/TSS a travers le Rwanda. Apprenez pendant les vacances, apres l'ecole, ou quand cela vous convient. Votre parcours d'education technique ne s'arrete jamais.",
+    "startLearning": "Commencer a Apprendre Maintenant",
+    "signIn": "Se Connecter",
+    "schools": "Ecoles TVET"
+  },
+  "stats": {
+    "schools": "Ecoles TVET",
+    "provinces": "Provinces",
+    "trades": "Programmes de Metiers",
+    "access": "Acces 24/7"
+  },
+  "features": {
+    "title": "Apprenez Sans Limites",
+    "subtitle": "Outils complets pour l'education technique continue - vacances, week-ends, n'importe quand",
+    "communication": "Communication en Temps Reel",
+    "communicationDesc": "Connectez-vous instantanement avec les enseignants et les camarades de classe. Partagez des idees, posez des questions et collaborez sur des projets via notre systeme de messagerie avance.",
+    "resources": "Ressources d'Apprentissage Riches",
+    "resourcesDesc": "Acces a des materiels d'etude complets, des videos et des documents. Telechargez des ressources pour l'apprentissage hors ligne et restez en avance dans votre metier.",
+    "video": "Sessions Video en Direct",
+    "videoDesc": "Rejoignez des cours en direct interactifs avec chiffrement de bout en bout. Participez a des discussions en temps reel et a des demonstrations pratiques.",
+    "network": "Reseau Inter-Ecoles",
+    "networkDesc": "Connectez-vous avec des etudiants et des enseignants de 165 ecoles TVET. Construisez votre reseau professionnel a travers le Rwanda.",
+    "security": "Securise et Prive",
+    "securityDesc": "Vos donnees sont protegees par une securite de niveau entreprise. L'acces base sur les roles garantit des interactions sures et appropriees.",
+    "progress": "Suivez Votre Progression",
+    "progressDesc": "Surveillez votre parcours d'apprentissage avec des analyses detaillees. Restez motive avec le suivi des realisations et des jalons."
+  },
+  "showcase": {
+    "title": "N'Arretez Jamais d'Apprendre",
+    "subtitle": "Developpement des competences techniques qui s'adapte a votre emploi du temps - n'importe quand, n'importe ou"
+  },
+  "cta": {
+    "title": "Commencez a Apprendre Aujourd'hui",
+    "subtitle": "Rejoignez TSSANYWHERE - Ou l'education technique ne s'arrete jamais, meme pendant les vacances",
+    "button": "Creer Votre Compte Gratuit"
+  },
+  "footer": {
+    "description": "Plateforme TVET/TSS du Rwanda pour l'apprentissage continu - n'importe quand, n'importe ou, meme pendant les vacances.",
+    "quickLinks": "Liens Rapides",
+    "contact": "Contact",
+    "copyright": "© 2024 TSSANYWHERE • Competences Techniques et Apprentissage N'importe Quand, N'importe Ou • Vision 2050",
+    "developer": "Developpe par Trainer Leonard TUYISINGIZE",
+    "aboutDeveloper": "A Propos du Developpeur",
+    "contactLink": "Contact"
+  }
+}

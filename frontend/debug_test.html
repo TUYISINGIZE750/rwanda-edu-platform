@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Debug Frontend API</title>
+</head>
+<body>
+    <h1>Debug Frontend API Call</h1>
+    <button onclick="testAPI()">Test API Call</button>
+    <div id="result"></div>
+    
+    <script>
+        async function testAPI() {
+            const result = document.getElementById('result');
+            result.innerHTML = 'Testing...';
+            
+            try {
+                console.log('Making API call...');
+                
+                const url = 'http://localhost:8080/api/v1/schools-by-district/district/South/NYANZA';
+                console.log('URL:', url);
+                
+                const response = await fetch(url);
+                console.log('Response:', response);
+                console.log('Status:', response.status);
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+                
+                const data = await response.json();
+                console.log('Data:', data);
+                
+                result.innerHTML = `
+                    <h3>SUCCESS!</h3>
+                    <p>Status: ${response.status}</p>
+                    <p>Schools: ${data.schools_count}</p>
+                    <p>District: ${data.district}</p>
+                    <p>Province: ${data.province}</p>
+                    <h4>Schools:</h4>
+                    <ul>
+                        ${data.schools.map(school => 
+                            `<li>${school.name} (${school.type}) - ${school.trades_count} trades</li>`
+                        ).join('')}
+                    </ul>
+                `;
+                
+            } catch (error) {
+                console.error('Error:', error);
+                result.innerHTML = `
+                    <h3>ERROR!</h3>
+                    <p style="color: red;">${error.message}</p>
+                    <p>Check browser console for details</p>
+                `;
+            }
+        }
+    </script>
+</body>
+</html>

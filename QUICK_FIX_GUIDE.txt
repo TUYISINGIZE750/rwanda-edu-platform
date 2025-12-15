@@ -1,0 +1,115 @@
+================================================================================
+QUICK FIX GUIDE - CORS & Registration Errors
+================================================================================
+
+PROBLEM:
+- CORS errors when loading schools
+- 500 Internal Server Error
+- Network errors during registration
+
+SOLUTION:
+✅ Fixed CORS configuration
+✅ Fixed province name mapping
+✅ Added error handling
+✅ Created easy startup scripts
+
+================================================================================
+HOW TO FIX (3 STEPS)
+================================================================================
+
+STEP 1: Run the Fix Script
+---------------------------
+Double-click: FIX_AND_START.bat
+
+This will:
+- Stop old servers
+- Start backend (port 8080)
+- Start frontend (port 5173)
+- Open browser
+
+STEP 2: Test Registration
+--------------------------
+1. Go to http://localhost:5173
+2. Click "Register"
+3. Select Province: "Southern Province"
+4. Select District: "Kamonyi"
+5. Schools should load ✓
+
+STEP 3: Verify (Optional)
+--------------------------
+Run: CHECK_SERVERS.bat
+Or: cd backend && python test_cors.py
+
+================================================================================
+FILES CHANGED
+================================================================================
+
+✓ backend/app/main.py - Enhanced CORS config
+✓ backend/app/api/registration.py - Fixed province mapping + error handling
+✓ frontend/src/views/RegisterView.vue - Better error messages
+
+================================================================================
+NEW HELPER SCRIPTS
+================================================================================
+
+FIX_AND_START.bat - Start both servers (USE THIS!)
+CHECK_SERVERS.bat - Check if servers are running
+backend/RESTART_BACKEND.bat - Restart backend only
+backend/test_cors.py - Test all endpoints
+
+================================================================================
+TROUBLESHOOTING
+================================================================================
+
+Problem: CORS errors still appear
+Solution: Run FIX_AND_START.bat again, clear browser cache
+
+Problem: 500 error
+Solution: Check if backend/app.db exists, check backend console
+
+Problem: No schools loading
+Solution: Run: cd backend && python test_cors.py
+
+Problem: Backend won't start
+Solution: Check if port 8080 is free, install requirements.txt
+
+================================================================================
+QUICK COMMANDS
+================================================================================
+
+Start Everything:
+> FIX_AND_START.bat
+
+Check Status:
+> CHECK_SERVERS.bat
+
+Test Backend:
+> cd backend
+> python test_cors.py
+
+Manual Start Backend:
+> cd backend
+> python -m uvicorn app.main:app --host 0.0.0.0 --port 8080 --reload
+
+Manual Start Frontend:
+> cd frontend
+> npm run dev
+
+================================================================================
+SUCCESS CHECKLIST
+================================================================================
+
+□ Backend running on port 8080
+□ Frontend running on port 5173
+□ No CORS errors in browser console
+□ Schools load when district selected
+□ Registration works end-to-end
+
+================================================================================
+NEED MORE HELP?
+================================================================================
+
+Read: CORS_FIX_README.md (detailed guide)
+Read: REGISTRATION_CORS_FIX_SUMMARY.md (technical details)
+
+================================================================================
