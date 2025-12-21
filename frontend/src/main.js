@@ -44,18 +44,18 @@ if (import.meta.env.DEV) {
 
 app.mount('#app')
 
-// Service Worker registration for PWA features
-if ('serviceWorker' in navigator && import.meta.env.PROD) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/sw.js')
-      .then((registration) => {
-        console.log('SW registered: ', registration)
-      })
-      .catch((registrationError) => {
-        console.log('SW registration failed: ', registrationError)
-      })
-  })
-}
+// Service Worker registration DISABLED - causing localhost caching issues
+// if ('serviceWorker' in navigator && import.meta.env.PROD) {
+//   window.addEventListener('load', () => {
+//     navigator.serviceWorker.register('/sw.js')
+//       .then((registration) => {
+//         console.log('SW registered: ', registration)
+//       })
+//       .catch((registrationError) => {
+//         console.log('SW registration failed: ', registrationError)
+//       })
+//   })
+// }
 
 // Handle online/offline status
 window.addEventListener('online', () => {
