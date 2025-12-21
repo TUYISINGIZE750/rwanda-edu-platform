@@ -264,7 +264,7 @@ const backgroundImages = ref([
   '/images to use/home_page_3.jpg'
 ])
 
-const API_URL = import.meta.env.VITE_API_URL?.replace('/api/v1', '') || 'https://rwanda-edu-platform.onrender.com'
+const API_URL = import.meta.env.VITE_API_URL || 'https://rwanda-edu-platform.onrender.com/api/v1'
 
 function toggleTheme() {
   isDark.value = !isDark.value
@@ -301,7 +301,7 @@ onUnmounted(() => {
 
 async function loadProvinces() {
   try {
-    const response = await axios.get(`${API_URL}/api/v1/locations/provinces`)
+    const response = await axios.get(`${API_URL}/locations/provinces`)
     provinces.value = response.data
   } catch (err) {
     console.error('Error loading provinces:', err)
@@ -316,7 +316,7 @@ async function onProvinceChange() {
   
   if (selectedProvince.value) {
     try {
-      const response = await axios.get(`${API_URL}/api/v1/locations/districts/${selectedProvince.value}`)
+      const response = await axios.get(`${API_URL}/locations/districts/${selectedProvince.value}`)
       districts.value = response.data
     } catch (err) {
       console.error('Error loading districts:', err)
@@ -334,7 +334,7 @@ async function onDistrictChange() {
   console.log('🔍 REGISTRATION: Loading schools for:', selectedProvince.value, selectedDistrict.value)
   
   try {
-    const url = `${API_URL}/api/v1/locations/schools/district/${selectedProvince.value}/${selectedDistrict.value}`
+    const url = `${API_URL}/locations/schools/district/${selectedProvince.value}/${selectedDistrict.value}`
     console.log('🔍 REGISTRATION: API URL:', url)
     
     const response = await fetch(url)
@@ -388,7 +388,7 @@ async function handleRegister() {
       selected_level: form.value.selected_level || null
     }
     
-    const response = await axios.post(`${API_URL}/api/v1/auth/register`, payload)
+    const response = await axios.post(`${API_URL}/auth/register`, payload)
     if (response.status === 200) {
       showSuccess.value = true
     }
