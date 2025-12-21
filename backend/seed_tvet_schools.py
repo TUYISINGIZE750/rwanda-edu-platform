@@ -36,7 +36,7 @@ def seed_schools():
             db.add(school)
         
         db.commit()
-        print(f"✓ Successfully seeded {len(TVET_TSS_SCHOOLS)} TVET/TSS schools")
+        print(f"Successfully seeded {len(TVET_TSS_SCHOOLS)} TVET/TSS schools")
         
         # Print statistics
         tvet_count = db.query(School).filter(School.type == "TVET").count()
