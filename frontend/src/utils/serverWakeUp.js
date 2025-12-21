@@ -1,4 +1,4 @@
-// Server Wake-Up Utility
+// Server Wake-Up Utility - Force rebuild
 const API_URL = import.meta.env.VITE_API_URL || 'https://rwanda-edu-platform.onrender.com/api/v1';
 
 export async function wakeUpServer() {
