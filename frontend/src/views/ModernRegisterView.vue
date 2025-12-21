@@ -264,7 +264,7 @@ const backgroundImages = ref([
   '/images to use/home_page_3.jpg'
 ])
 
-const API_URL = 'http://localhost:8080'
+const API_URL = import.meta.env.VITE_API_URL?.replace('/api/v1', '') || 'https://rwanda-edu-platform.onrender.com'
 
 function toggleTheme() {
   isDark.value = !isDark.value
@@ -334,23 +334,15 @@ async function onDistrictChange() {
   console.log('🔍 REGISTRATION: Loading schools for:', selectedProvince.value, selectedDistrict.value)
   
   try {
-    let apiProvince = selectedProvince.value
-    if (apiProvince === 'Southern Province') apiProvince = 'South'
-    if (apiProvince === 'Western Province') apiProvince = 'West'
-    if (apiProvince === 'Northern Province') apiProvince = 'North'
-    if (apiProvince === 'Eastern Province') apiProvince = 'East'
-    if (apiProvince === 'Kigali City') apiProvince = 'Kigali city'
-    
-    const url = `${API_URL}/api/v1/schools-by-district/district/${apiProvince}/${selectedDistrict.value}`
+    const url = `${API_URL}/api/v1/locations/schools/district/${selectedProvince.value}/${selectedDistrict.value}`
     console.log('🔍 REGISTRATION: API URL:', url)
     
     const response = await fetch(url)
     const data = await response.json()
     
     console.log('🔍 REGISTRATION: Response:', data)
-    console.log('🔍 REGISTRATION: Schools count:', data.schools?.length || 0)
     
-    schools.value = data.schools || []
+    schools.value = data || []
     
     if (schools.value.length > 0) {
       console.log('✅ REGISTRATION: Loaded', schools.value.length, 'schools')
