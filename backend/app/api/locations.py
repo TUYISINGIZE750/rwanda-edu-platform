@@ -181,30 +181,14 @@ def get_schools_by_district(
 ):
     """Get all TVET/TSS schools in a district"""
     from urllib.parse import unquote
-    from sqlalchemy import func, or_
+    from sqlalchemy import func
     try:
         province_name = unquote(province_name)
         district_name = unquote(district_name)
         
-        # Map English to Kinyarwanda province names
-        province_map = {
-            "kigali city": "umujyi wa kigali",
-            "southern province": "amajyepfo",
-            "northern province": "amajyaruguru",
-            "eastern province": "iburasirazuba",
-            "western province": "iburengerazuba"
-        }
-        
-        province_lower = province_name.lower()
-        kinyarwanda_province = province_map.get(province_lower, province_lower)
-        
-        # Query with both English and Kinyarwanda province names
         schools = db.query(School).filter(
-            or_(
-                func.lower(School.province) == province_lower,
-                func.lower(School.province) == kinyarwanda_province
-            ),
-            func.lower(School.district) == district_name.lower()
+            func.lower(School.province) == func.lower(province_name),
+            func.lower(School.district) == func.lower(district_name)
         ).all()
         return [SchoolResponse.from_orm(school) for school in schools]
     except Exception as e:
