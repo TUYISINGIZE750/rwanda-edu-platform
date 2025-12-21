@@ -25,34 +25,12 @@ class SchoolResponse(BaseModel):
     category: str
     province: str
     district: str
-    trades_full: List[str] = []
-    trades_short: List[str] = []
+    trades: List[str] = []
     gender: str = None
     
     @classmethod
     def from_orm(cls, obj):
-        import json
-        trades_full = []
-        trades_short = []
-        
-        if hasattr(obj, 'trades_full') and obj.trades_full:
-            try:
-                if isinstance(obj.trades_full, str):
-                    trades_full = json.loads(obj.trades_full)
-                elif isinstance(obj.trades_full, list):
-                    trades_full = obj.trades_full
-            except (json.JSONDecodeError, TypeError):
-                trades_full = []
-        
-        if hasattr(obj, 'trades_short') and obj.trades_short:
-            try:
-                if isinstance(obj.trades_short, str):
-                    trades_short = json.loads(obj.trades_short)
-                elif isinstance(obj.trades_short, list):
-                    trades_short = obj.trades_short
-            except (json.JSONDecodeError, TypeError):
-                trades_short = []
-        
+        trades = obj.trades if hasattr(obj, 'trades') else []
         return cls(
             id=obj.id,
             school_code=getattr(obj, 'school_code', None),
@@ -61,8 +39,7 @@ class SchoolResponse(BaseModel):
             category=obj.category,
             province=obj.province,
             district=obj.district,
-            trades_full=trades_full,
-            trades_short=trades_short,
+            trades=trades,
             gender=getattr(obj, 'gender', None)
         )
     
