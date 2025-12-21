@@ -32,15 +32,10 @@ onMounted(async () => {
   const result = await wakeUpServer();
   
   clearInterval(attemptInterval);
+  isWakingUp.value = false;
   
-  if (result.success) {
-    currentAttempt.value = result.attempts;
-    setTimeout(() => {
-      isWakingUp.value = false;
-    }, 500);
-  } else {
-    isWakingUp.value = false;
-    alert('Server is taking longer than expected. Please refresh the page.');
+  if (!result.success) {
+    console.error('Server wake-up failed:', result.error);
   }
 });
 </script>
