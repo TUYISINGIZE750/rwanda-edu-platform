@@ -1,6 +1,6 @@
 // Server Wake-Up Utility - Render free tier sleeps after 15min inactivity
 // This wakes it up automatically when users visit
-const API_URL = import.meta.env.VITE_API_URL || 'https://rwanda-edu-platform.onrender.com/api/v1';
+const API_URL = 'https://rwanda-edu-platform.onrender.com/api/v1';
 
 export async function wakeUpServer() {
   const maxAttempts = 20;

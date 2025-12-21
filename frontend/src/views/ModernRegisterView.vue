@@ -264,7 +264,7 @@ const backgroundImages = ref([
   '/images to use/home_page_3.jpg'
 ])
 
-const API_URL = import.meta.env.VITE_API_URL || 'https://rwanda-edu-platform.onrender.com/api/v1'
+const API_URL = 'https://rwanda-edu-platform.onrender.com/api/v1'
 
 function toggleTheme() {
   isDark.value = !isDark.value
