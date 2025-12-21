@@ -18,7 +18,13 @@ app.mount("/uploads", StaticFiles(directory="uploads"), name="uploads")
 # CORS - Must be after static files mount
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=[
+        "*",
+        "https://tssanywhere.pages.dev",
+        "https://*.tssanywhere.pages.dev",
+        "http://localhost:5173",
+        "http://localhost:8080"
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
