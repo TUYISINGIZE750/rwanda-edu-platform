@@ -14,7 +14,7 @@ schools_dict = defaultdict(lambda: {"trades": []})
 
 for _, row in df.iterrows():
     province = str(row.iloc[0]).strip() if pd.notna(row.iloc[0]) else ""
-    district = str(row.iloc[1]).strip() if pd.notna(row.iloc[1]) else ""
+    district = str(row.iloc[1]).strip().title() if pd.notna(row.iloc[1]) else ""  # Title case
     school_code = str(row.iloc[2]).strip() if pd.notna(row.iloc[2]) else ""
     school_name = str(row.iloc[3]).strip() if pd.notna(row.iloc[3]) else ""
     trade_full = str(row.iloc[4]).strip() if pd.notna(row.iloc[4]) else ""

@@ -7,7 +7,7 @@ TVET_TSS_SCHOOLS = [
         "type": "TVET",
         "category": "Public",
         "province": "Kigali city",
-        "district": "NYARUGENGE",
+        "district": "Nyarugenge",
         "trades": "Automobile technology, Building construction, Fashion Design"
     },
     {
@@ -16,7 +16,7 @@ TVET_TSS_SCHOOLS = [
         "type": "TVET",
         "category": "Public",
         "province": "Kigali city",
-        "district": "GASABO",
+        "district": "Gasabo",
         "trades": "Computer system and architecture, Electrical technology, Land surveying, Public works"
     },
     {
@@ -25,7 +25,7 @@ TVET_TSS_SCHOOLS = [
         "type": "TSS",
         "category": "Public",
         "province": "Kigali city",
-        "district": "GASABO",
+        "district": "Gasabo",
         "trades": "Food and Beverage Operations, TOURISM"
     },
     {
@@ -34,7 +34,7 @@ TVET_TSS_SCHOOLS = [
         "type": "TSS",
         "category": "Public",
         "province": "Kigali city",
-        "district": "KICUKIRO",
+        "district": "Kicukiro",
         "trades": "ACCOUNTING, Building construction, Electronics and telecommunication, Food and Beverage Operations, Maltimedia production, Networking  and internet technology, software development, Software programming and embedded systems, Tourism"
     },
     {
@@ -43,7 +43,7 @@ TVET_TSS_SCHOOLS = [
         "type": "TSS",
         "category": "Public",
         "province": "Kigali city",
-        "district": "KICUKIRO",
+        "district": "Kicukiro",
         "trades": "accounting, Building construction, Computer system and architecture, Food and Beverage Operations, Software development, Tourism"
     },
     {
@@ -52,7 +52,7 @@ TVET_TSS_SCHOOLS = [
         "type": "TVET",
         "category": "Public",
         "province": "South",
-        "district": "NYANZA",
+        "district": "Nyanza",
         "trades": "ACCOUNTING, Building construction, Maltimedia production, Computer system and architecture, Electrical technology, Electronics and telecommunication"
     },
     {
@@ -61,7 +61,7 @@ TVET_TSS_SCHOOLS = [
         "type": "TSS",
         "category": "Public",
         "province": "South",
-        "district": "NYANZA",
+        "district": "Nyanza",
         "trades": "Automobile technology, Building construction, Computer system and architecture, Electrical technology"
     },
     {
@@ -70,7 +70,7 @@ TVET_TSS_SCHOOLS = [
         "type": "TSS",
         "category": "Public",
         "province": "South",
-        "district": "NYANZA",
+        "district": "Nyanza",
         "trades": "Building construction, Electronics and telecommunication"
     },
     {
@@ -79,7 +79,7 @@ TVET_TSS_SCHOOLS = [
         "type": "TSS",
         "category": "Public",
         "province": "South",
-        "district": "NYANZA",
+        "district": "Nyanza",
         "trades": "ACCOUNTING"
     },
     {
@@ -88,7 +88,7 @@ TVET_TSS_SCHOOLS = [
         "type": "TSS",
         "category": "Public",
         "province": "South",
-        "district": "NYANZA",
+        "district": "Nyanza",
         "trades": "Computer system and architecture"
     },
     {
@@ -97,7 +97,7 @@ TVET_TSS_SCHOOLS = [
         "type": "TVET",
         "category": "Public",
         "province": "South",
-        "district": "NYANZA",
+        "district": "Nyanza",
         "trades": "Automobile technology, Automobile technology, Computer system and architecture, Manufacturing technology, Plumbing Technology"
     },
     {
@@ -106,7 +106,7 @@ TVET_TSS_SCHOOLS = [
         "type": "TVET",
         "category": "Public",
         "province": "South",
-        "district": "NYANZA",
+        "district": "Nyanza",
         "trades": "Building construction, Fashion Design, Wood Technology"
     },
     {
@@ -115,7 +115,7 @@ TVET_TSS_SCHOOLS = [
         "type": "TSS",
         "category": "Public",
         "province": "South",
-        "district": "NYANZA",
+        "district": "Nyanza",
         "trades": "Automobile technology, Building construction, Food and Beverage Operations, Electronics and telecommunication, TOURISM, Food and Beverage Operations"
     },
     {
@@ -124,7 +124,7 @@ TVET_TSS_SCHOOLS = [
         "type": "TVET",
         "category": "Public",
         "province": "South",
-        "district": "NYANZA",
+        "district": "Nyanza",
         "trades": "Automobile technology, Building construction, Electrical technology, Electronics and telecommunication, Electronics and telecommunication, Interior Design, Public works, Renewable energy, Wood Technology"
     },
     {
@@ -133,7 +133,7 @@ TVET_TSS_SCHOOLS = [
         "type": "TSS",
         "category": "Public",
         "province": "South",
-        "district": "NYANZA",
+        "district": "Nyanza",
         "trades": "Building construction, Computer system and architecture, Electronics and telecommunication"
     },
     {
@@ -142,7 +142,7 @@ TVET_TSS_SCHOOLS = [
         "type": "TVET",
         "category": "Public",
         "province": "South",
-        "district": "NYANZA",
+        "district": "Nyanza",
         "trades": "Fashion Design"
     },
     {
@@ -151,7 +151,7 @@ TVET_TSS_SCHOOLS = [
         "type": "TVET",
         "category": "Public",
         "province": "South",
-        "district": "GISAGARA",
+        "district": "Gisagara",
         "trades": "Building construction, Computer system and architecture, Electrical technology"
     },
     {
@@ -160,7 +160,7 @@ TVET_TSS_SCHOOLS = [
         "type": "TVET",
         "category": "Public",
         "province": "South",
-        "district": "GISAGARA",
+        "district": "Gisagara",
         "trades": "Wood Technology"
     },
     {
@@ -169,7 +169,7 @@ TVET_TSS_SCHOOLS = [
         "type": "TVET",
         "category": "Public",
         "province": "South",
-        "district": "GISAGARA",
+        "district": "Gisagara",
         "trades": "ACCOUNTING"
     },
     {
@@ -178,7 +178,7 @@ TVET_TSS_SCHOOLS = [
         "type": "TSS",
         "category": "Public",
         "province": "South",
-        "district": "GISAGARA",
+        "district": "Gisagara",
         "trades": "Building construction, Electrical technology, Plumbing Technology"
     },
     {
@@ -187,7 +187,7 @@ TVET_TSS_SCHOOLS = [
         "type": "TVET",
         "category": "Public",
         "province": "South",
-        "district": "GISAGARA",
+        "district": "Gisagara",
         "trades": "Building construction, Fashion Design, Wood Technology"
     },
     {
@@ -196,7 +196,7 @@ TVET_TSS_SCHOOLS = [
         "type": "TVET",
         "category": "Public",
         "province": "South",
-        "district": "GISAGARA",
+        "district": "Gisagara",
         "trades": "Building construction, Electrical technology, Fashion Design"
     },
     {
@@ -205,7 +205,7 @@ TVET_TSS_SCHOOLS = [
         "type": "TVET",
         "category": "Public",
         "province": "South",
-        "district": "GISAGARA",
+        "district": "Gisagara",
         "trades": "Building construction, Electrical technology"
     },
     {
@@ -214,7 +214,7 @@ TVET_TSS_SCHOOLS = [
         "type": "TVET",
         "category": "Public",
         "province": "South",
-        "district": "GISAGARA",
+        "district": "Gisagara",
         "trades": "ACCOUNTING, Building construction, Computer system and architecture, Electrical technology, Electronics and telecommunication, Land surveying, Maltimedia production, Public works, Wood Technology"
     },
     {
@@ -223,7 +223,7 @@ TVET_TSS_SCHOOLS = [
         "type": "TVET",
         "category": "Public",
         "province": "South",
-        "district": "NYARUGURU",
+        "district": "Nyaruguru",
         "trades": "Electrical technology, Plumbing Technology, Wood Technology"
     },
     {
@@ -232,7 +232,7 @@ TVET_TSS_SCHOOLS = [
         "type": "TVET",
         "category": "Public",
         "province": "South",
-        "district": "NYARUGURU",
+        "district": "Nyaruguru",
         "trades": "Building construction, Maltimedia production"
     },
     {
@@ -241,7 +241,7 @@ TVET_TSS_SCHOOLS = [
         "type": "TVET",
         "category": "Public",
         "province": "South",
-        "district": "NYARUGURU",
+        "district": "Nyaruguru",
         "trades": "Electrical technology, Manufacturing technology, Plumbing Technology"
     },
     {
@@ -250,7 +250,7 @@ TVET_TSS_SCHOOLS = [
         "type": "TVET",
         "category": "Public",
         "province": "South",
-        "district": "NYARUGURU",
+        "district": "Nyaruguru",
         "trades": "ACCOUNTING"
     },
     {
@@ -259,7 +259,7 @@ TVET_TSS_SCHOOLS = [
         "type": "TVET",
         "category": "Public",
         "province": "South",
-        "district": "NYARUGURU",
+        "district": "Nyaruguru",
         "trades": "Building construction, Electrical technology, Electronics and telecommunication"
     },
     {
@@ -268,7 +268,7 @@ TVET_TSS_SCHOOLS = [
         "type": "TVET",
         "category": "Public",
         "province": "South",
-        "district": "HUYE",
+        "district": "Huye",
         "trades": "Fashion Design"
     },
     {
@@ -277,7 +277,7 @@ TVET_TSS_SCHOOLS = [
         "type": "TSS",
         "category": "Public",
         "province": "South",
-        "district": "HUYE",
+        "district": "Huye",
         "trades": "Computer system and architecture, Electronics and telecommunication"
     },
     {
@@ -286,7 +286,7 @@ TVET_TSS_SCHOOLS = [
         "type": "TVET",
         "category": "Public",
         "province": "South",
-        "district": "HUYE",
+        "district": "Huye",
         "trades": "ACCOUNTING, AGRICULTURE, ANIMAL HEALTH, FOOD PROCESSING, FORESTRY"
     },
     {
@@ -295,7 +295,7 @@ TVET_TSS_SCHOOLS = [
         "type": "TVET",
         "category": "Public",
         "province": "South",
-        "district": "HUYE",
+        "district": "Huye",
         "trades": "Building construction, Electrical technology, Fashion Design, Food and Beverage Operations, Wood Technology"
     },
     {
@@ -304,7 +304,7 @@ TVET_TSS_SCHOOLS = [
         "type": "TSS",
         "category": "Public",
         "province": "South",
-        "district": "NYAMAGABE",
+        "district": "Nyamagabe",
         "trades": "Accounting, Building construction, Computer system and architecture, Interior Design, Maltimedia production, Software Development, Wood Technology"
     },
     {
@@ -313,7 +313,7 @@ TVET_TSS_SCHOOLS = [
         "type": "TVET",
         "category": "Public",
         "province": "South",
-        "district": "NYAMAGABE",
+        "district": "Nyamagabe",
         "trades": "Fashion Design, Food and Beverage Operations, Leather Technology"
     },
     {
@@ -322,7 +322,7 @@ TVET_TSS_SCHOOLS = [
         "type": "TSS",
         "category": "Public",
         "province": "South",
-        "district": "NYAMAGABE",
+        "district": "Nyamagabe",
         "trades": "Building construction, Automobile technology"
     },
     {
@@ -331,7 +331,7 @@ TVET_TSS_SCHOOLS = [
         "type": "TVET",
         "category": "Public",
         "province": "South",
-        "district": "NYAMAGABE",
+        "district": "Nyamagabe",
         "trades": "Automobile technology, Building construction, Electrical technology, Fashion Design, Wood Technology"
     },
     {
@@ -340,7 +340,7 @@ TVET_TSS_SCHOOLS = [
         "type": "TVET",
         "category": "Public",
         "province": "South",
-        "district": "NYAMAGABE",
+        "district": "Nyamagabe",
         "trades": "Building construction"
     },
     {
@@ -349,7 +349,7 @@ TVET_TSS_SCHOOLS = [
         "type": "TVET",
         "category": "Public",
         "province": "South",
-        "district": "NYAMAGABE",
+        "district": "Nyamagabe",
         "trades": "Automobile technology, Wood Technology"
     },
     {
@@ -358,7 +358,7 @@ TVET_TSS_SCHOOLS = [
         "type": "TVET",
         "category": "Public",
         "province": "South",
-        "district": "NYAMAGABE",
+        "district": "Nyamagabe",
         "trades": "Building construction, Fashion Design"
     },
     {
@@ -367,7 +367,7 @@ TVET_TSS_SCHOOLS = [
         "type": "TVET",
         "category": "Public",
         "province": "South",
-        "district": "NYAMAGABE",
+        "district": "Nyamagabe",
         "trades": "Building construction"
     },
     {
@@ -376,7 +376,7 @@ TVET_TSS_SCHOOLS = [
         "type": "TVET",
         "category": "Public",
         "province": "South",
-        "district": "RUHANGO",
+        "district": "Ruhango",
         "trades": "Building construction, Electrical technology, Fashion Design, Food and Beverage Operations, Manufacturing technology, Wood Technology"
     },
     {
@@ -385,20 +385,11 @@ TVET_TSS_SCHOOLS = [
         "type": "TVET",
         "category": "Public",
         "province": "South",
-        "district": "RUHANGO",
-        "trades": "AGRICULTURE"
+        "district": "Ruhango",
+        "trades": "AGRICULTURE, ANIMAL HEALTH"
     },
     {
         "id": 44,
-        "name": "E. S KINAZI TVET  SCHOOL",
-        "type": "TVET",
-        "category": "Public",
-        "province": "South",
-        "district": "Ruhango",
-        "trades": "ANIMAL HEALTH"
-    },
-    {
-        "id": 45,
         "name": "Vunga TVET",
         "type": "TVET",
         "category": "Public",
@@ -407,7 +398,7 @@ TVET_TSS_SCHOOLS = [
         "trades": "Wood Technology, Building construction, Fashion Design"
     },
     {
-        "id": 46,
+        "id": 45,
         "name": "Ecole Technique Ste Trinite de Ruhango",
         "type": "TSS",
         "category": "Public",
@@ -416,7 +407,7 @@ TVET_TSS_SCHOOLS = [
         "trades": "Automobile technology, Building construction, Fashion Design, Food and Beverage Operations"
     },
     {
-        "id": 47,
+        "id": 46,
         "name": "GS Indangaburezi",
         "type": "TSS",
         "category": "Public",
@@ -425,7 +416,7 @@ TVET_TSS_SCHOOLS = [
         "trades": "Building construction, Electrical technology"
     },
     {
-        "id": 48,
+        "id": 47,
         "name": "Lycee de Ruhango Ikirezi",
         "type": "TSS",
         "category": "Public",
@@ -434,121 +425,130 @@ TVET_TSS_SCHOOLS = [
         "trades": "Automobile technology, Building construction, Fashion Design, Food and Beverage Operations"
     },
     {
-        "id": 49,
+        "id": 48,
         "name": "KINAZI TVET SCHOOL A",
         "type": "TVET",
         "category": "Public",
         "province": "South",
-        "district": "RUHANGO",
+        "district": "Ruhango",
         "trades": "Bulding Constructions, Fashion Design, Electrical Technology, Wood Technology, Manufacturing Technology"
     },
     {
-        "id": 50,
+        "id": 49,
         "name": "E.S KINAZI TVET",
         "type": "TVET",
         "category": "Public",
         "province": "South",
-        "district": "RUHANGO",
+        "district": "Ruhango",
         "trades": "Agriculture"
     },
     {
-        "id": 51,
+        "id": 50,
         "name": "St Sylvain TVET",
         "type": "TVET",
         "category": "Public",
         "province": "South",
-        "district": "MUHANGA",
+        "district": "Muhanga",
         "trades": "Building construction, Land surveying, Renewable energy"
     },
     {
-        "id": 52,
+        "id": 51,
         "name": "NYABIKENKE TVET  SCHOOL",
         "type": "TVET",
         "category": "Public",
         "province": "South",
-        "district": "MUHANGA",
+        "district": "Muhanga",
         "trades": "ACCOUNTING, ANIMAL HEALTH, FORESTRY"
     },
     {
-        "id": 53,
+        "id": 52,
         "name": "NYABIKENKE TVET School",
         "type": "TVET",
         "category": "Public",
         "province": "South",
-        "district": "MUHANGA",
+        "district": "Muhanga",
         "trades": "Agriculture"
     },
     {
-        "id": 54,
+        "id": 53,
         "name": "KIYUMBA TVET School",
         "type": "TVET",
         "category": "Public",
         "province": "South",
-        "district": "MUHANGA",
+        "district": "Muhanga",
         "trades": "Building construction, Computer system and architecture, Electronics and telecommunication, Fashion Design, Wood Technology"
     },
     {
-        "id": 55,
+        "id": 54,
         "name": "ACEJ KARAMA TVET SCHOOL",
         "type": "TVET",
         "category": "Public",
         "province": "South",
-        "district": "MUHANGA",
+        "district": "Muhanga",
         "trades": "ACCOUNTING"
     },
     {
-        "id": 56,
+        "id": 55,
         "name": "ACEJ KARAMA TVET",
         "type": "TVET",
         "category": "Public",
         "province": "South",
-        "district": "MUHANGA",
+        "district": "Muhanga",
         "trades": "Computer system and architecture, Networking  and internet technology"
     },
     {
-        "id": 57,
+        "id": 56,
         "name": "BULINGA TVET SCHOOL",
         "type": "TVET",
         "category": "Public",
         "province": "South",
-        "district": "MUHANGA",
+        "district": "Muhanga",
         "trades": "ACCOUNTING"
     },
     {
-        "id": 58,
+        "id": 57,
         "name": "BURINGA TVET School",
         "type": "TVET",
         "category": "Public",
         "province": "South",
-        "district": "MUHANGA",
+        "district": "Muhanga",
         "trades": "Networking  and internet technology, Software Development"
     },
     {
-        "id": 59,
+        "id": 58,
         "name": "RWANDA SCHOOL OF CREATIVE ARTS AND MUSIC",
         "type": "TSS",
         "category": "Public",
         "province": "South",
-        "district": "MUHANGA",
+        "district": "Muhanga",
         "trades": "Music and Performing Arts"
     },
     {
-        "id": 60,
+        "id": 59,
         "name": "Jam Fred Nkunda",
         "type": "TSS",
         "category": "Public",
         "province": "South",
-        "district": "MUHANGA",
+        "district": "Muhanga",
         "trades": "Automobile technology, Building construction, Food and Beverage Operations"
     },
     {
-        "id": 61,
+        "id": 60,
         "name": "KAYENZI TVET SCHOOL",
         "type": "TVET",
         "category": "Public",
         "province": "South",
-        "district": "KAMONYI",
+        "district": "Kamonyi",
         "trades": "Building construction, Electrical technology, Fashion Design, Manufacturing technology, Wood Technology"
+    },
+    {
+        "id": 61,
+        "name": "FR. RAMON KABUGA TVET SCHOOL",
+        "type": "TVET",
+        "category": "Public",
+        "province": "South",
+        "district": "Kamonyi",
+        "trades": "Building construction, Computer system and architecture, Maltimedia production, Wood Technology"
     },
     {
         "id": 62,
@@ -556,107 +556,107 @@ TVET_TSS_SCHOOLS = [
         "type": "TVET",
         "category": "Public",
         "province": "South",
-        "district": "KAMONYI",
-        "trades": "Building construction, Computer system and architecture, Maltimedia production, Wood Technology"
-    },
-    {
-        "id": 63,
-        "name": "FR. RAMON KABUGA TVET SCHOOL",
-        "type": "TVET",
-        "category": "Public",
-        "province": "South",
-        "district": "KAMONYI",
+        "district": "Kamonyi",
         "trades": "Accounting"
     },
     {
-        "id": 64,
+        "id": 63,
         "name": "KIGESE TVET SCHOOL",
         "type": "TVET",
         "category": "Public",
         "province": "South",
-        "district": "KAMONYI",
+        "district": "Kamonyi",
         "trades": "Building construction"
     },
     {
-        "id": 65,
+        "id": 64,
         "name": "COLLEGE APPEC REMERA RUKOMA TVET SCHOOL",
         "type": "TVET",
         "category": "Public",
         "province": "South",
-        "district": "KAMONYI",
+        "district": "Kamonyi",
         "trades": "ACCOUNTING, Building construction, Computer system and architecture, Software Development"
     },
     {
-        "id": 66,
+        "id": 65,
         "name": "RUNDA TVET",
         "type": "TVET",
         "category": "Public",
         "province": "South",
-        "district": "KAMONYI",
+        "district": "Kamonyi",
         "trades": "Building construction, Computer system and architecture, Land surveying, Software Development"
     },
     {
-        "id": 67,
+        "id": 66,
         "name": "ESA BIRAMBO",
         "type": "TSS",
         "category": "Public",
         "province": "West",
-        "district": "KARONGI",
+        "district": "Karongi",
         "trades": "ACCOUNTING, Computer system and architecture, Software Development"
     },
     {
-        "id": 68,
+        "id": 67,
         "name": "RUBENGERA  II TVET SCHOOL",
         "type": "TVET",
         "category": "Public",
         "province": "West",
-        "district": "KARONGI",
+        "district": "Karongi",
         "trades": "Building construction, Food and Beverage Operations, Manufacturing technology"
     },
     {
-        "id": 69,
+        "id": 68,
         "name": "ES Rubengera  School",
         "type": "TSS",
         "category": "Public",
         "province": "West",
-        "district": "KARONGI",
+        "district": "Karongi",
         "trades": "ACCOUNTING"
     },
     {
-        "id": 70,
+        "id": 69,
         "name": "ES RUBENGERA",
         "type": "TSS",
         "category": "Public",
         "province": "West",
-        "district": "KARONGI",
+        "district": "Karongi",
         "trades": "Software Development, Software Development"
     },
     {
-        "id": 71,
+        "id": 70,
         "name": "ES NGOMA",
         "type": "TSS",
         "category": "Public",
         "province": "West",
-        "district": "KARONGI",
+        "district": "Karongi",
         "trades": "Automobile technology, Manufacturing technology"
     },
     {
-        "id": 72,
+        "id": 71,
         "name": "Gisovu TVET School",
         "type": "TVET",
         "category": "Public",
         "province": "West",
-        "district": "KARONGI",
+        "district": "Karongi",
         "trades": "AGRICULTURE, ANIMAL HEALTH, FORESTRY"
     },
     {
-        "id": 73,
+        "id": 72,
         "name": "COLLEGE INDASHYIKIRWA",
         "type": "TSS",
         "category": "Public",
         "province": "West",
-        "district": "RUTSIRO",
+        "district": "Rutsiro",
         "trades": "Wood Technology"
+    },
+    {
+        "id": 73,
+        "name": "GS BUMBA TVET School",
+        "type": "TVET",
+        "category": "Public",
+        "province": "West",
+        "district": "Rutsiro",
+        "trades": "ACCOUNTING"
     },
     {
         "id": 74,
@@ -664,8 +664,8 @@ TVET_TSS_SCHOOLS = [
         "type": "TVET",
         "category": "Public",
         "province": "West",
-        "district": "RUTSIRO",
-        "trades": "ACCOUNTING"
+        "district": "Rutsiro",
+        "trades": "COMPUTER SYSTEMS AND ARRCHECTURE"
     },
     {
         "id": 75,
@@ -673,92 +673,83 @@ TVET_TSS_SCHOOLS = [
         "type": "TVET",
         "category": "Public",
         "province": "West",
-        "district": "RUTSIRO",
-        "trades": "COMPUTER SYSTEMS AND ARRCHECTURE"
-    },
-    {
-        "id": 76,
-        "name": "GS BUMBA TVET School",
-        "type": "TVET",
-        "category": "Public",
-        "province": "West",
-        "district": "RUTSIRO",
+        "district": "Rutsiro",
         "trades": "SOFTWARE DEVELOPMENT"
     },
     {
-        "id": 77,
+        "id": 76,
         "name": "BUMBA TVET SCHOOL",
         "type": "TVET",
         "category": "Public",
         "province": "West",
-        "district": "RUTSIRO",
+        "district": "Rutsiro",
         "trades": "Building construction, Electrical technology, Fashion Design, Manufacturing technology, Plumbing Technology"
     },
     {
-        "id": 78,
+        "id": 77,
         "name": "ES KABONA",
         "type": "TSS",
         "category": "Public",
         "province": "West",
-        "district": "RUTSIRO",
+        "district": "Rutsiro",
         "trades": "Building construction, Fashion Design"
     },
     {
-        "id": 79,
+        "id": 78,
         "name": "ESTG",
         "type": "TSS",
         "category": "Public",
         "province": "West",
-        "district": "RUBAVU",
+        "district": "Rubavu",
         "trades": "Electrical technology, Software Development"
     },
     {
-        "id": 80,
+        "id": 79,
         "name": "St Martin TVET Gisenyi",
         "type": "TVET",
         "category": "Public",
         "province": "West",
-        "district": "RUBAVU",
+        "district": "Rubavu",
         "trades": "Electrical technology, Fashion Design, Manufacturing technology, Plumbing Technology, Software Development"
     },
     {
-        "id": 81,
+        "id": 80,
         "name": "APEFOC KanamaTVET",
         "type": "TVET",
         "category": "Public",
         "province": "West",
-        "district": "RUBAVU",
+        "district": "Rubavu",
         "trades": "ACCOUNTING, Building construction"
     },
     {
-        "id": 82,
+        "id": 81,
         "name": "ETAG",
         "type": "TSS",
         "category": "Public",
         "province": "West",
-        "district": "RUBAVU",
+        "district": "Rubavu",
         "trades": "Automobile technology"
     },
     {
-        "id": 83,
+        "id": 82,
         "name": "ECOLE D'ART DE NYUNDO",
         "type": "TSS",
         "category": "Public",
         "province": "West",
-        "district": "RUBAVU",
+        "district": "Rubavu",
         "trades": "Fine and plastic arts"
     },
     {
-        "id": 84,
+        "id": 83,
         "name": "EAV BIGOGWE",
         "type": "TSS",
         "category": "Public",
         "province": "West",
-        "district": "NYABIHU",
+        "district": "Nyabihu",
         "trades": "AGRICULTURE"
     },
     {
-        "id": 85,
+        "id": 84,
         "name": "BIGOGWE TVET",
         "type": "TVET",
         "category": "Public",
@@ -767,43 +758,43 @@ TVET_TSS_SCHOOLS = [
         "trades": "ANIMAL HEALTH, FORESTRY"
     },
     {
-        "id": 86,
+        "id": 85,
         "name": "NYABIHU TVET SCHOOL",
         "type": "TVET",
         "category": "Public",
         "province": "West",
-        "district": "NYABIHU",
+        "district": "Nyabihu",
         "trades": "Fashion Design, Food and Beverage Operations, Leather Technology, Manufacturing technology"
     },
     {
-        "id": 87,
+        "id": 86,
         "name": "RWANDA CODING ACADEMY",
         "type": "TSS",
         "category": "Public",
         "province": "West",
-        "district": "NYABIHU",
+        "district": "Nyabihu",
         "trades": "Software Development"
     },
     {
-        "id": 88,
+        "id": 87,
         "name": "KISISABO TVET SCHOOL",
         "type": "TVET",
         "category": "Public",
         "province": "West",
-        "district": "NYABIHU",
+        "district": "Nyabihu",
         "trades": "AGRICULTURE"
     },
     {
-        "id": 89,
+        "id": 88,
         "name": "KIBISABO TVET School",
         "type": "TVET",
         "category": "Public",
         "province": "West",
-        "district": "NYABIHU",
+        "district": "Nyabihu",
         "trades": "ANIMAL HEALTH, FORESTRY"
     },
     {
-        "id": 90,
+        "id": 89,
         "name": "KIBIHEKANE TVET School",
         "type": "TVET",
         "category": "Public",
@@ -812,160 +803,133 @@ TVET_TSS_SCHOOLS = [
         "trades": "ACCOUNTING, TOURISM"
     },
     {
-        "id": 91,
+        "id": 90,
         "name": "KIBIHEKANE TVET",
         "type": "TVET",
         "category": "Public",
         "province": "West",
-        "district": "NYABIHU",
+        "district": "Nyabihu",
         "trades": "Electrical technology, Renewable energy"
     },
     {
-        "id": 92,
+        "id": 91,
         "name": "GATUMBA TVET SCHOOL",
         "type": "TVET",
         "category": "Public",
         "province": "West",
-        "district": "NGORORERO",
+        "district": "Ngororero",
         "trades": "Building construction, Electrical technology"
     },
     {
-        "id": 93,
+        "id": 92,
         "name": "MUHORORO TVET",
         "type": "TVET",
         "category": "Public",
         "province": "West",
-        "district": "NGORORERO",
+        "district": "Ngororero",
         "trades": "Building construction, Electrical technology, Wood Technology"
     },
     {
-        "id": 94,
+        "id": 93,
         "name": "College APEJERWA Nyange TVET",
         "type": "TVET",
         "category": "Public",
         "province": "West",
-        "district": "NGORORERO",
-        "trades": "AGRICULTURE"
+        "district": "Ngororero",
+        "trades": "AGRICULTURE, ANIMAL HEALTH"
+    },
+    {
+        "id": 94,
+        "name": "EAV KIVUMU",
+        "type": "TSS",
+        "category": "Public",
+        "province": "West",
+        "district": "Ngororero",
+        "trades": "ACCOUNTING, AGRICULTURE, ANIMAL HEALTH, Building construction, Public works, Software Development"
     },
     {
         "id": 95,
-        "name": "College APEJERWA Nyange TVET",
-        "type": "TVET",
-        "category": "Public",
-        "province": "West",
-        "district": "Ngororero",
-        "trades": "ANIMAL HEALTH"
-    },
-    {
-        "id": 96,
-        "name": "EAV KIVUMU",
-        "type": "TSS",
-        "category": "Public",
-        "province": "West",
-        "district": "Ngororero",
-        "trades": "ACCOUNTING, ANIMAL HEALTH"
-    },
-    {
-        "id": 97,
-        "name": "EAV KIVUMU",
-        "type": "TSS",
-        "category": "Public",
-        "province": "West",
-        "district": "NGORORERO",
-        "trades": "AGRICULTURE, Building construction, Public works, Software Development"
-    },
-    {
-        "id": 98,
         "name": "MIBILIZI SAINT AUGUSTIN TVET",
         "type": "TVET",
         "category": "Public",
         "province": "West",
-        "district": "RUSIZI",
+        "district": "Rusizi",
         "trades": "Building construction, Electrical technology, Electronics and telecommunication"
     },
     {
-        "id": 99,
+        "id": 96,
         "name": "GIHEKE TVET SCHOOL",
         "type": "TVET",
         "category": "Public",
         "province": "West",
-        "district": "RUSIZI",
+        "district": "Rusizi",
         "trades": "ACCOUNTING, Building construction, Computer system and architecture, Electrical technology, Electronics and telecommunication, Maltimedia production"
     },
     {
-        "id": 100,
+        "id": 97,
         "name": "Jill Barham TVET",
         "type": "TVET",
         "category": "Public",
         "province": "West",
-        "district": "RUSIZI",
+        "district": "Rusizi",
         "trades": "Computer system and architecture, Food and Beverage Operations"
     },
     {
-        "id": 101,
+        "id": 98,
         "name": "TVET MIZERO",
         "type": "TVET",
         "category": "Public",
         "province": "West",
-        "district": "RUSIZI",
+        "district": "Rusizi",
         "trades": "Building construction, Food and Beverage Operations"
     },
     {
-        "id": 102,
+        "id": 99,
         "name": "MUGANZA TVET SCHOOL",
         "type": "TVET",
         "category": "Public",
         "province": "West",
-        "district": "RUSIZI",
+        "district": "Rusizi",
         "trades": "Building construction, Electrical technology, Plumbing Technology, Wood Technology"
     },
     {
-        "id": 103,
-        "name": "MATARE TVET SCHOOL",
-        "type": "TVET",
-        "category": "Public",
-        "province": "West",
-        "district": "RUSIZI",
-        "trades": "Building construction, Computer system and architecture, Computer system and architecture, Networking  and internet technology"
-    },
-    {
-        "id": 104,
+        "id": 100,
         "name": "MATARE TVET SCHOOL",
         "type": "TVET",
         "category": "Public",
         "province": "West",
         "district": "Rusizi",
-        "trades": "TOURISM"
+        "trades": "Building construction, Computer system and architecture, Computer system and architecture, Networking  and internet technology, TOURISM"
     },
     {
-        "id": 105,
+        "id": 101,
         "name": "COLLEGE LA LUMIERE DE GASHONGA",
         "type": "TSS",
         "category": "Public",
         "province": "West",
-        "district": "RUSIZI",
+        "district": "Rusizi",
         "trades": "Building construction"
     },
     {
-        "id": 106,
+        "id": 102,
         "name": "TVET TYAZO",
         "type": "TVET",
         "category": "Public",
         "province": "West",
-        "district": "NYAMASHEKE",
+        "district": "Nyamasheke",
         "trades": "Building construction, Manufacturing technology, Fashion Design, Food and Beverage Operations, Wood Technology"
     },
     {
-        "id": 107,
+        "id": 103,
         "name": "KARENGERA TVET",
         "type": "TVET",
         "category": "Public",
         "province": "West",
-        "district": "NYAMASHEKE",
+        "district": "Nyamasheke",
         "trades": "Building construction, Electrical technology, Fashion Design, Wood Technology"
     },
     {
-        "id": 108,
+        "id": 104,
         "name": "EAV Ntendezi",
         "type": "TSS",
         "category": "Public",
@@ -974,25 +938,25 @@ TVET_TSS_SCHOOLS = [
         "trades": "ACCOUNTING, ANIMAL HEALTH"
     },
     {
-        "id": 109,
+        "id": 105,
         "name": "EAV NTENDEZI",
         "type": "TSS",
         "category": "Public",
         "province": "West",
-        "district": "NYAMASHEKE",
+        "district": "Nyamasheke",
         "trades": "AGRICULTURE"
     },
     {
-        "id": 110,
+        "id": 106,
         "name": "SHANGI TVET SCHOOL",
         "type": "TVET",
         "category": "Public",
         "province": "West",
-        "district": "NYAMASHEKE",
+        "district": "Nyamasheke",
         "trades": "Automobile technology, Electrical technology, Food and Beverage Operations"
     },
     {
-        "id": 111,
+        "id": 107,
         "name": "KISARO TVET",
         "type": "TVET",
         "category": "Public",
@@ -1001,139 +965,175 @@ TVET_TSS_SCHOOLS = [
         "trades": "ANIMAL HEALTH"
     },
     {
-        "id": 112,
+        "id": 108,
         "name": "BUYOGA TVET",
         "type": "TVET",
         "category": "Public",
         "province": "North",
-        "district": "RULINDO",
+        "district": "Rulindo",
         "trades": "Building construction, Food and Beverage Operations, Public works"
     },
     {
-        "id": 113,
+        "id": 109,
         "name": "Kinihira TVET",
         "type": "TVET",
         "category": "Public",
         "province": "North",
-        "district": "RULINDO",
+        "district": "Rulindo",
         "trades": "Electrical technology, Plumbing Technology, Wood Technology"
     },
     {
-        "id": 114,
+        "id": 110,
         "name": "TVET Kisaro",
         "type": "TVET",
         "category": "Public",
         "province": "North",
-        "district": "RULINDO",
+        "district": "Rulindo",
         "trades": "AGRICULTURE"
     },
     {
-        "id": 115,
+        "id": 111,
         "name": "APEKI TUMBA",
         "type": "TSS",
         "category": "Public",
         "province": "North",
-        "district": "RULINDO",
+        "district": "Rulindo",
         "trades": "Accounting"
     },
     {
-        "id": 116,
+        "id": 112,
         "name": "APEKI TUMBA",
         "type": "TSS",
         "category": "Public",
         "province": "North",
-        "district": "RULINDO",
+        "district": "Rulindo",
         "trades": "Software Development"
     },
     {
-        "id": 117,
+        "id": 113,
         "name": "APEKI TUMBA",
         "type": "TSS",
         "category": "Public",
         "province": "North",
-        "district": "RULINDO",
+        "district": "Rulindo",
         "trades": "Building construction"
     },
     {
-        "id": 118,
+        "id": 114,
         "name": "JANJA TVET",
         "type": "TVET",
         "category": "Public",
         "province": "North",
-        "district": "GAKENKE",
+        "district": "Gakenke",
         "trades": "Fashion Design"
     },
     {
-        "id": 119,
+        "id": 115,
         "name": "JANJA TVET",
         "type": "TVET",
         "category": "Public",
         "province": "North",
-        "district": "GAKENKE",
+        "district": "Gakenke",
         "trades": "Electrical technology"
     },
     {
-        "id": 120,
+        "id": 116,
         "name": "JANJA TVET",
         "type": "TVET",
         "category": "Public",
         "province": "North",
-        "district": "GAKENKE",
+        "district": "Gakenke",
         "trades": "Wood Technology"
     },
     {
-        "id": 121,
+        "id": 117,
         "name": "NEMBA TVET",
         "type": "TVET",
         "category": "Public",
         "province": "North",
-        "district": "GAKENKE",
+        "district": "Gakenke",
         "trades": "Manufacturing technology"
     },
     {
-        "id": 122,
+        "id": 118,
         "name": "EAV RUSHASHI",
         "type": "TSS",
         "category": "Public",
         "province": "North",
-        "district": "GAKENKE",
+        "district": "Gakenke",
         "trades": "AGRICULTURE"
     },
     {
-        "id": 123,
+        "id": 119,
         "name": "EAV Rushashi",
         "type": "TSS",
         "category": "Public",
         "province": "North",
-        "district": "GAKENKE",
+        "district": "Gakenke",
         "trades": "ANIMAL HEALTH"
     },
     {
-        "id": 124,
+        "id": 120,
         "name": "GS APAPEM MUHOND",
         "type": "TSS",
         "category": "Public",
         "province": "North",
-        "district": "GAKENKE",
+        "district": "Gakenke",
         "trades": "Building construction"
     },
     {
-        "id": 125,
+        "id": 121,
         "name": "Muhabura Integrated Polytechnic",
         "type": "TSS",
         "category": "Public",
         "province": "North",
-        "district": "GAKENKE",
+        "district": "Gakenke",
         "trades": "ACCOUNTING, Electrical technology, Food and Beverage Operations"
     },
     {
-        "id": 126,
+        "id": 122,
         "name": "Muhabura Integrated Polytechnic",
         "type": "TSS",
         "category": "Public",
         "province": "North",
-        "district": "MUSANZE",
+        "district": "Musanze",
         "trades": "Building construction, Computer system and architecture, Computer system and architecture, TOURISM"
+    },
+    {
+        "id": 123,
+        "name": "ESTB BUSOGO",
+        "type": "TSS",
+        "category": "Public",
+        "province": "North",
+        "district": "Musanze",
+        "trades": "Building construction"
+    },
+    {
+        "id": 124,
+        "name": "ESTB BUSOGO",
+        "type": "TSS",
+        "category": "Public",
+        "province": "North",
+        "district": "Musanze",
+        "trades": "Public works"
+    },
+    {
+        "id": 125,
+        "name": "ESTB BUSOGO",
+        "type": "TSS",
+        "category": "Public",
+        "province": "North",
+        "district": "Musanze",
+        "trades": "Plumbing Technology"
+    },
+    {
+        "id": 126,
+        "name": "ESTB BUSOGO",
+        "type": "TSS",
+        "category": "Public",
+        "province": "North",
+        "district": "Musanze",
+        "trades": "Electrical technology"
     },
     {
         "id": 127,
@@ -1141,8 +1141,8 @@ TVET_TSS_SCHOOLS = [
         "type": "TSS",
         "category": "Public",
         "province": "North",
-        "district": "MUSANZE",
-        "trades": "Building construction"
+        "district": "Musanze",
+        "trades": "Wood Technology"
     },
     {
         "id": 128,
@@ -1150,8 +1150,8 @@ TVET_TSS_SCHOOLS = [
         "type": "TSS",
         "category": "Public",
         "province": "North",
-        "district": "MUSANZE",
-        "trades": "Public works"
+        "district": "Musanze",
+        "trades": "Food and Beverage Operations"
     },
     {
         "id": 129,
@@ -1159,8 +1159,8 @@ TVET_TSS_SCHOOLS = [
         "type": "TSS",
         "category": "Public",
         "province": "North",
-        "district": "MUSANZE",
-        "trades": "Plumbing Technology"
+        "district": "Musanze",
+        "trades": "Front office and house keeping operations"
     },
     {
         "id": 130,
@@ -1168,8 +1168,8 @@ TVET_TSS_SCHOOLS = [
         "type": "TSS",
         "category": "Public",
         "province": "North",
-        "district": "MUSANZE",
-        "trades": "Electrical technology"
+        "district": "Musanze",
+        "trades": "FOOD PROCESSING"
     },
     {
         "id": 131,
@@ -1177,56 +1177,20 @@ TVET_TSS_SCHOOLS = [
         "type": "TSS",
         "category": "Public",
         "province": "North",
-        "district": "MUSANZE",
-        "trades": "Wood Technology"
-    },
-    {
-        "id": 132,
-        "name": "ESTB BUSOGO",
-        "type": "TSS",
-        "category": "Public",
-        "province": "North",
-        "district": "MUSANZE",
-        "trades": "Food and Beverage Operations"
-    },
-    {
-        "id": 133,
-        "name": "ESTB BUSOGO",
-        "type": "TSS",
-        "category": "Public",
-        "province": "North",
-        "district": "MUSANZE",
-        "trades": "Front office and house keeping operations"
-    },
-    {
-        "id": 134,
-        "name": "ESTB BUSOGO",
-        "type": "TSS",
-        "category": "Public",
-        "province": "North",
-        "district": "MUSANZE",
-        "trades": "FOOD PROCESSING"
-    },
-    {
-        "id": 135,
-        "name": "ESTB BUSOGO",
-        "type": "TSS",
-        "category": "Public",
-        "province": "North",
-        "district": "MUSANZE",
+        "district": "Musanze",
         "trades": "Manufacturing technology"
     },
     {
-        "id": 136,
+        "id": 132,
         "name": "ETEFOP",
         "type": "TSS",
         "category": "Public",
         "province": "North",
-        "district": "MUSANZE",
+        "district": "Musanze",
         "trades": "Building construction, Manufacturing technology, Fashion Design, Computer system and architecture, Wood Technology, Networking  and internet technology, Automobile technology, Electronics and telecommunication, Food and Beverage Operations"
     },
     {
-        "id": 137,
+        "id": 133,
         "name": "COLLEGE GEORGE FOX DE BUTARO",
         "type": "TSS",
         "category": "Public",
@@ -1235,7 +1199,7 @@ TVET_TSS_SCHOOLS = [
         "trades": "ACCOUNTING, Building construction, Computer system and architecture"
     },
     {
-        "id": 138,
+        "id": 134,
         "name": "ES GAHUNGA",
         "type": "TSS",
         "category": "Public",
@@ -1244,7 +1208,7 @@ TVET_TSS_SCHOOLS = [
         "trades": "AGRICULTURE, Automobile technology, Building construction, Electrical technology, Electronics and telecommunication"
     },
     {
-        "id": 139,
+        "id": 135,
         "name": "ETEKA( Ecole Technique de Karuganda)",
         "type": "TSS",
         "category": "Public",
@@ -1253,7 +1217,7 @@ TVET_TSS_SCHOOLS = [
         "trades": "Building construction"
     },
     {
-        "id": 140,
+        "id": 136,
         "name": "ETKaruganda",
         "type": "TSS",
         "category": "Public",
@@ -1262,7 +1226,7 @@ TVET_TSS_SCHOOLS = [
         "trades": "TOURISM"
     },
     {
-        "id": 141,
+        "id": 137,
         "name": "ETEKA( Ecole Technique de Karuganda)",
         "type": "TSS",
         "category": "Public",
@@ -1271,7 +1235,7 @@ TVET_TSS_SCHOOLS = [
         "trades": "Public works"
     },
     {
-        "id": 142,
+        "id": 138,
         "name": "ETEKA( Ecole Technique de Karuganda)",
         "type": "TSS",
         "category": "Public",
@@ -1280,7 +1244,7 @@ TVET_TSS_SCHOOLS = [
         "trades": "Plumbing Technology"
     },
     {
-        "id": 143,
+        "id": 139,
         "name": "CEPEM",
         "type": "TSS",
         "category": "Public",
@@ -1289,7 +1253,7 @@ TVET_TSS_SCHOOLS = [
         "trades": "Building construction"
     },
     {
-        "id": 144,
+        "id": 140,
         "name": "CEPEM",
         "type": "TSS",
         "category": "Public",
@@ -1298,16 +1262,16 @@ TVET_TSS_SCHOOLS = [
         "trades": "Food and Beverage Operations"
     },
     {
-        "id": 145,
+        "id": 141,
         "name": "CEPEM TVET SCHOOL",
         "type": "TVET",
         "category": "Public",
         "province": "North",
-        "district": "BURERA",
+        "district": "Burera",
         "trades": "TOURISM"
     },
     {
-        "id": 146,
+        "id": 142,
         "name": "Kabona TVET",
         "type": "TVET",
         "category": "Public",
@@ -1316,7 +1280,7 @@ TVET_TSS_SCHOOLS = [
         "trades": "Building construction"
     },
     {
-        "id": 147,
+        "id": 143,
         "name": "Kabona TVET",
         "type": "TVET",
         "category": "Public",
@@ -1325,7 +1289,7 @@ TVET_TSS_SCHOOLS = [
         "trades": "Wood Technology"
     },
     {
-        "id": 148,
+        "id": 144,
         "name": "Kabona TVET",
         "type": "TVET",
         "category": "Public",
@@ -1334,16 +1298,16 @@ TVET_TSS_SCHOOLS = [
         "trades": "Automobile technology"
     },
     {
-        "id": 149,
+        "id": 145,
         "name": "ES BUKURE",
         "type": "TSS",
         "category": "Public",
         "province": "North",
-        "district": "GICUMBI",
+        "district": "Gicumbi",
         "trades": "AGRICULTURE"
     },
     {
-        "id": 150,
+        "id": 146,
         "name": "BUKURE TVET SCHOOL",
         "type": "TVET",
         "category": "Public",
@@ -1352,79 +1316,79 @@ TVET_TSS_SCHOOLS = [
         "trades": "ANIMAL HEALTH"
     },
     {
-        "id": 151,
+        "id": 147,
         "name": "Cyumba TVET",
         "type": "TVET",
         "category": "Public",
         "province": "North",
-        "district": "GICUMBI",
+        "district": "Gicumbi",
         "trades": "Automobile technology, Wood Technology"
     },
     {
-        "id": 152,
+        "id": 148,
         "name": "Kageyo",
         "type": "TSS",
         "category": "Public",
         "province": "North",
-        "district": "GICUMBI",
+        "district": "Gicumbi",
         "trades": "Accounting"
     },
     {
-        "id": 153,
+        "id": 149,
         "name": "Mulindi TVET",
         "type": "TVET",
         "category": "Public",
         "province": "North",
-        "district": "GICUMBI",
+        "district": "Gicumbi",
         "trades": "Accounting, Computer system and architecture, Networking  and internet technology, Software Development"
     },
     {
-        "id": 154,
+        "id": 150,
         "name": "Mukarange TVET",
         "type": "TVET",
         "category": "Public",
         "province": "North",
-        "district": "GICUMBI",
+        "district": "Gicumbi",
         "trades": "Building construction, Electrical technology"
     },
     {
-        "id": 155,
+        "id": 151,
         "name": "Collegegio Santo Maria Zaccaria",
         "type": "TSS",
         "category": "Public",
         "province": "North",
-        "district": "GICUMBI",
+        "district": "Gicumbi",
         "trades": "Building construction, Computer system and architecture, Plumbing Technology, Software Development, Wood Technology"
     },
     {
-        "id": 156,
+        "id": 152,
         "name": "College Saint Laurent de Gaseke",
         "type": "TSS",
         "category": "Public",
         "province": "North",
-        "district": "GICUMBI",
+        "district": "Gicumbi",
         "trades": "Electrical technology, Electronics and telecommunication, Software Development"
     },
     {
-        "id": 157,
+        "id": 153,
         "name": "APAPEGI Cyuru",
         "type": "TSS",
         "category": "Public",
         "province": "North",
-        "district": "GICUMBI",
+        "district": "Gicumbi",
         "trades": "Building construction"
     },
     {
-        "id": 158,
+        "id": 154,
         "name": "College APEGIRUBUKI",
         "type": "TSS",
         "category": "Public",
         "province": "North",
-        "district": "GICUMBI",
+        "district": "Gicumbi",
         "trades": "Building construction, Public works"
     },
     {
-        "id": 159,
+        "id": 155,
         "name": "APPEGA GAHENGERI TVET SCHOOL",
         "type": "TVET",
         "category": "Public",
@@ -1433,7 +1397,7 @@ TVET_TSS_SCHOOLS = [
         "trades": "ACCOUNTING"
     },
     {
-        "id": 160,
+        "id": 156,
         "name": "APEGA GAHENGERI",
         "type": "TSS",
         "category": "Public",
@@ -1442,7 +1406,7 @@ TVET_TSS_SCHOOLS = [
         "trades": "Building construction, Computer system and architecture"
     },
     {
-        "id": 161,
+        "id": 157,
         "name": "LYCEE DU LAC MUHAZI (ASPEJ)",
         "type": "TSS",
         "category": "Public",
@@ -1451,7 +1415,7 @@ TVET_TSS_SCHOOLS = [
         "trades": "Building construction, Computer system and architecture, TOURISM"
     },
     {
-        "id": 162,
+        "id": 158,
         "name": "LYCEE DU LAC MUHAZI (ASPEJ)",
         "type": "TSS",
         "category": "Public",
@@ -1460,7 +1424,7 @@ TVET_TSS_SCHOOLS = [
         "trades": "ACCOUNTING"
     },
     {
-        "id": 163,
+        "id": 159,
         "name": "CENTER FOR CHAMPIONS TVET",
         "type": "TVET",
         "category": "Public",
@@ -1469,7 +1433,7 @@ TVET_TSS_SCHOOLS = [
         "trades": "Building construction, Electrical technology, Fashion Design, Manufacturing technology, Plumbing Technology"
     },
     {
-        "id": 164,
+        "id": 160,
         "name": "ET St Kizito Musha",
         "type": "TSS",
         "category": "Public",
@@ -1478,232 +1442,223 @@ TVET_TSS_SCHOOLS = [
         "trades": "Building construction, Computer system and architecture, Food and Beverage Operations"
     },
     {
-        "id": 165,
+        "id": 161,
         "name": "ETP Nyarurema",
         "type": "TSS",
         "category": "Public",
         "province": "East",
-        "district": "NYAGATARE",
+        "district": "Nyagatare",
         "trades": "Building construction"
     },
     {
-        "id": 166,
+        "id": 162,
         "name": "CYONDO TVET SCHOOL",
         "type": "TVET",
         "category": "Public",
         "province": "East",
-        "district": "NYAGATARE",
+        "district": "Nyagatare",
         "trades": "Building construction, Fashion Design"
     },
     {
-        "id": 167,
+        "id": 163,
         "name": "CYONDO TVET SCHOOL",
         "type": "TVET",
         "category": "Public",
         "province": "East",
-        "district": "GATSIBO",
+        "district": "Gatsibo",
         "trades": "Plumbing Technology"
     },
     {
-        "id": 168,
+        "id": 164,
         "name": "EFA NYAGAHANGA",
         "type": "TSS",
         "category": "Public",
         "province": "East",
-        "district": "GATSIBO",
+        "district": "Gatsibo",
         "trades": "AGRICULTURE, ANIMAL HEALTH, FOOD PROCESSING"
     },
     {
-        "id": 169,
+        "id": 165,
         "name": "GATSIBO TVET",
         "type": "TVET",
         "category": "Public",
         "province": "East",
-        "district": "GATSIBO",
+        "district": "Gatsibo",
         "trades": "Building construction, Electrical technology, Land surveying, Public works"
     },
     {
-        "id": 170,
+        "id": 166,
         "name": "GITUZA TVET",
         "type": "TVET",
         "category": "Public",
         "province": "East",
-        "district": "GATSIBO",
+        "district": "Gatsibo",
         "trades": "Building construction, Automobile technology, Fashion Design, Manufacturing technology, Wood Technology"
     },
     {
-        "id": 171,
+        "id": 167,
         "name": "GAKONI TVET",
         "type": "TVET",
         "category": "Public",
         "province": "East",
-        "district": "GATSIBO",
+        "district": "Gatsibo",
         "trades": "Fashion Design, Leather Technology, Manufacturing technology"
     },
     {
-        "id": 172,
+        "id": 168,
         "name": "UMUTARA POLYTECHNIC -GAKONI",
         "type": "TSS",
         "category": "Public",
         "province": "East",
-        "district": "GATSIBO",
+        "district": "Gatsibo",
         "trades": "ACCOUNTING, AGRICULTURE, ANIMAL HEALTH, Building construction, Wood Technology"
     },
     {
-        "id": 173,
+        "id": 169,
         "name": "LYCEE St ALEXANDRE SAULI DE MUHURA",
         "type": "TSS",
         "category": "Public",
         "province": "East",
-        "district": "GATSIBO",
+        "district": "Gatsibo",
         "trades": "ACCOUNTING, Computer system and architecture, Computer system and architecture, Fashion Design, Networking  and internet technology, Software Development"
     },
     {
-        "id": 174,
+        "id": 170,
         "name": "NGARAMA TVET SCHOOL",
         "type": "TVET",
         "category": "Public",
         "province": "East",
-        "district": "GATSIBO",
+        "district": "Gatsibo",
         "trades": "Building construction, Electrical technology, Fashion Design, Manufacturing technology"
     },
     {
-        "id": 175,
+        "id": 171,
         "name": "NGARAMA TVET SCHOOL",
         "type": "TVET",
         "category": "Public",
         "province": "East",
-        "district": "KAYONZA",
+        "district": "Kayonza",
         "trades": "Wood Technology"
     },
     {
-        "id": 176,
+        "id": 172,
         "name": "Don Bosco TSS Kabarondo",
         "type": "TSS",
         "category": "Public",
         "province": "East",
-        "district": "KAYONZA",
+        "district": "Kayonza",
         "trades": "Building construction, Electrical technology, Manufacturing technology, Wood Technology"
     },
     {
-        "id": 177,
+        "id": 173,
         "name": "Don Bosco TSS Kabarondo",
         "type": "TSS",
         "category": "Public",
         "province": "East",
-        "district": "KAYONZA",
+        "district": "Kayonza",
         "trades": "Food and Beverage Operations"
     },
     {
-        "id": 178,
+        "id": 174,
         "name": "NYAMIRAMA TVET SCHOOL",
         "type": "TVET",
         "category": "Public",
         "province": "East",
-        "district": "KAYONZA",
+        "district": "Kayonza",
         "trades": "Building construction, Electrical technology, Fashion Design, Manufacturing technology, Plumbing Technology, Wood Technology"
     },
     {
-        "id": 179,
+        "id": 175,
         "name": "St Christopher TVET",
         "type": "TVET",
         "category": "Public",
         "province": "East",
-        "district": "KAYONZA",
+        "district": "Kayonza",
         "trades": "Automobile technology"
     },
     {
-        "id": 180,
+        "id": 176,
         "name": "St Christopher TVET",
         "type": "TVET",
         "category": "Public",
         "province": "East",
-        "district": "KAYONZA",
+        "district": "Kayonza",
         "trades": "Fashion Design"
     },
     {
-        "id": 181,
+        "id": 177,
         "name": "St Anastase Gahara TVET SCHOOL",
         "type": "TVET",
         "category": "Public",
         "province": "East",
-        "district": "KIREHE",
+        "district": "Kirehe",
         "trades": "Masonry, Tailoring"
     },
     {
-        "id": 182,
+        "id": 178,
         "name": "KIREHE Adventist TVET",
         "type": "TVET",
         "category": "Public",
         "province": "East",
-        "district": "KIREHE",
+        "district": "Kirehe",
         "trades": "Building construction, TOURISM"
     },
     {
-        "id": 183,
-        "name": "APENA TVET",
-        "type": "TVET",
-        "category": "Public",
-        "province": "East",
-        "district": "KIREHE",
-        "trades": "AGRICULTURE, Automobile technology, Automobile technology, Building construction, Computer system and architecture"
-    },
-    {
-        "id": 184,
+        "id": 179,
         "name": "APENA TVET",
         "type": "TVET",
         "category": "Public",
         "province": "East",
         "district": "Kirehe",
-        "trades": "ANIMAL HEALTH"
+        "trades": "AGRICULTURE, ANIMAL HEALTH, Automobile technology, Automobile technology, Building construction, Computer system and architecture"
     },
     {
-        "id": 185,
+        "id": 180,
         "name": "MUTENDERI TVET",
         "type": "TVET",
         "category": "Public",
         "province": "East",
-        "district": "NGOMA",
+        "district": "Ngoma",
         "trades": "Building construction, Electrical technology, FORESTRY, TOURISM"
     },
     {
-        "id": 186,
+        "id": 181,
         "name": "GITWE TVET",
         "type": "TVET",
         "category": "Public",
         "province": "East",
-        "district": "NGOMA",
+        "district": "Ngoma",
         "trades": "AGRICULTURE, ANIMAL HEALTH, Building construction, Software Development"
     },
     {
-        "id": 187,
+        "id": 182,
         "name": "KIGARAMA TVET",
         "type": "TVET",
         "category": "Public",
         "province": "East",
-        "district": "NGOMA",
+        "district": "Ngoma",
         "trades": "ACCOUNTING, Computer system and architecture, TOURISM"
     },
     {
-        "id": 188,
+        "id": 183,
         "name": "NYAMATA TVET SCHOOL",
         "type": "TVET",
         "category": "Public",
         "province": "East",
-        "district": "BUGESERA",
+        "district": "Bugesera",
         "trades": "Building construction, Electrical technology, Electronics and telecommunication, Fashion Design, Interior Design, Land surveying, Manufacturing technology, Networking  and internet technology, Renewable energy, Wood Technology"
     },
     {
-        "id": 189,
+        "id": 184,
         "name": "NELSON MANDELA TVET SCHOOL",
         "type": "TVET",
         "category": "Public",
         "province": "East",
-        "district": "BUGESERA",
+        "district": "Bugesera",
         "trades": "Building construction, Electrical technology, Fashion Design, Manufacturing technology"
     },
     {
-        "id": 190,
+        "id": 185,
         "name": "APEBU Nyamata TVET",
         "type": "TVET",
         "category": "Public",
