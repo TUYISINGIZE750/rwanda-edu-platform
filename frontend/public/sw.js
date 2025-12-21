@@ -1,8 +1,6 @@
-const CACHE_NAME = 'rwanda-edu-chat-v1'
+const CACHE_NAME = 'rwanda-edu-chat-v2'
 const urlsToCache = [
   '/',
-  '/static/js/bundle.js',
-  '/static/css/main.css',
   '/manifest.json'
 ]
 
@@ -16,12 +14,17 @@ self.addEventListener('install', (event) => {
   )
 })
 
-// Fetch event
+// Fetch event - Don't cache API calls
 self.addEventListener('fetch', (event) => {
+  // Skip caching for API requests
+  if (event.request.url.includes('/api/') || event.request.url.includes('localhost')) {
+    event.respondWith(fetch(event.request))
+    return
+  }
+  
   event.respondWith(
     caches.match(event.request)
       .then((response) => {
-        // Return cached version or fetch from network
         return response || fetch(event.request)
       })
   )
