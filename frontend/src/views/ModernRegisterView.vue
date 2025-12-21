@@ -226,7 +226,7 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
 import { useRouter } from 'vue-router'
-import axios from 'axios'
+import axios from '../utils/axios'
 import { MoonIcon, SunIcon } from '@heroicons/vue/24/outline'
 
 const router = useRouter()
