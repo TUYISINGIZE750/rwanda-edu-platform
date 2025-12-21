@@ -182,15 +182,19 @@ def get_schools_by_district(
     """Get all TVET/TSS schools in a district"""
     from urllib.parse import unquote
     from sqlalchemy import func
-    province_name = unquote(province_name)
-    district_name = unquote(district_name)
-    
-    # Case-insensitive matching for both province and district
-    schools = db.query(School).filter(
-        func.lower(School.province) == province_name.lower(),
-        func.lower(School.district) == district_name.lower()
-    ).all()
-    return [SchoolResponse.from_orm(school) for school in schools]
+    try:
+        province_name = unquote(province_name)
+        district_name = unquote(district_name)
+        
+        # Case-insensitive matching for both province and district
+        schools = db.query(School).filter(
+            func.lower(School.province) == province_name.lower(),
+            func.lower(School.district) == district_name.lower()
+        ).all()
+        return [SchoolResponse.from_orm(school) for school in schools]
+    except Exception as e:
+        print(f"Error fetching schools: {str(e)}")
+        return []
 
 @router.get("/schools/sector/{province_name}/{district_name}/{sector_name}", response_model=List[SchoolResponse])
 def get_schools_by_sector(
