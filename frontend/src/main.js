@@ -4,6 +4,7 @@ import { createI18n } from 'vue-i18n'
 import router from './router'
 import App from './App.vue'
 import './style.css'
+import { startKeepAlive } from './utils/keepAlive'
 
 // Import locales
 import en from './locales/en.json'
@@ -43,6 +44,9 @@ if (import.meta.env.DEV) {
 }
 
 app.mount('#app')
+
+// Start keep-alive service
+startKeepAlive()
 
 // Service Worker registration DISABLED - causing localhost caching issues
 // if ('serviceWorker' in navigator && import.meta.env.PROD) {
