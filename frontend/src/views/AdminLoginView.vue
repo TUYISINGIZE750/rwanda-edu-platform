@@ -229,7 +229,7 @@ async function handleLogin() {
     localStorage.setItem('user', JSON.stringify(updatedUser))
     authStore.user = updatedUser
     
-    router.push('/dos-dashboard')
+    router.push('/admin-dashboard')
     
   } catch (err) {
     console.error('Login error:', err)
