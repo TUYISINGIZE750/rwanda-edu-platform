@@ -26,8 +26,8 @@ def parse_and_seed_excel():
     print("Reading Excel file...")
     try:
         df = pd.read_excel(file_path, engine='openpyxl')
-        print(f"✓ Found {len(df)} rows in Excel")
-        print(f"✓ Columns: {list(df.columns)}")
+        print(f"Found {len(df)} rows in Excel")
+        print(f"Columns: {list(df.columns)}")
         
         db = SessionLocal()
         Base.metadata.create_all(bind=engine)
@@ -80,7 +80,7 @@ def parse_and_seed_excel():
                 print(f"  Added: {school_name} ({district}) - {len(trades)} trades")
         
         db.commit()
-        print(f"\n✓ Successfully added {schools_added} schools from Excel")
+        print(f"\nSuccessfully added {schools_added} schools from Excel")
         
         # Show statistics
         total = db.query(School).count()
@@ -90,7 +90,7 @@ def parse_and_seed_excel():
         db.close()
         
     except Exception as e:
-        print(f"❌ Error: {e}")
+        print(f"Error: {e}")
         import traceback
         traceback.print_exc()
 
