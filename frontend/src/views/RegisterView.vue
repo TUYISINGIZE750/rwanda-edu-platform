@@ -262,7 +262,7 @@ async function onDistrictChange() {
   
   if (selectedDistrict.value && selectedProvince.value) {
     try {
-      const response = await axios.get(`${API_URL}/api/v1/schools-by-district/district/${selectedProvince.value}/${selectedDistrict.value}`)
+      const response = await axios.get(`${API_URL}/api/v1/registration/schools/${selectedProvince.value}/${selectedDistrict.value}`)
       schools.value = response.data.schools
     } catch (err) {
       console.error('Error loading schools:', err)
