@@ -336,30 +336,12 @@ async function onDistrictChange() {
     const url = `${API_URL}/locations/schools/district/${selectedProvince.value}/${selectedDistrict.value}`
     const response = await fetch(url)
     const data = await response.json()
-    
     schools.value = data || []
-    
-    // Fallback: If backend returns empty, use hardcoded schools
-    if (schools.value.length === 0) {
-      schools.value = getFallbackSchools(selectedProvince.value, selectedDistrict.value)
-    }
   } catch (error) {
-    schools.value = getFallbackSchools(selectedProvince.value, selectedDistrict.value)
+    schools.value = []
   } finally {
     loadingSchools.value = false
   }
-}
-
-function getFallbackSchools(province, district) {
-  const fallbackData = {
-    'Southern Province': {
-      'Kamonyi': [
-        { id: 1, name: 'GS KAMONYI', type: 'TSS', category: 'Public', province, district, trades: ['Construction', 'Electricity', 'Plumbing'] },
-        { id: 2, name: 'IPRC SOUTH', type: 'TVET', category: 'Public', province, district, trades: ['ICT', 'Electronics', 'Automotive'] }
-      ]
-    }
-  }
-  return fallbackData[province]?.[district] || []
 }
 
 function onSchoolChange() {
