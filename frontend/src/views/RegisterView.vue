@@ -199,6 +199,7 @@ const backgroundImages = ref([
 ])
 
 const API_URL = 'https://rwanda-edu-platform.onrender.com'
+// Updated: 2025-12-27
 
 function toggleTheme() {
   isDark.value = !isDark.value
