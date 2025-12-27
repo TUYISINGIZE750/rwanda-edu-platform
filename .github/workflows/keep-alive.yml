@@ -11,10 +11,10 @@ jobs:
     steps:
       - name: Ping Backend
         run: |
-          response=$(curl -s -o /dev/null -w "%{http_code}" ${{ secrets.BACKEND_URL }}/health || echo "000")
+          response=$(curl -s -o /dev/null -w "%{http_code}" https://rwanda-edu-platform.onrender.com/health || echo "000")
           if [ "$response" = "200" ]; then
             echo "✓ Backend is alive (HTTP $response)"
           else
             echo "✗ Backend returned HTTP $response"
-            curl -X POST ${{ secrets.BACKEND_URL }}/health || true
+            curl -X POST https://rwanda-edu-platform.onrender.com/health || true
           fi
