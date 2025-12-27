@@ -1,21 +1,102 @@
-<!DOCTYPE html> 
-<html lang="en"> 
-<head> 
-    <meta charset="UTF-8"> 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-    <title>Rwanda Education Platform</title> 
-    <link rel="stylesheet" href="css/rwanda_locations.css"> 
-</head> 
-<body> 
-    <h1>🇷🇼 Rwanda Education Platform</h1> 
-    <div class="rwanda-locations"> 
-        <select id="province" name="province" required><option value="">Select Province</option></select> 
-        <select id="district" name="district" required disabled><option value="">Select District</option></select> 
-        <select id="sector" name="sector" required disabled><option value="">Select Sector</option></select> 
-        <select id="cell" name="cell" required disabled><option value="">Select Cell</option></select> 
-        <select id="village" name="village" required disabled><option value="">Select Village</option></select> 
-    </div> 
-    <script src="js/rwanda_locations.js"></script> 
-    <script>RwandaLocations.init('data/locations.json');</script> 
-</body> 
-</html> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#3b82f6" />
+  <meta name="description" content="TSSANYWHERE - Technical Skills & Learning, Anytime, Anywhere" />
+  
+  <!-- PWA Meta Tags -->
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="TSSANYWHERE" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content="TSSANYWHERE" />
+  <meta property="og:description" content="Technical Skills & Learning for Rwanda's TVET/TSS Students - Anytime, Anywhere" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="http://localhost:5173" />
+  
+  <!-- Preload critical resources -->
+  <link rel="preload" href="data:text/javascript;base64,aW1wb3J0IHsgY3JlYXRlQXBwIH0gZnJvbSAndnVlJwppbXBvcnQgeyBjcmVhdGVQaW5pYSB9IGZyb20gJ3BpbmlhJwppbXBvcnQgeyBjcmVhdGVJMThuIH0gZnJvbSAndnVlLWkxOG4nCmltcG9ydCByb3V0ZXIgZnJvbSAnLi9yb3V0ZXInCmltcG9ydCBBcHAgZnJvbSAnLi9BcHAudnVlJwppbXBvcnQgJy4vc3R5bGUuY3NzJwppbXBvcnQgeyBzdGFydEtlZXBBbGl2ZSB9IGZyb20gJy4vdXRpbHMva2VlcEFsaXZlJwoKLy8gSW1wb3J0IGxvY2FsZXMKaW1wb3J0IGVuIGZyb20gJy4vbG9jYWxlcy9lbi5qc29uJwppbXBvcnQgZnIgZnJvbSAnLi9sb2NhbGVzL2ZyLmpzb24nCmltcG9ydCBydyBmcm9tICcuL2xvY2FsZXMvcncuanNvbicKCi8vIENyZWF0ZSBpMThuIGluc3RhbmNlCmNvbnN0IGkxOG4gPSBjcmVhdGVJMThuKHsKICBsZWdhY3k6IGZhbHNlLAogIGxvY2FsZTogbG9jYWxTdG9yYWdlLmdldEl0ZW0oJ2xvY2FsZScpIHx8ICdlbicsCiAgZmFsbGJhY2tMb2NhbGU6ICdlbicsCiAgbWVzc2FnZXM6IHsKICAgIGVuLAogICAgZnIsCiAgICBydwogIH0KfSkKCi8vIENyZWF0ZSBQaW5pYSBzdG9yZQpjb25zdCBwaW5pYSA9IGNyZWF0ZVBpbmlhKCkKCi8vIENyZWF0ZSBhbmQgbW91bnQgYXBwCmNvbnN0IGFwcCA9IGNyZWF0ZUFwcChBcHApCgphcHAudXNlKHBpbmlhKQphcHAudXNlKHJvdXRlcikKYXBwLnVzZShpMThuKQoKLy8gR2xvYmFsIGVycm9yIGhhbmRsZXIKYXBwLmNvbmZpZy5lcnJvckhhbmRsZXIgPSAoZXJyLCBpbnN0YW5jZSwgaW5mbykgPT4gewogIGNvbnNvbGUuZXJyb3IoJ0dsb2JhbCBlcnJvcjonLCBlcnIsIGluZm8pCn0KCi8vIEdsb2JhbCBwcm9wZXJ0aWVzIGZvciBkZWJ1Z2dpbmcKaWYgKGltcG9ydC5tZXRhLmVudi5ERVYpIHsKICBhcHAuY29uZmlnLmdsb2JhbFByb3BlcnRpZXMuJGxvZyA9IGNvbnNvbGUubG9nCn0KCmFwcC5tb3VudCgnI2FwcCcpCgovLyBTdGFydCBrZWVwLWFsaXZlIHNlcnZpY2UKc3RhcnRLZWVwQWxpdmUoKQoKLy8gU2VydmljZSBXb3JrZXIgcmVnaXN0cmF0aW9uIERJU0FCTEVEIC0gY2F1c2luZyBsb2NhbGhvc3QgY2FjaGluZyBpc3N1ZXMKLy8gaWYgKCdzZXJ2aWNlV29ya2VyJyBpbiBuYXZpZ2F0b3IgJiYgaW1wb3J0Lm1ldGEuZW52LlBST0QpIHsKLy8gICB3aW5kb3cuYWRkRXZlbnRMaXN0ZW5lcignbG9hZCcsICgpID0+IHsKLy8gICAgIG5hdmlnYXRvci5zZXJ2aWNlV29ya2VyLnJlZ2lzdGVyKCcvc3cuanMnKQovLyAgICAgICAudGhlbigocmVnaXN0cmF0aW9uKSA9PiB7Ci8vICAgICAgICAgY29uc29sZS5sb2coJ1NXIHJlZ2lzdGVyZWQ6ICcsIHJlZ2lzdHJhdGlvbikKLy8gICAgICAgfSkKLy8gICAgICAgLmNhdGNoKChyZWdpc3RyYXRpb25FcnJvcikgPT4gewovLyAgICAgICAgIGNvbnNvbGUubG9nKCdTVyByZWdpc3RyYXRpb24gZmFpbGVkOiAnLCByZWdpc3RyYXRpb25FcnJvcikKLy8gICAgICAgfSkKLy8gICB9KQovLyB9CgovLyBIYW5kbGUgb25saW5lL29mZmxpbmUgc3RhdHVzCndpbmRvdy5hZGRFdmVudExpc3RlbmVyKCdvbmxpbmUnLCAoKSA9PiB7CiAgY29uc29sZS5sb2coJ0FwcCBpcyBvbmxpbmUnKQogIC8vIFJlY29ubmVjdCBjaGF0IGlmIG5lZWRlZAp9KQoKd2luZG93LmFkZEV2ZW50TGlzdGVuZXIoJ29mZmxpbmUnLCAoKSA9PiB7CiAgY29uc29sZS5sb2coJ0FwcCBpcyBvZmZsaW5lJykKICAvLyBIYW5kbGUgb2ZmbGluZSBzdGF0ZQp9KQoKLy8gSGFuZGxlIHZpc2liaWxpdHkgY2hhbmdlIGZvciBjaGF0IG9wdGltaXphdGlvbgpkb2N1bWVudC5hZGRFdmVudExpc3RlbmVyKCd2aXNpYmlsaXR5Y2hhbmdlJywgKCkgPT4gewogIGlmIChkb2N1bWVudC5oaWRkZW4pIHsKICAgIGNvbnNvbGUubG9nKCdBcHAgaXMgaGlkZGVuJykKICAgIC8vIFJlZHVjZSBjaGF0IHBvbGxpbmcgb3IgcGF1c2UgcmVhbC10aW1lIHVwZGF0ZXMKICB9IGVsc2UgewogICAgY29uc29sZS5sb2coJ0FwcCBpcyB2aXNpYmxlJykKICAgIC8vIFJlc3VtZSBmdWxsIGZ1bmN0aW9uYWxpdHkKICB9Cn0p" as="script" />
+  
+  <!-- Manifest for PWA -->
+  <link rel="manifest" href="/manifest.json" />
+  
+  <title>TSSANYWHERE - Learn Anytime, Anywhere</title>
+  <script type="module" crossorigin src="/assets/index-CzDSvx7c.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/vue-vendor-YJdUObVa.js">
+  <link rel="stylesheet" crossorigin href="/assets/index-Cl8tX4NE.css">
+</head>
+<body>
+  <!-- Main App -->
+  <div id="app"></div>
+  
+  <!-- Fallback for users with JavaScript disabled -->
+  <noscript>
+    <div style="text-align: center; padding: 50px; font-family: Arial, sans-serif;">
+      <h1>JavaScript Required</h1>
+      <p>This application requires JavaScript to run. Please enable JavaScript in your browser.</p>
+    </div>
+  </noscript>
+  
+  
+  <script>
+    // Unregister any existing service workers
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then(function(registrations) {
+        for(let registration of registrations) {
+          registration.unregister();
+          console.log('Service worker unregistered');
+        }
+      });
+      
+      // Clear all caches
+      if ('caches' in window) {
+        caches.keys().then(function(cacheNames) {
+          cacheNames.forEach(function(cacheName) {
+            caches.delete(cacheName);
+            console.log('Cache deleted:', cacheName);
+          });
+        });
+      }
+    }
+    
+    // Remove loading screen when app is ready
+    window.addEventListener('load', () => {
+      document.body.classList.add('app-loaded');
+    });
+    
+    // Handle app install prompt
+    let deferredPrompt;
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      // Show install button or banner
+      console.log('App can be installed');
+    });
+    
+    // Handle successful app install
+    window.addEventListener('appinstalled', (evt) => {
+      console.log('App was installed');
+    });
+    
+    // Prevent zoom on iOS
+    document.addEventListener('gesturestart', function (e) {
+      e.preventDefault();
+    });
+    
+    // Handle viewport height changes on mobile
+    function setViewportHeight() {
+      let vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty('--vh', `${vh}px`);
+    }
+    
+    setViewportHeight();
+    window.addEventListener('resize', setViewportHeight);
+    window.addEventListener('orientationchange', setViewportHeight);
+  </script>
+</body>
+</html>
