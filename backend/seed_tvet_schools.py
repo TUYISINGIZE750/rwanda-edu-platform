@@ -24,6 +24,10 @@ def seed_schools():
         
         # Add all schools
         for school_data in TVET_TSS_SCHOOLS:
+            # Convert trades string to list
+            trades_str = school_data["trades"]
+            trades_list = [t.strip() for t in trades_str.split(",")] if isinstance(trades_str, str) else trades_str
+            
             school = School(
                 id=school_data["id"],
                 name=school_data["name"],
@@ -31,7 +35,7 @@ def seed_schools():
                 category=school_data["category"],
                 province=school_data["province"],
                 district=school_data["district"],
-                trades=school_data["trades"]
+                trades=trades_list
             )
             db.add(school)
         
