@@ -200,33 +200,25 @@ def get_cascading_data(
 def get_schools_by_location(province: str, district: str, db: Session = Depends(get_db)):
     """STEP 1: Auto-display all TVET/TSS schools when province + district selected"""
     from sqlalchemy import func, or_, select
+    from urllib.parse import unquote
+    
+    province = unquote(province)
+    district = unquote(district)
+    
+    # FIXED: Comprehensive province mapping
+    province_map = {
+        'Southern Province': 'South',
+        'Western Province': 'West',
+        'Northern Province': 'North',
+        'Eastern Province': 'East',
+        'Kigali City': 'Kigali city'
+    }
+    
+    db_province = province_map.get(province, province)
     
     try:
-        # Map province names to database format - try multiple variations
-        province_variations = [
-            province,
-            province.replace(' Province', ''),
-            province.replace(' City', ''),
-        ]
-        
-        # Add common mappings
-        province_map = {
-            'Southern Province': ['South', 'Southern', 'Southern Province'],
-            'Western Province': ['West', 'Western', 'Western Province'],
-            'Northern Province': ['North', 'Northern', 'Northern Province'],
-            'Eastern Province': ['East', 'Eastern', 'Eastern Province'],
-            'Kigali City': ['Kigali city', 'Kigali', 'Kigali City']
-        }
-        
-        if province in province_map:
-            province_variations.extend(province_map[province])
-        
-        # Build query with multiple province variations
-        province_filters = [func.lower(School.province) == p.lower() for p in province_variations]
-        
-        # Case-insensitive search with multiple province options - use execute to avoid mapper issues
         stmt = select(School).filter(
-            or_(*province_filters),
+            func.lower(School.province) == db_province.lower(),
             func.lower(School.district) == district.lower()
         )
         schools = db.execute(stmt).scalars().all()
@@ -262,7 +254,6 @@ def get_schools_by_location(province: str, district: str, db: Session = Depends(
             "location": f"{district}, {province}"
         }
     except Exception as e:
-        # Return error response instead of raising exception
         return {
             "success": False,
             "message": f"Error loading schools: {str(e)}",

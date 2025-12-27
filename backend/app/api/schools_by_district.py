@@ -106,9 +106,20 @@ def get_schools_in_district(
     province = unquote(province)
     district = unquote(district)
     
+    # FIXED: Map frontend province names to database format
+    province_map = {
+        'Southern Province': 'South',
+        'Western Province': 'West',
+        'Northern Province': 'North',
+        'Eastern Province': 'East',
+        'Kigali City': 'Kigali city'
+    }
+    
+    db_province = province_map.get(province, province)
+    
     # Case-insensitive search
     schools = db.query(School).filter(
-        func.lower(School.province) == province.lower(),
+        func.lower(School.province) == db_province.lower(),
         func.lower(School.district) == district.lower()
     ).all()
     
