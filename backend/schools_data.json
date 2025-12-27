@@ -1,0 +1,1760 @@
+[
+  {
+    "name": "KANYINYA TVET",
+    "province": "Kigali city",
+    "district": "NYARUGENGE",
+    "trades": [
+      "Automobile technology",
+      "Building construction",
+      "Fashion Design"
+    ]
+  },
+  {
+    "name": "FOREVER TVET INSTITUTE",
+    "province": "Kigali city",
+    "district": "GASABO",
+    "trades": [
+      "Land surveying",
+      "Electrical technology",
+      "Computer system and architecture",
+      "Public works"
+    ]
+  },
+  {
+    "name": "International Technical School of Kigali",
+    "province": "Kigali city",
+    "district": "GASABO",
+    "trades": [
+      "Food and Beverage Operations",
+      "TOURISM"
+    ]
+  },
+  {
+    "name": "Lycee de Kicukiro APADE",
+    "province": "Kigali city",
+    "district": "KICUKIRO",
+    "trades": [
+      "Tourism",
+      "software development",
+      "Electronics and telecommunication",
+      "Food and Beverage Operations",
+      "Building construction",
+      "ACCOUNTING",
+      "Networking  and internet technology",
+      "Software programming and embedded systems",
+      "Maltimedia production"
+    ]
+  },
+  {
+    "name": "ESSA Nyarugunga",
+    "province": "Kigali city",
+    "district": "KICUKIRO",
+    "trades": [
+      "Tourism",
+      "accounting",
+      "Software development",
+      "Food and Beverage Operations",
+      "Building construction",
+      "Computer system and architecture"
+    ]
+  },
+  {
+    "name": "Maranatha TVET School",
+    "province": "South",
+    "district": "NYANZA",
+    "trades": [
+      "Electrical technology",
+      "Electronics and telecommunication",
+      "Building construction",
+      "Computer system and architecture",
+      "ACCOUNTING",
+      "Maltimedia production"
+    ]
+  },
+  {
+    "name": "Hanika TSS",
+    "province": "South",
+    "district": "NYANZA",
+    "trades": [
+      "Electrical technology",
+      "Automobile technology",
+      "Building construction",
+      "Computer system and architecture"
+    ]
+  },
+  {
+    "name": "ESPANYA",
+    "province": "South",
+    "district": "NYANZA",
+    "trades": [
+      "Electronics and telecommunication",
+      "Building construction"
+    ]
+  },
+  {
+    "name": "ESPANYA",
+    "province": "South",
+    "district": "NYANZA",
+    "trades": [
+      "ACCOUNTING"
+    ]
+  },
+  {
+    "name": "ESPANYA",
+    "province": "South",
+    "district": "NYANZA",
+    "trades": [
+      "Computer system and architecture"
+    ]
+  },
+  {
+    "name": "KAVUMU TVET SCHOOL",
+    "province": "South",
+    "district": "NYANZA",
+    "trades": [
+      "Manufacturing technology",
+      "Plumbing Technology",
+      "Automobile technology",
+      "Computer system and architecture"
+    ]
+  },
+  {
+    "name": "BUSASAMANA TVET SCHOOL",
+    "province": "South",
+    "district": "NYANZA",
+    "trades": [
+      "Wood Technology",
+      "Building construction",
+      "Fashion Design"
+    ]
+  },
+  {
+    "name": "College Ste Trinite de Nyanza",
+    "province": "South",
+    "district": "NYANZA",
+    "trades": [
+      "Electronics and telecommunication",
+      "Automobile technology",
+      "Food and Beverage Operations",
+      "Building construction",
+      "TOURISM"
+    ]
+  },
+  {
+    "name": "NYANZA TVET SCHOOL",
+    "province": "South",
+    "district": "NYANZA",
+    "trades": [
+      "Interior Design",
+      "Renewable energy",
+      "Electrical technology",
+      "Electronics and telecommunication",
+      "Automobile technology",
+      "Building construction",
+      "Public works",
+      "Wood Technology"
+    ]
+  },
+  {
+    "name": "Lycee de Nyanza",
+    "province": "South",
+    "district": "NYANZA",
+    "trades": [
+      "Electronics and telecommunication",
+      "Building construction",
+      "Computer system and architecture"
+    ]
+  },
+  {
+    "name": "HVP GATAGARA TVET SCHOOL",
+    "province": "South",
+    "district": "NYANZA",
+    "trades": [
+      "Fashion Design"
+    ]
+  },
+  {
+    "name": "GIKONKO TVET SCHOOL",
+    "province": "South",
+    "district": "GISAGARA",
+    "trades": [
+      "Electrical technology",
+      "Building construction",
+      "Computer system and architecture"
+    ]
+  },
+  {
+    "name": "GIKONKO TVETSCHOOL",
+    "province": "South",
+    "district": "GISAGARA",
+    "trades": [
+      "Wood Technology"
+    ]
+  },
+  {
+    "name": "COLLEGE SAINT JOSEPH KANSI  TVET",
+    "province": "South",
+    "district": "GISAGARA",
+    "trades": [
+      "ACCOUNTING"
+    ]
+  },
+  {
+    "name": "COLLEGE SAINT JOSEPH KANSI",
+    "province": "South",
+    "district": "GISAGARA",
+    "trades": [
+      "Electrical technology",
+      "Building construction",
+      "Plumbing Technology"
+    ]
+  },
+  {
+    "name": "KIGEMBE TVET SCHOOL",
+    "province": "South",
+    "district": "GISAGARA",
+    "trades": [
+      "Wood Technology",
+      "Building construction",
+      "Fashion Design"
+    ]
+  },
+  {
+    "name": "MUGOMBWA TVET SCHOOL",
+    "province": "South",
+    "district": "GISAGARA",
+    "trades": [
+      "Electrical technology",
+      "Building construction",
+      "Fashion Design"
+    ]
+  },
+  {
+    "name": "MUSHA ADVENTIST TVET SCHOOL",
+    "province": "South",
+    "district": "GISAGARA",
+    "trades": [
+      "Electrical technology",
+      "Building construction"
+    ]
+  },
+  {
+    "name": "SAINT KIZITO SAVE TVET SCHOOL",
+    "province": "South",
+    "district": "GISAGARA",
+    "trades": [
+      "Electrical technology",
+      "Land surveying",
+      "Electronics and telecommunication",
+      "Building construction",
+      "Computer system and architecture",
+      "Public works",
+      "Wood Technology",
+      "ACCOUNTING",
+      "Maltimedia production"
+    ]
+  },
+  {
+    "name": "KIBEHO TVET SCHOOL",
+    "province": "South",
+    "district": "NYARUGURU",
+    "trades": [
+      "Wood Technology",
+      "Electrical technology",
+      "Plumbing Technology"
+    ]
+  },
+  {
+    "name": "MUTOVU TVET SCHOOL",
+    "province": "South",
+    "district": "NYARUGURU",
+    "trades": [
+      "Building construction",
+      "Maltimedia production"
+    ]
+  },
+  {
+    "name": "TVET NYAGISOZI",
+    "province": "South",
+    "district": "NYARUGURU",
+    "trades": [
+      "Electrical technology",
+      "Plumbing Technology",
+      "Manufacturing technology"
+    ]
+  },
+  {
+    "name": "BTR RWAMIKO TVET SCHOOL",
+    "province": "South",
+    "district": "NYARUGURU",
+    "trades": [
+      "ACCOUNTING"
+    ]
+  },
+  {
+    "name": "BTR RWAMIKO TVET",
+    "province": "South",
+    "district": "NYARUGURU",
+    "trades": [
+      "Electronics and telecommunication",
+      "Electrical technology",
+      "Building construction"
+    ]
+  },
+  {
+    "name": "MARABA TVET",
+    "province": "South",
+    "district": "HUYE",
+    "trades": [
+      "Fashion Design"
+    ]
+  },
+  {
+    "name": "Groupe Scolaire des parents",
+    "province": "South",
+    "district": "HUYE",
+    "trades": [
+      "Electronics and telecommunication",
+      "Computer system and architecture"
+    ]
+  },
+  {
+    "name": "KABUTARE TVET SCHOOL",
+    "province": "South",
+    "district": "HUYE",
+    "trades": [
+      "FORESTRY",
+      "FOOD PROCESSING",
+      "ANIMAL HEALTH",
+      "ACCOUNTING",
+      "AGRICULTURE"
+    ]
+  },
+  {
+    "name": "RWABUYE TVET SCHOOL",
+    "province": "South",
+    "district": "HUYE",
+    "trades": [
+      "Electrical technology",
+      "Fashion Design",
+      "Food and Beverage Operations",
+      "Building construction",
+      "Wood Technology"
+    ]
+  },
+  {
+    "name": "GSNDP CYANIKA",
+    "province": "South",
+    "district": "NYAMAGABE",
+    "trades": [
+      "Interior Design",
+      "Software Development",
+      "Accounting",
+      "Building construction",
+      "Computer system and architecture",
+      "Wood Technology",
+      "Maltimedia production"
+    ]
+  },
+  {
+    "name": "CYANIKA TVET SCHOOL",
+    "province": "South",
+    "district": "NYAMAGABE",
+    "trades": [
+      "Leather Technology",
+      "Food and Beverage Operations",
+      "Fashion Design"
+    ]
+  },
+  {
+    "name": "ES BISHYIGA",
+    "province": "South",
+    "district": "NYAMAGABE",
+    "trades": [
+      "Automobile technology",
+      "Building construction"
+    ]
+  },
+  {
+    "name": "DON BSOCO NYAMAGABE TVET SCHOOL",
+    "province": "South",
+    "district": "NYAMAGABE",
+    "trades": [
+      "Electrical technology",
+      "Fashion Design",
+      "Automobile technology",
+      "Building construction",
+      "Wood Technology"
+    ]
+  },
+  {
+    "name": "KADUHA TVET",
+    "province": "South",
+    "district": "NYAMAGABE",
+    "trades": [
+      "Building construction"
+    ]
+  },
+  {
+    "name": "MWOGO TVET SCHOOL",
+    "province": "South",
+    "district": "NYAMAGABE",
+    "trades": [
+      "Wood Technology",
+      "Automobile technology"
+    ]
+  },
+  {
+    "name": "KIBUMBWE  TVET SCHOOL",
+    "province": "South",
+    "district": "NYAMAGABE",
+    "trades": [
+      "Building construction",
+      "Fashion Design"
+    ]
+  },
+  {
+    "name": "UWINKINGI TVET SCHOOL",
+    "province": "South",
+    "district": "NYAMAGABE",
+    "trades": [
+      "Building construction"
+    ]
+  },
+  {
+    "name": "MPANDA TVET SCHOOL",
+    "province": "South",
+    "district": "RUHANGO",
+    "trades": [
+      "Electrical technology",
+      "Fashion Design",
+      "Food and Beverage Operations",
+      "Manufacturing technology",
+      "Building construction",
+      "Wood Technology"
+    ]
+  },
+  {
+    "name": "E. S KINAZI TVET  SCHOOL",
+    "province": "South",
+    "district": "Ruhango",
+    "trades": [
+      "ANIMAL HEALTH",
+      "AGRICULTURE"
+    ]
+  },
+  {
+    "name": "Vunga TVET",
+    "province": "South",
+    "district": "Ruhango",
+    "trades": [
+      "Wood Technology",
+      "Building construction",
+      "Fashion Design"
+    ]
+  },
+  {
+    "name": "Ecole Technique Ste Trinite de Ruhango",
+    "province": "South",
+    "district": "Ruhango",
+    "trades": [
+      "Automobile technology",
+      "Building construction",
+      "Fashion Design",
+      "Food and Beverage Operations"
+    ]
+  },
+  {
+    "name": "GS Indangaburezi",
+    "province": "South",
+    "district": "Ruhango",
+    "trades": [
+      "Electrical technology",
+      "Building construction"
+    ]
+  },
+  {
+    "name": "Lycee de Ruhango Ikirezi",
+    "province": "South",
+    "district": "Ruhango",
+    "trades": [
+      "Automobile technology",
+      "Building construction",
+      "Fashion Design",
+      "Food and Beverage Operations"
+    ]
+  },
+  {
+    "name": "KINAZI TVET SCHOOL A",
+    "province": "South",
+    "district": "RUHANGO",
+    "trades": [
+      "Fashion Design",
+      "Bulding Constructions",
+      "Electrical Technology",
+      "Manufacturing Technology",
+      "Wood Technology"
+    ]
+  },
+  {
+    "name": "E.S KINAZI TVET",
+    "province": "South",
+    "district": "RUHANGO",
+    "trades": [
+      "Agriculture"
+    ]
+  },
+  {
+    "name": "St Sylvain TVET",
+    "province": "South",
+    "district": "MUHANGA",
+    "trades": [
+      "Renewable energy",
+      "Land surveying",
+      "Building construction"
+    ]
+  },
+  {
+    "name": "NYABIKENKE TVET  SCHOOL",
+    "province": "South",
+    "district": "MUHANGA",
+    "trades": [
+      "ACCOUNTING",
+      "ANIMAL HEALTH",
+      "FORESTRY"
+    ]
+  },
+  {
+    "name": "NYABIKENKE TVET School",
+    "province": "South",
+    "district": "MUHANGA",
+    "trades": [
+      "Agriculture"
+    ]
+  },
+  {
+    "name": "KIYUMBA TVET School",
+    "province": "South",
+    "district": "MUHANGA",
+    "trades": [
+      "Fashion Design",
+      "Electronics and telecommunication",
+      "Building construction",
+      "Computer system and architecture",
+      "Wood Technology"
+    ]
+  },
+  {
+    "name": "ACEJ KARAMA TVET SCHOOL",
+    "province": "South",
+    "district": "MUHANGA",
+    "trades": [
+      "ACCOUNTING"
+    ]
+  },
+  {
+    "name": "ACEJ KARAMA TVET",
+    "province": "South",
+    "district": "MUHANGA",
+    "trades": [
+      "Networking  and internet technology",
+      "Computer system and architecture"
+    ]
+  },
+  {
+    "name": "BULINGA TVET SCHOOL",
+    "province": "South",
+    "district": "MUHANGA",
+    "trades": [
+      "ACCOUNTING"
+    ]
+  },
+  {
+    "name": "BURINGA TVET School",
+    "province": "South",
+    "district": "MUHANGA",
+    "trades": [
+      "Software Development",
+      "Networking  and internet technology"
+    ]
+  },
+  {
+    "name": "RWANDA SCHOOL OF CREATIVE ARTS AND MUSIC",
+    "province": "South",
+    "district": "MUHANGA",
+    "trades": [
+      "Music and Performing Arts"
+    ]
+  },
+  {
+    "name": "Jam Fred Nkunda",
+    "province": "South",
+    "district": "MUHANGA",
+    "trades": [
+      "Automobile technology",
+      "Building construction",
+      "Food and Beverage Operations"
+    ]
+  },
+  {
+    "name": "KAYENZI TVET SCHOOL",
+    "province": "South",
+    "district": "KAMONYI",
+    "trades": [
+      "Electrical technology",
+      "Fashion Design",
+      "Manufacturing technology",
+      "Building construction",
+      "Wood Technology"
+    ]
+  },
+  {
+    "name": "FR. RAMON KABUGA TVET SCHOOL",
+    "province": "South",
+    "district": "KAMONYI",
+    "trades": [
+      "Wood Technology",
+      "Building construction",
+      "Computer system and architecture",
+      "Maltimedia production"
+    ]
+  },
+  {
+    "name": "FR. RAMON KABUGA TVET SCHOOL",
+    "province": "South",
+    "district": "KAMONYI",
+    "trades": [
+      "Accounting"
+    ]
+  },
+  {
+    "name": "KIGESE TVET SCHOOL",
+    "province": "South",
+    "district": "KAMONYI",
+    "trades": [
+      "Building construction"
+    ]
+  },
+  {
+    "name": "COLLEGE APPEC REMERA RUKOMA TVET SCHOOL",
+    "province": "South",
+    "district": "KAMONYI",
+    "trades": [
+      "Software Development",
+      "ACCOUNTING",
+      "Building construction",
+      "Computer system and architecture"
+    ]
+  },
+  {
+    "name": "RUNDA TVET",
+    "province": "South",
+    "district": "KAMONYI",
+    "trades": [
+      "Software Development",
+      "Land surveying",
+      "Building construction",
+      "Computer system and architecture"
+    ]
+  },
+  {
+    "name": "ESA BIRAMBO",
+    "province": "West",
+    "district": "KARONGI",
+    "trades": [
+      "Software Development",
+      "ACCOUNTING",
+      "Computer system and architecture"
+    ]
+  },
+  {
+    "name": "RUBENGERA  II TVET SCHOOL",
+    "province": "West",
+    "district": "KARONGI",
+    "trades": [
+      "Food and Beverage Operations",
+      "Building construction",
+      "Manufacturing technology"
+    ]
+  },
+  {
+    "name": "ES Rubengera  School",
+    "province": "West",
+    "district": "KARONGI",
+    "trades": [
+      "ACCOUNTING"
+    ]
+  },
+  {
+    "name": "ES RUBENGERA",
+    "province": "West",
+    "district": "KARONGI",
+    "trades": [
+      "Software Development"
+    ]
+  },
+  {
+    "name": "ES NGOMA",
+    "province": "West",
+    "district": "KARONGI",
+    "trades": [
+      "Automobile technology",
+      "Manufacturing technology"
+    ]
+  },
+  {
+    "name": "Gisovu TVET School",
+    "province": "West",
+    "district": "KARONGI",
+    "trades": [
+      "ANIMAL HEALTH",
+      "AGRICULTURE",
+      "FORESTRY"
+    ]
+  },
+  {
+    "name": "COLLEGE INDASHYIKIRWA",
+    "province": "West",
+    "district": "RUTSIRO",
+    "trades": [
+      "Wood Technology"
+    ]
+  },
+  {
+    "name": "GS BUMBA TVET School",
+    "province": "West",
+    "district": "RUTSIRO",
+    "trades": [
+      "ACCOUNTING"
+    ]
+  },
+  {
+    "name": "GS BUMBA TVET School",
+    "province": "West",
+    "district": "RUTSIRO",
+    "trades": [
+      "COMPUTER SYSTEMS AND ARRCHECTURE"
+    ]
+  },
+  {
+    "name": "GS BUMBA TVET School",
+    "province": "West",
+    "district": "RUTSIRO",
+    "trades": [
+      "SOFTWARE DEVELOPMENT"
+    ]
+  },
+  {
+    "name": "BUMBA TVET SCHOOL",
+    "province": "West",
+    "district": "RUTSIRO",
+    "trades": [
+      "Electrical technology",
+      "Plumbing Technology",
+      "Fashion Design",
+      "Manufacturing technology",
+      "Building construction"
+    ]
+  },
+  {
+    "name": "ES KABONA",
+    "province": "West",
+    "district": "RUTSIRO",
+    "trades": [
+      "Building construction",
+      "Fashion Design"
+    ]
+  },
+  {
+    "name": "ESTG",
+    "province": "West",
+    "district": "RUBAVU",
+    "trades": [
+      "Software Development",
+      "Electrical technology"
+    ]
+  },
+  {
+    "name": "St Martin TVET Gisenyi",
+    "province": "West",
+    "district": "RUBAVU",
+    "trades": [
+      "Electrical technology",
+      "Plumbing Technology",
+      "Fashion Design",
+      "Software Development",
+      "Manufacturing technology"
+    ]
+  },
+  {
+    "name": "APEFOC KanamaTVET",
+    "province": "West",
+    "district": "RUBAVU",
+    "trades": [
+      "ACCOUNTING",
+      "Building construction"
+    ]
+  },
+  {
+    "name": "ETAG",
+    "province": "West",
+    "district": "RUBAVU",
+    "trades": [
+      "Automobile technology"
+    ]
+  },
+  {
+    "name": "ECOLE D'ART DE NYUNDO",
+    "province": "West",
+    "district": "RUBAVU",
+    "trades": [
+      "Fine and plastic arts"
+    ]
+  },
+  {
+    "name": "EAV BIGOGWE",
+    "province": "West",
+    "district": "NYABIHU",
+    "trades": [
+      "AGRICULTURE"
+    ]
+  },
+  {
+    "name": "BIGOGWE TVET",
+    "province": "West",
+    "district": "Nyabihu",
+    "trades": [
+      "ANIMAL HEALTH",
+      "FORESTRY"
+    ]
+  },
+  {
+    "name": "NYABIHU TVET SCHOOL",
+    "province": "West",
+    "district": "NYABIHU",
+    "trades": [
+      "Leather Technology",
+      "Manufacturing technology",
+      "Food and Beverage Operations",
+      "Fashion Design"
+    ]
+  },
+  {
+    "name": "RWANDA CODING ACADEMY",
+    "province": "West",
+    "district": "NYABIHU",
+    "trades": [
+      "Software Development"
+    ]
+  },
+  {
+    "name": "KISISABO TVET SCHOOL",
+    "province": "West",
+    "district": "NYABIHU",
+    "trades": [
+      "AGRICULTURE"
+    ]
+  },
+  {
+    "name": "KIBISABO TVET School",
+    "province": "West",
+    "district": "NYABIHU",
+    "trades": [
+      "ANIMAL HEALTH",
+      "FORESTRY"
+    ]
+  },
+  {
+    "name": "KIBIHEKANE TVET School",
+    "province": "West",
+    "district": "Nyabihu",
+    "trades": [
+      "ACCOUNTING",
+      "TOURISM"
+    ]
+  },
+  {
+    "name": "KIBIHEKANE TVET",
+    "province": "West",
+    "district": "NYABIHU",
+    "trades": [
+      "Renewable energy",
+      "Electrical technology"
+    ]
+  },
+  {
+    "name": "GATUMBA TVET SCHOOL",
+    "province": "West",
+    "district": "NGORORERO",
+    "trades": [
+      "Electrical technology",
+      "Building construction"
+    ]
+  },
+  {
+    "name": "MUHORORO TVET",
+    "province": "West",
+    "district": "NGORORERO",
+    "trades": [
+      "Wood Technology",
+      "Electrical technology",
+      "Building construction"
+    ]
+  },
+  {
+    "name": "College APEJERWA Nyange TVET",
+    "province": "West",
+    "district": "Ngororero",
+    "trades": [
+      "ANIMAL HEALTH",
+      "AGRICULTURE"
+    ]
+  },
+  {
+    "name": "EAV KIVUMU",
+    "province": "West",
+    "district": "NGORORERO",
+    "trades": [
+      "Software Development",
+      "ANIMAL HEALTH",
+      "Building construction",
+      "Public works",
+      "ACCOUNTING",
+      "AGRICULTURE"
+    ]
+  },
+  {
+    "name": "MIBILIZI SAINT AUGUSTIN TVET",
+    "province": "West",
+    "district": "RUSIZI",
+    "trades": [
+      "Electronics and telecommunication",
+      "Electrical technology",
+      "Building construction"
+    ]
+  },
+  {
+    "name": "GIHEKE TVET SCHOOL",
+    "province": "West",
+    "district": "RUSIZI",
+    "trades": [
+      "Electrical technology",
+      "Electronics and telecommunication",
+      "Building construction",
+      "Computer system and architecture",
+      "ACCOUNTING",
+      "Maltimedia production"
+    ]
+  },
+  {
+    "name": "Jill Barham TVET",
+    "province": "West",
+    "district": "RUSIZI",
+    "trades": [
+      "Food and Beverage Operations",
+      "Computer system and architecture"
+    ]
+  },
+  {
+    "name": "TVET MIZERO",
+    "province": "West",
+    "district": "RUSIZI",
+    "trades": [
+      "Food and Beverage Operations",
+      "Building construction"
+    ]
+  },
+  {
+    "name": "MUGANZA TVET SCHOOL",
+    "province": "West",
+    "district": "RUSIZI",
+    "trades": [
+      "Wood Technology",
+      "Electrical technology",
+      "Building construction",
+      "Plumbing Technology"
+    ]
+  },
+  {
+    "name": "MATARE TVET SCHOOL",
+    "province": "West",
+    "district": "Rusizi",
+    "trades": [
+      "Networking  and internet technology",
+      "Building construction",
+      "Computer system and architecture",
+      "TOURISM"
+    ]
+  },
+  {
+    "name": "COLLEGE LA LUMIERE DE GASHONGA",
+    "province": "West",
+    "district": "RUSIZI",
+    "trades": [
+      "Building construction"
+    ]
+  },
+  {
+    "name": "TVET TYAZO",
+    "province": "West",
+    "district": "NYAMASHEKE",
+    "trades": [
+      "Fashion Design",
+      "Food and Beverage Operations",
+      "Manufacturing technology",
+      "Building construction",
+      "Wood Technology"
+    ]
+  },
+  {
+    "name": "KARENGERA TVET",
+    "province": "West",
+    "district": "NYAMASHEKE",
+    "trades": [
+      "Wood Technology",
+      "Electrical technology",
+      "Building construction",
+      "Fashion Design"
+    ]
+  },
+  {
+    "name": "EAV Ntendezi",
+    "province": "West",
+    "district": "Nyamasheke",
+    "trades": [
+      "ACCOUNTING",
+      "ANIMAL HEALTH"
+    ]
+  },
+  {
+    "name": "EAV NTENDEZI",
+    "province": "West",
+    "district": "NYAMASHEKE",
+    "trades": [
+      "AGRICULTURE"
+    ]
+  },
+  {
+    "name": "SHANGI TVET SCHOOL",
+    "province": "West",
+    "district": "NYAMASHEKE",
+    "trades": [
+      "Electrical technology",
+      "Automobile technology",
+      "Food and Beverage Operations"
+    ]
+  },
+  {
+    "name": "KISARO TVET",
+    "province": "North",
+    "district": "Rulindo",
+    "trades": [
+      "ANIMAL HEALTH"
+    ]
+  },
+  {
+    "name": "BUYOGA TVET",
+    "province": "North",
+    "district": "RULINDO",
+    "trades": [
+      "Food and Beverage Operations",
+      "Building construction",
+      "Public works"
+    ]
+  },
+  {
+    "name": "Kinihira TVET",
+    "province": "North",
+    "district": "RULINDO",
+    "trades": [
+      "Wood Technology",
+      "Electrical technology",
+      "Plumbing Technology"
+    ]
+  },
+  {
+    "name": "TVET Kisaro",
+    "province": "North",
+    "district": "RULINDO",
+    "trades": [
+      "AGRICULTURE"
+    ]
+  },
+  {
+    "name": "APEKI TUMBA",
+    "province": "North",
+    "district": "RULINDO",
+    "trades": [
+      "Accounting"
+    ]
+  },
+  {
+    "name": "APEKI TUMBA",
+    "province": "North",
+    "district": "RULINDO",
+    "trades": [
+      "Software Development"
+    ]
+  },
+  {
+    "name": "APEKI TUMBA",
+    "province": "North",
+    "district": "RULINDO",
+    "trades": [
+      "Building construction"
+    ]
+  },
+  {
+    "name": "JANJA TVET",
+    "province": "North",
+    "district": "GAKENKE",
+    "trades": [
+      "Fashion Design"
+    ]
+  },
+  {
+    "name": "JANJA TVET",
+    "province": "North",
+    "district": "GAKENKE",
+    "trades": [
+      "Electrical technology"
+    ]
+  },
+  {
+    "name": "JANJA TVET",
+    "province": "North",
+    "district": "GAKENKE",
+    "trades": [
+      "Wood Technology"
+    ]
+  },
+  {
+    "name": "NEMBA TVET",
+    "province": "North",
+    "district": "GAKENKE",
+    "trades": [
+      "Manufacturing technology"
+    ]
+  },
+  {
+    "name": "EAV RUSHASHI",
+    "province": "North",
+    "district": "GAKENKE",
+    "trades": [
+      "AGRICULTURE"
+    ]
+  },
+  {
+    "name": "EAV Rushashi",
+    "province": "North",
+    "district": "GAKENKE",
+    "trades": [
+      "ANIMAL HEALTH"
+    ]
+  },
+  {
+    "name": "GS APAPEM MUHOND",
+    "province": "North",
+    "district": "GAKENKE",
+    "trades": [
+      "Building construction"
+    ]
+  },
+  {
+    "name": "Muhabura Integrated Polytechnic",
+    "province": "North",
+    "district": "MUSANZE",
+    "trades": [
+      "Electrical technology",
+      "Food and Beverage Operations",
+      "Building construction",
+      "Computer system and architecture",
+      "ACCOUNTING",
+      "TOURISM"
+    ]
+  },
+  {
+    "name": "ESTB BUSOGO",
+    "province": "North",
+    "district": "MUSANZE",
+    "trades": [
+      "Building construction"
+    ]
+  },
+  {
+    "name": "ESTB BUSOGO",
+    "province": "North",
+    "district": "MUSANZE",
+    "trades": [
+      "Public works"
+    ]
+  },
+  {
+    "name": "ESTB BUSOGO",
+    "province": "North",
+    "district": "MUSANZE",
+    "trades": [
+      "Plumbing Technology"
+    ]
+  },
+  {
+    "name": "ESTB BUSOGO",
+    "province": "North",
+    "district": "MUSANZE",
+    "trades": [
+      "Electrical technology"
+    ]
+  },
+  {
+    "name": "ESTB BUSOGO",
+    "province": "North",
+    "district": "MUSANZE",
+    "trades": [
+      "Wood Technology"
+    ]
+  },
+  {
+    "name": "ESTB BUSOGO",
+    "province": "North",
+    "district": "MUSANZE",
+    "trades": [
+      "Food and Beverage Operations"
+    ]
+  },
+  {
+    "name": "ESTB BUSOGO",
+    "province": "North",
+    "district": "MUSANZE",
+    "trades": [
+      "Front office and house keeping operations"
+    ]
+  },
+  {
+    "name": "ESTB BUSOGO",
+    "province": "North",
+    "district": "MUSANZE",
+    "trades": [
+      "FOOD PROCESSING"
+    ]
+  },
+  {
+    "name": "ESTB BUSOGO",
+    "province": "North",
+    "district": "MUSANZE",
+    "trades": [
+      "Manufacturing technology"
+    ]
+  },
+  {
+    "name": "ETEFOP",
+    "province": "North",
+    "district": "MUSANZE",
+    "trades": [
+      "Fashion Design",
+      "Electronics and telecommunication",
+      "Automobile technology",
+      "Food and Beverage Operations",
+      "Manufacturing technology",
+      "Building construction",
+      "Computer system and architecture",
+      "Wood Technology",
+      "Networking  and internet technology"
+    ]
+  },
+  {
+    "name": "COLLEGE GEORGE FOX DE BUTARO",
+    "province": "North",
+    "district": "Burera",
+    "trades": [
+      "ACCOUNTING",
+      "Building construction",
+      "Computer system and architecture"
+    ]
+  },
+  {
+    "name": "ES GAHUNGA",
+    "province": "North",
+    "district": "Burera",
+    "trades": [
+      "Electrical technology",
+      "Electronics and telecommunication",
+      "Automobile technology",
+      "Building construction",
+      "AGRICULTURE"
+    ]
+  },
+  {
+    "name": "ETEKA( Ecole Technique de Karuganda)",
+    "province": "North",
+    "district": "Burera",
+    "trades": [
+      "Building construction"
+    ]
+  },
+  {
+    "name": "ETKaruganda",
+    "province": "North",
+    "district": "Burera",
+    "trades": [
+      "TOURISM"
+    ]
+  },
+  {
+    "name": "ETEKA( Ecole Technique de Karuganda)",
+    "province": "North",
+    "district": "Burera",
+    "trades": [
+      "Public works"
+    ]
+  },
+  {
+    "name": "ETEKA( Ecole Technique de Karuganda)",
+    "province": "North",
+    "district": "Burera",
+    "trades": [
+      "Plumbing Technology"
+    ]
+  },
+  {
+    "name": "CEPEM",
+    "province": "North",
+    "district": "Burera",
+    "trades": [
+      "Building construction"
+    ]
+  },
+  {
+    "name": "CEPEM",
+    "province": "North",
+    "district": "Burera",
+    "trades": [
+      "Food and Beverage Operations"
+    ]
+  },
+  {
+    "name": "CEPEM TVET SCHOOL",
+    "province": "North",
+    "district": "BURERA",
+    "trades": [
+      "TOURISM"
+    ]
+  },
+  {
+    "name": "Kabona TVET",
+    "province": "North",
+    "district": "Burera",
+    "trades": [
+      "Building construction"
+    ]
+  },
+  {
+    "name": "Kabona TVET",
+    "province": "North",
+    "district": "Burera",
+    "trades": [
+      "Wood Technology"
+    ]
+  },
+  {
+    "name": "Kabona TVET",
+    "province": "North",
+    "district": "Burera",
+    "trades": [
+      "Automobile technology"
+    ]
+  },
+  {
+    "name": "ES BUKURE",
+    "province": "North",
+    "district": "GICUMBI",
+    "trades": [
+      "AGRICULTURE"
+    ]
+  },
+  {
+    "name": "BUKURE TVET SCHOOL",
+    "province": "North",
+    "district": "Gicumbi",
+    "trades": [
+      "ANIMAL HEALTH"
+    ]
+  },
+  {
+    "name": "Cyumba TVET",
+    "province": "North",
+    "district": "GICUMBI",
+    "trades": [
+      "Wood Technology",
+      "Automobile technology"
+    ]
+  },
+  {
+    "name": "Kageyo",
+    "province": "North",
+    "district": "GICUMBI",
+    "trades": [
+      "Accounting"
+    ]
+  },
+  {
+    "name": "Mulindi TVET",
+    "province": "North",
+    "district": "GICUMBI",
+    "trades": [
+      "Software Development",
+      "Accounting",
+      "Networking  and internet technology",
+      "Computer system and architecture"
+    ]
+  },
+  {
+    "name": "Mukarange TVET",
+    "province": "North",
+    "district": "GICUMBI",
+    "trades": [
+      "Electrical technology",
+      "Building construction"
+    ]
+  },
+  {
+    "name": "Collegegio Santo Maria Zaccaria",
+    "province": "North",
+    "district": "GICUMBI",
+    "trades": [
+      "Plumbing Technology",
+      "Software Development",
+      "Building construction",
+      "Computer system and architecture",
+      "Wood Technology"
+    ]
+  },
+  {
+    "name": "College Saint Laurent de Gaseke",
+    "province": "North",
+    "district": "GICUMBI",
+    "trades": [
+      "Electronics and telecommunication",
+      "Software Development",
+      "Electrical technology"
+    ]
+  },
+  {
+    "name": "APAPEGI Cyuru",
+    "province": "North",
+    "district": "GICUMBI",
+    "trades": [
+      "Building construction"
+    ]
+  },
+  {
+    "name": "College APEGIRUBUKI",
+    "province": "North",
+    "district": "GICUMBI",
+    "trades": [
+      "Building construction",
+      "Public works"
+    ]
+  },
+  {
+    "name": "APPEGA GAHENGERI TVET SCHOOL",
+    "province": "East",
+    "district": "Rwamagana",
+    "trades": [
+      "ACCOUNTING"
+    ]
+  },
+  {
+    "name": "APEGA GAHENGERI",
+    "province": "East",
+    "district": "Rwamagana",
+    "trades": [
+      "Building construction",
+      "Computer system and architecture"
+    ]
+  },
+  {
+    "name": "LYCEE DU LAC MUHAZI (ASPEJ)",
+    "province": "East",
+    "district": "Rwamagana",
+    "trades": [
+      "Building construction",
+      "Computer system and architecture",
+      "TOURISM"
+    ]
+  },
+  {
+    "name": "LYCEE DU LAC MUHAZI (ASPEJ)",
+    "province": "East",
+    "district": "Rwamagana",
+    "trades": [
+      "ACCOUNTING"
+    ]
+  },
+  {
+    "name": "CENTER FOR CHAMPIONS TVET",
+    "province": "East",
+    "district": "Rwamagana",
+    "trades": [
+      "Electrical technology",
+      "Plumbing Technology",
+      "Fashion Design",
+      "Manufacturing technology",
+      "Building construction"
+    ]
+  },
+  {
+    "name": "ET St Kizito Musha",
+    "province": "East",
+    "district": "Rwamagana",
+    "trades": [
+      "Food and Beverage Operations",
+      "Building construction",
+      "Computer system and architecture"
+    ]
+  },
+  {
+    "name": "ETP Nyarurema",
+    "province": "East",
+    "district": "NYAGATARE",
+    "trades": [
+      "Building construction"
+    ]
+  },
+  {
+    "name": "CYONDO TVET SCHOOL",
+    "province": "East",
+    "district": "GATSIBO",
+    "trades": [
+      "Plumbing Technology",
+      "Building construction",
+      "Fashion Design"
+    ]
+  },
+  {
+    "name": "EFA NYAGAHANGA",
+    "province": "East",
+    "district": "GATSIBO",
+    "trades": [
+      "FOOD PROCESSING",
+      "ANIMAL HEALTH",
+      "AGRICULTURE"
+    ]
+  },
+  {
+    "name": "GATSIBO TVET",
+    "province": "East",
+    "district": "GATSIBO",
+    "trades": [
+      "Land surveying",
+      "Electrical technology",
+      "Building construction",
+      "Public works"
+    ]
+  },
+  {
+    "name": "GITUZA TVET",
+    "province": "East",
+    "district": "GATSIBO",
+    "trades": [
+      "Fashion Design",
+      "Automobile technology",
+      "Manufacturing technology",
+      "Building construction",
+      "Wood Technology"
+    ]
+  },
+  {
+    "name": "GAKONI TVET",
+    "province": "East",
+    "district": "GATSIBO",
+    "trades": [
+      "Manufacturing technology",
+      "Leather Technology",
+      "Fashion Design"
+    ]
+  },
+  {
+    "name": "UMUTARA POLYTECHNIC -GAKONI",
+    "province": "East",
+    "district": "GATSIBO",
+    "trades": [
+      "ANIMAL HEALTH",
+      "Building construction",
+      "Wood Technology",
+      "ACCOUNTING",
+      "AGRICULTURE"
+    ]
+  },
+  {
+    "name": "LYCEE St ALEXANDRE SAULI DE MUHURA",
+    "province": "East",
+    "district": "GATSIBO",
+    "trades": [
+      "Fashion Design",
+      "Software Development",
+      "Computer system and architecture",
+      "ACCOUNTING",
+      "Networking  and internet technology"
+    ]
+  },
+  {
+    "name": "NGARAMA TVET SCHOOL",
+    "province": "East",
+    "district": "KAYONZA",
+    "trades": [
+      "Electrical technology",
+      "Fashion Design",
+      "Manufacturing technology",
+      "Building construction",
+      "Wood Technology"
+    ]
+  },
+  {
+    "name": "Don Bosco TSS Kabarondo",
+    "province": "East",
+    "district": "KAYONZA",
+    "trades": [
+      "Wood Technology",
+      "Electrical technology",
+      "Building construction",
+      "Manufacturing technology"
+    ]
+  },
+  {
+    "name": "Don Bosco TSS Kabarondo",
+    "province": "East",
+    "district": "KAYONZA",
+    "trades": [
+      "Food and Beverage Operations"
+    ]
+  },
+  {
+    "name": "NYAMIRAMA TVET SCHOOL",
+    "province": "East",
+    "district": "KAYONZA",
+    "trades": [
+      "Electrical technology",
+      "Plumbing Technology",
+      "Fashion Design",
+      "Manufacturing technology",
+      "Building construction",
+      "Wood Technology"
+    ]
+  },
+  {
+    "name": "St Christopher TVET",
+    "province": "East",
+    "district": "KAYONZA",
+    "trades": [
+      "Automobile technology"
+    ]
+  },
+  {
+    "name": "St Christopher TVET",
+    "province": "East",
+    "district": "KAYONZA",
+    "trades": [
+      "Fashion Design"
+    ]
+  },
+  {
+    "name": "St Anastase Gahara TVET SCHOOL",
+    "province": "East",
+    "district": "KIREHE",
+    "trades": [
+      "Tailoring",
+      "Masonry"
+    ]
+  },
+  {
+    "name": "KIREHE Adventist TVET",
+    "province": "East",
+    "district": "KIREHE",
+    "trades": [
+      "Building construction",
+      "TOURISM"
+    ]
+  },
+  {
+    "name": "APENA TVET",
+    "province": "East",
+    "district": "KIREHE",
+    "trades": [
+      "Automobile technology",
+      "ANIMAL HEALTH",
+      "Building construction",
+      "Computer system and architecture",
+      "AGRICULTURE"
+    ]
+  },
+  {
+    "name": "MUTENDERI TVET",
+    "province": "East",
+    "district": "NGOMA",
+    "trades": [
+      "TOURISM",
+      "Electrical technology",
+      "Building construction",
+      "FORESTRY"
+    ]
+  },
+  {
+    "name": "GITWE TVET",
+    "province": "East",
+    "district": "NGOMA",
+    "trades": [
+      "Software Development",
+      "ANIMAL HEALTH",
+      "Building construction",
+      "AGRICULTURE"
+    ]
+  },
+  {
+    "name": "KIGARAMA TVET",
+    "province": "East",
+    "district": "NGOMA",
+    "trades": [
+      "ACCOUNTING",
+      "Computer system and architecture",
+      "TOURISM"
+    ]
+  },
+  {
+    "name": "NYAMATA TVET SCHOOL",
+    "province": "East",
+    "district": "BUGESERA",
+    "trades": [
+      "Interior Design",
+      "Renewable energy",
+      "Electrical technology",
+      "Land surveying",
+      "Fashion Design",
+      "Electronics and telecommunication",
+      "Manufacturing technology",
+      "Building construction",
+      "Wood Technology",
+      "Networking  and internet technology"
+    ]
+  },
+  {
+    "name": "NELSON MANDELA TVET SCHOOL",
+    "province": "East",
+    "district": "BUGESERA",
+    "trades": [
+      "Manufacturing technology",
+      "Electrical technology",
+      "Building construction",
+      "Fashion Design"
+    ]
+  },
+  {
+    "name": "APEBU Nyamata TVET",
+    "province": "East",
+    "district": "Bugesera",
+    "trades": [
+      "Building construction",
+      "Computer system and architecture",
+      "TOURISM"
+    ]
+  }
+]
