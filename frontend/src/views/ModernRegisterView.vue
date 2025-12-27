@@ -333,10 +333,10 @@ async function onDistrictChange() {
   loadingSchools.value = true
   
   try {
-    const url = `${API_URL}/locations/schools/district/${selectedProvince.value}/${selectedDistrict.value}`
+    const url = `${API_URL}/schools-by-district/district/${selectedProvince.value}/${selectedDistrict.value}`
     const response = await fetch(url)
     const data = await response.json()
-    schools.value = data || []
+    schools.value = data.schools || []
   } catch (error) {
     schools.value = []
   } finally {
