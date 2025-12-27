@@ -143,7 +143,7 @@ const loadingSchools = ref(false)
 const loading = ref(false)
 const error = ref('')
 
-const API_URL = 'http://localhost:8080'
+const API_URL = 'https://rwanda-edu-platform.onrender.com'
 
 onMounted(async () => {
   await loadProvinces()
