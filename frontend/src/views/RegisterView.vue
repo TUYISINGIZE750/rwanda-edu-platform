@@ -198,7 +198,7 @@ const backgroundImages = ref([
   '/images to use/home_page_3.jpg'
 ])
 
-const API_URL = 'http://localhost:8080'
+const API_URL = 'https://rwanda-edu-platform.onrender.com'
 
 function toggleTheme() {
   isDark.value = !isDark.value
@@ -261,19 +261,11 @@ async function onDistrictChange() {
   
   if (selectedDistrict.value && selectedProvince.value) {
     try {
-      const response = await axios.get(`${API_URL}/api/v1/registration/schools/${selectedProvince.value}/${selectedDistrict.value}`)
-      if (response.data.success) {
-        schools.value = response.data.schools
-      } else {
-        error.value = response.data.message || 'No schools found'
-      }
+      const response = await axios.get(`${API_URL}/api/v1/schools-by-district/district/${selectedProvince.value}/${selectedDistrict.value}`)
+      schools.value = response.data.schools
     } catch (err) {
       console.error('Error loading schools:', err)
-      if (err.code === 'ERR_NETWORK') {
-        error.value = 'Cannot connect to server. Please ensure backend is running on port 8080.'
-      } else {
-        error.value = err.response?.data?.message || 'Failed to load schools'
-      }
+      error.value = 'Failed to load schools'
     }
   }
 }
