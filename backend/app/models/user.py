@@ -4,10 +4,10 @@ from ..core.database import Base
 import enum
 
 class UserRole(str, enum.Enum):
-    STUDENT = "student"
-    TEACHER = "teacher"
-    ADMIN = "admin"  # DOS - Deputy in charge of studies
-    CLASS_TEACHER = "class_teacher"  # Teacher with class management rights
+    STUDENT = "STUDENT"
+    TEACHER = "TEACHER"
+    ADMIN = "ADMIN"  # DOS - Deputy in charge of studies
+    CLASS_TEACHER = "CLASS_TEACHER"  # Teacher with class management rights
 
 class User(Base):
     __tablename__ = "users"
