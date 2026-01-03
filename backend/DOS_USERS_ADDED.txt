@@ -1,0 +1,3 @@
+# Backend restarted after DOS users added
+# All 190 DOS users now in database with ADMIN role
+# Password: dos12024
