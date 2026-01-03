@@ -85,7 +85,7 @@
         <button 
           type="submit" 
           class="w-full bg-gradient-to-r from-red-600 to-red-700 text-white py-3 px-4 rounded-lg font-semibold hover:from-red-700 hover:to-red-800 focus:ring-4 focus:ring-red-200 transition-all disabled:opacity-50 disabled:cursor-not-allowed transform hover:scale-[1.02]" 
-          :disabled="loading || !selectedSchoolId"
+          :disabled="loading || !selectedSchoolId || selectedSchoolId === ''"
         >
           <span v-if="!loading">Sign In as DOS</span>
           <span v-else class="flex items-center justify-center">
