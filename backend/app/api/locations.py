@@ -46,81 +46,46 @@ class SchoolResponse(BaseModel):
     class Config:
         from_attributes = True
 
-# Rwanda locations data
+# Rwanda locations data - SIMPLIFIED to match database values
 RWANDA_DATA = {
     "provinces": [
         {
-            "name": "Kigali City",
+            "name": "Kigali city",
             "districts": [
-                {
-                    "name": "Gasabo",
-                    "sectors": [
-                        {"name": "Bumbogo"}, {"name": "Gatsata"}, {"name": "Gikomero"}, {"name": "Gisozi"}, {"name": "Jabana"}, 
-                        {"name": "Jali"}, {"name": "Kacyiru"}, {"name": "Kimihurura"}, {"name": "Kimironko"}, {"name": "Kinyinya"}, 
-                        {"name": "Ndera"}, {"name": "Nduba"}, {"name": "Remera"}, {"name": "Rusororo"}, {"name": "Rutunga"}
-                    ]
-                },
-                {
-                    "name": "Kicukiro",
-                    "sectors": [
-                        {"name": "Gahanga"}, {"name": "Gatenga"}, {"name": "Gikondo"}, {"name": "Kagarama"}, {"name": "Kanombe"}, 
-                        {"name": "Kicukiro"}, {"name": "Kigarama"}, {"name": "Masaka"}, {"name": "Niboye"}, {"name": "Nyarugunga"}
-                    ]
-                },
-                {
-                    "name": "Nyarugenge",
-                    "sectors": [
-                        {"name": "Gitega"}, {"name": "Kanyinya"}, {"name": "Kigali"}, {"name": "Kimisagara"}, {"name": "Mageragere"}, 
-                        {"name": "Muhima"}, {"name": "Nyakabanda"}, {"name": "Nyamirambo"}, {"name": "Nyarugenge"}, {"name": "Rwezamenyo"}
-                    ]
-                }
+                {"name": "Gasabo"},
+                {"name": "Kicukiro"},
+                {"name": "Nyarugenge"}
             ]
         },
         {
-            "name": "Southern Province",
+            "name": "South",
             "districts": [
-                {"name": "Gisagara", "sectors": [{"name": "Gishubi"}, {"name": "Kansi"}, {"name": "Kibirizi"}, {"name": "Kigembe"}, {"name": "Mukindo"}, {"name": "Mamba"}, {"name": "Muganza"}, {"name": "Mugombwa"}, {"name": "Ndora"}, {"name": "Nyanza"}, {"name": "Save"}, {"name": "Shyogwe"}]},
-                {"name": "Huye", "sectors": [{"name": "Gishamvu"}, {"name": "Karama"}, {"name": "Kigoma"}, {"name": "Kinazi"}, {"name": "Maraba"}, {"name": "Mbazi"}, {"name": "Mukura"}, {"name": "Ngoma"}, {"name": "Ruhashya"}, {"name": "Rusatira"}, {"name": "Rwaniro"}, {"name": "Simbi"}, {"name": "Tumba"}]},
-                {"name": "Kamonyi", "sectors": [{"name": "Gacurabwenge"}, {"name": "Kamonyi"}, {"name": "Kayenzi"}, {"name": "Kayumbu"}, {"name": "Mugina"}, {"name": "Musambira"}, {"name": "Nyamiyaga"}, {"name": "Nyarubaka"}, {"name": "Rugalika"}, {"name": "Runda"}, {"name": "Ruzo"}]},
-                {"name": "Muhanga", "sectors": [{"name": "Cyeza"}, {"name": "Kabacuzi"}, {"name": "Kibangu"}, {"name": "Kiyumba"}, {"name": "Muhanga"}, {"name": "Mukura"}, {"name": "Nyabinoni"}, {"name": "Nyamabuye"}, {"name": "Nyamiyaga"}, {"name": "Rongi"}, {"name": "Rugendabari"}, {"name": "Shyogwe"}]},
-                {"name": "Nyamagabe", "sectors": [{"name": "Buruhukiro"}, {"name": "Cyanika"}, {"name": "Gasaka"}, {"name": "Gatare"}, {"name": "Kaduha"}, {"name": "Kamegeri"}, {"name": "Kibirizi"}, {"name": "Kibumbwe"}, {"name": "Kitabi"}, {"name": "Mbazi"}, {"name": "Musebeya"}, {"name": "Mushubi"}, {"name": "Nkomane"}, {"name": "Tare"}, {"name": "Uwinkingi"}]},
-                {"name": "Nyanza", "sectors": [{"name": "Busasamana"}, {"name": "Busoro"}, {"name": "Cyabakamyi"}, {"name": "Kibirizi"}, {"name": "Kigoma"}, {"name": "Mukingo"}, {"name": "Muyira"}, {"name": "Ntyazo"}, {"name": "Nyagisozi"}, {"name": "Rwabicuma"}]},
-                {"name": "Nyaruguru", "sectors": [{"name": "Cyahinda"}, {"name": "Gatare"}, {"name": "Kibeho"}, {"name": "Kibumbwe"}, {"name": "Munini"}, {"name": "Ngera"}, {"name": "Ngoma"}, {"name": "Nyabimata"}, {"name": "Nyagisozi"}, {"name": "Ruheru"}, {"name": "Rusenge"}, {"name": "Rwabicuma"}, {"name": "Simbi"}]},
-                {"name": "Ruhango", "sectors": [{"name": "Bweramana"}, {"name": "Byimana"}, {"name": "Kabagali"}, {"name": "Kinazi"}, {"name": "Kinihira"}, {"name": "Mbuye"}, {"name": "Ntongwe"}, {"name": "Ruhango"}]}
+                {"name": "Gisagara"}, {"name": "Huye"}, {"name": "Kamonyi"}, 
+                {"name": "Muhanga"}, {"name": "Nyamagabe"}, {"name": "Nyanza"}, 
+                {"name": "Nyaruguru"}, {"name": "Ruhango"}
             ]
         },
         {
-            "name": "Western Province",
+            "name": "West",
             "districts": [
-                {"name": "Karongi", "sectors": [{"name": "Bwishyura"}, {"name": "Gishyita"}, {"name": "Karongi"}, {"name": "Mugesera"}, {"name": "Mutuntu"}, {"name": "Rwankuba"}]},
-                {"name": "Nyabihu", "sectors": [{"name": "Bigogwe"}, {"name": "Jenda"}, {"name": "Jomba"}, {"name": "Kabatwa"}, {"name": "Karago"}, {"name": "Kintobo"}, {"name": "Mukamira"}, {"name": "Rambura"}, {"name": "Rugera"}, {"name": "Rurembo"}, {"name": "Shyira"}]},
-                {"name": "Ngororero", "sectors": [{"name": "Bwira"}, {"name": "Gatumba"}, {"name": "Hindiro"}, {"name": "Kabaya"}, {"name": "Kageyo"}, {"name": "Kavumu"}, {"name": "Matyazo"}, {"name": "Muhanda"}, {"name": "Muhororo"}, {"name": "Ndaro"}, {"name": "Ngororero"}, {"name": "Nyange"}, {"name": "Sovu"}]},
-                {"name": "Rubavu", "sectors": [{"name": "Bugeshi"}, {"name": "Busasamana"}, {"name": "Cyanzarwe"}, {"name": "Gisenyi"}, {"name": "Kanama"}, {"name": "Kanzenze"}, {"name": "Mudende"}, {"name": "Nyakiliba"}, {"name": "Nyamyumba"}, {"name": "Rubavu"}, {"name": "Rugerero"}]},
-                {"name": "Rusizi", "sectors": [{"name": "Butare"}, {"name": "Bugarama"}, {"name": "Gashonga"}, {"name": "Giheke"}, {"name": "Gihundwe"}, {"name": "Gitambi"}, {"name": "Kamembe"}, {"name": "Muganza"}, {"name": "Mururu"}, {"name": "Nkanka"}, {"name": "Nkombo"}, {"name": "Nkungu"}, {"name": "Nyakabuye"}, {"name": "Nyakarenzo"}, {"name": "Rwimbogo"}]},
-                {"name": "Nyamasheke", "sectors": [{"name": "Bangwe"}, {"name": "Bushekeri"}, {"name": "Bushenge"}, {"name": "Cyato"}, {"name": "Gihombo"}, {"name": "Kagano"}, {"name": "Karambi"}, {"name": "Karengera"}, {"name": "Kirimbi"}, {"name": "Macuba"}, {"name": "Mahembe"}, {"name": "Nyabitekeri"}, {"name": "Rangiro"}, {"name": "Ruharambuga"}, {"name": "Shangi"}]},
-                {"name": "Rutsiro", "sectors": [{"name": "Boneza"}, {"name": "Gihango"}, {"name": "Kigeyo"}, {"name": "Kivumu"}, {"name": "Manihira"}, {"name": "Mukura"}, {"name": "Musasa"}, {"name": "Mushonyi"}, {"name": "Mushubati"}, {"name": "Nyabirasi"}, {"name": "Ruhango"}, {"name": "Rusebeya"}]}
+                {"name": "Karongi"}, {"name": "Nyabihu"}, {"name": "Ngororero"}, 
+                {"name": "Rubavu"}, {"name": "Rusizi"}, {"name": "Nyamasheke"}, 
+                {"name": "Rutsiro"}
             ]
         },
         {
-            "name": "Northern Province",
+            "name": "North",
             "districts": [
-                {"name": "Burera", "sectors": [{"name": "Bungwe"}, {"name": "Butaro"}, {"name": "Cyanika"}, {"name": "Cyeru"}, {"name": "Gahunga"}, {"name": "Gatebe"}, {"name": "Gitovu"}, {"name": "Kagogo"}, {"name": "Kinoni"}, {"name": "Kinyababa"}, {"name": "Kivuye"}, {"name": "Nemba"}, {"name": "Rugarama"}, {"name": "Rugendabari"}, {"name": "Ruhunde"}, {"name": "Rusarabuye"}, {"name": "Rwerere"}]},
-                {"name": "Gakenke", "sectors": [{"name": "Busengo"}, {"name": "Coko"}, {"name": "Cyabingo"}, {"name": "Gakenke"}, {"name": "Gashenyi"}, {"name": "Mugunga"}, {"name": "Janja"}, {"name": "Kamubuga"}, {"name": "Karambo"}, {"name": "Kivuruga"}, {"name": "Mataba"}, {"name": "Minazi"}, {"name": "Muhondo"}, {"name": "Muyongwe"}, {"name": "Muzo"}, {"name": "Nemba"}, {"name": "Ruli"}, {"name": "Rusasa"}, {"name": "Rushashi"}]},
-                {"name": "Gicumbi", "sectors": [{"name": "Bukure"}, {"name": "Bwisige"}, {"name": "Byumba"}, {"name": "Cyumba"}, {"name": "Gicumbi"}, {"name": "Kageyo"}, {"name": "Kaniga"}, {"name": "Manyagiro"}, {"name": "Miyove"}, {"name": "Muko"}, {"name": "Mutete"}, {"name": "Nyamiyaga"}, {"name": "Nyankenke"}, {"name": "Rubaya"}, {"name": "Rukomo"}, {"name": "Rushaki"}, {"name": "Rutare"}, {"name": "Ruvune"}, {"name": "Rwamiko"}, {"name": "Shangasha"}]},
-                {"name": "Musanze", "sectors": [{"name": "Busogo"}, {"name": "Cyuve"}, {"name": "Gacaca"}, {"name": "Gashaki"}, {"name": "Gataraga"}, {"name": "Kimonyi"}, {"name": "Kinigi"}, {"name": "Muhoza"}, {"name": "Muko"}, {"name": "Musanze"}, {"name": "Nkotsi"}, {"name": "Nyange"}, {"name": "Remera"}, {"name": "Rwaza"}, {"name": "Shingiro"}]},
-                {"name": "Rulindo", "sectors": [{"name": "Base"}, {"name": "Burega"}, {"name": "Bushoki"}, {"name": "Cyinzuzi"}, {"name": "Cyungo"}, {"name": "Kinihira"}, {"name": "Kisaro"}, {"name": "Masoro"}, {"name": "Mbogo"}, {"name": "Murambi"}, {"name": "Ngoma"}, {"name": "Ntarabana"}, {"name": "Rukozo"}, {"name": "Rulindo"}, {"name": "Rusiga"}, {"name": "Shyorongi"}, {"name": "Tumba"}]}
+                {"name": "Burera"}, {"name": "Gakenke"}, {"name": "Gicumbi"}, 
+                {"name": "Musanze"}, {"name": "Rulindo"}
             ]
         },
         {
-            "name": "Eastern Province",
+            "name": "East",
             "districts": [
-                {"name": "Bugesera", "sectors": [{"name": "Gashora"}, {"name": "Juru"}, {"name": "Kamabuye"}, {"name": "Mareba"}, {"name": "Mayange"}, {"name": "Musenyi"}, {"name": "Mwogo"}, {"name": "Ngeruka"}, {"name": "Ntarama"}, {"name": "Nyamata"}, {"name": "Nyarugenge"}, {"name": "Rilima"}, {"name": "Ruhuha"}, {"name": "Rweru"}, {"name": "Shyara"}]},
-                {"name": "Gatsibo", "sectors": [{"name": "Gasange"}, {"name": "Gatsibo"}, {"name": "Gitoki"}, {"name": "Kabarore"}, {"name": "Kageyo"}, {"name": "Kiramuruzi"}, {"name": "Kiziguro"}, {"name": "Muhura"}, {"name": "Murambi"}, {"name": "Ngarama"}, {"name": "Nyagihanga"}, {"name": "Remera"}, {"name": "Rugarama"}, {"name": "Rwimbogo"}]},
-                {"name": "Kayonza", "sectors": [{"name": "Gahini"}, {"name": "Kabare"}, {"name": "Kabarondo"}, {"name": "Mukarange"}, {"name": "Murama"}, {"name": "Murundi"}, {"name": "Mwiri"}, {"name": "Ndego"}, {"name": "Nyamirama"}, {"name": "Rukara"}, {"name": "Ruramira"}, {"name": "Rwinkwavu"}]},
-                {"name": "Kirehe", "sectors": [{"name": "Gatore"}, {"name": "Kigarama"}, {"name": "Kigina"}, {"name": "Kirehe"}, {"name": "Mahama"}, {"name": "Mpanga"}, {"name": "Musaza"}, {"name": "Mushikiri"}, {"name": "Nasho"}, {"name": "Nyamugali"}, {"name": "Nyarubuye"}]},
-                {"name": "Ngoma", "sectors": [{"name": "Gashanda"}, {"name": "Jarama"}, {"name": "Karembo"}, {"name": "Kazo"}, {"name": "Mugesera"}, {"name": "Murama"}, {"name": "Mutenderi"}, {"name": "Remera"}, {"name": "Rukira"}, {"name": "Rukumberi"}, {"name": "Sake"}, {"name": "Zaza"}]},
-                {"name": "Nyagatare", "sectors": [{"name": "Gatunda"}, {"name": "Karama"}, {"name": "Karangazi"}, {"name": "Katabagemu"}, {"name": "Kiyombe"}, {"name": "Matimba"}, {"name": "Mimuli"}, {"name": "Mukama"}, {"name": "Musheri"}, {"name": "Nyagatare"}, {"name": "Rukomo"}, {"name": "Rwempasha"}, {"name": "Rwimiyaga"}, {"name": "Tabagwe"}]},
-                {"name": "Rwamagana", "sectors": [{"name": "Fumbwe"}, {"name": "Gahengeri"}, {"name": "Gishari"}, {"name": "Karenge"}, {"name": "Kigabiro"}, {"name": "Muhazi"}, {"name": "Munyaga"}, {"name": "Munyiginya"}, {"name": "Musha"}, {"name": "Muyumbu"}, {"name": "Mwulire"}, {"name": "Nyakaliro"}, {"name": "Nzige"}, {"name": "Rubona"}, {"name": "Rwamagana"}]}
+                {"name": "Bugesera"}, {"name": "Gatsibo"}, {"name": "Kayonza"}, 
+                {"name": "Kirehe"}, {"name": "Ngoma"}, {"name": "Nyagatare"}, 
+                {"name": "Rwamagana"}
             ]
         }
     ]
