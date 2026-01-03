@@ -11,11 +11,10 @@ DB_CONFIG = {
 conn = psycopg2.connect(**DB_CONFIG)
 cursor = conn.cursor()
 
-# Fix all DOS users with NULL locale
-cursor.execute("UPDATE users SET locale = 'en' WHERE locale IS NULL")
-conn.commit()
-
-print(f"Fixed {cursor.rowcount} users")
+cursor.execute("SELECT email, role, is_active FROM users LIMIT 10")
+print("Sample users:")
+for row in cursor.fetchall():
+    print(f"  {row[0]} | Role: {row[1]} | Active: {row[2]}")
 
 cursor.close()
 conn.close()

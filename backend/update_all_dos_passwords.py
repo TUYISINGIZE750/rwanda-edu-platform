@@ -12,18 +12,22 @@ DB_CONFIG = {
 conn = psycopg2.connect(**DB_CONFIG)
 cursor = conn.cursor()
 
-# Create simple test user
-password = "test123"
+# Generate hash for dos12024
+password = "dos12024"
 hashed = bcrypt.hashpw(password.encode(), bcrypt.gensalt()).decode()
 
-cursor.execute("""
-    INSERT INTO users (email, hashed_password, full_name, role, school_id, province, district, is_active)
-    VALUES ('test@tssanywhere.rw', %s, 'Test DOS User', 'ADMIN', 1, 'East', 'Bugesera', 1)
-    ON CONFLICT (email) DO UPDATE SET hashed_password = EXCLUDED.hashed_password
-""", (hashed,))
-
+# Update ALL DOS users
+cursor.execute("UPDATE users SET hashed_password = %s WHERE role = 'ADMIN'", (hashed,))
 conn.commit()
-print("Test user created: test@tssanywhere.rw / test123")
+
+print(f"Updated {cursor.rowcount} DOS users")
+print(f"Password: {password}")
+
+# Verify
+cursor.execute("SELECT email FROM users WHERE role = 'ADMIN' LIMIT 5")
+print("\nSample DOS users:")
+for row in cursor.fetchall():
+    print(f"  - {row[0]}")
 
 cursor.close()
 conn.close()
