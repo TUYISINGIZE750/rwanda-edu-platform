@@ -43,7 +43,7 @@
             <select v-model="selectedProvince" @change="onProvinceChange" required
                     class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent">
               <option value="">Select Province</option>
-              <option v-for="province in provinces" :key="province.name" :value="province.name">
+              <option v-for="province in provinces" :key="province.apiName" :value="province.apiName">
                 {{ province.name }}
               </option>
             </select>
@@ -152,7 +152,19 @@ onMounted(async () => {
 async function loadProvinces() {
   try {
     const response = await axios.get(`${API_URL}/api/v1/locations/provinces`)
-    provinces.value = response.data
+    // API returns: Kigali city, South, West, North, East
+    // But we need to display user-friendly names
+    const provinceMap = {
+      'Kigali city': 'Kigali city',
+      'South': 'Southern Province', 
+      'West': 'Western Province',
+      'North': 'Northern Province',
+      'East': 'Eastern Province'
+    }
+    provinces.value = response.data.map(p => ({
+      name: provinceMap[p.name] || p.name,
+      apiName: p.name
+    }))
   } catch (err) {
     console.error('Error loading provinces:', err)
   }
