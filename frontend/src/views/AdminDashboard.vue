@@ -68,7 +68,7 @@
 
       <!-- Stats Overview -->
       <div class="grid grid-cols-1 md:grid-cols-5 gap-6 mb-8">
-        <div class="bg-white rounded-lg shadow p-6">
+        <button @click="$router.push('/admin/users?role=STUDENT')" class="bg-white rounded-lg shadow p-6 hover:shadow-xl transition-all cursor-pointer text-left w-full">
           <div class="flex items-center">
             <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
               <UsersIcon class="w-6 h-6 text-blue-600" />
@@ -78,9 +78,9 @@
               <p class="text-2xl font-semibold text-gray-900">{{ stats.total_students || 0 }}</p>
             </div>
           </div>
-        </div>
+        </button>
 
-        <div class="bg-white rounded-lg shadow p-6">
+        <button @click="$router.push('/admin/users?role=TEACHER')" class="bg-white rounded-lg shadow p-6 hover:shadow-xl transition-all cursor-pointer text-left w-full">
           <div class="flex items-center">
             <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
               <BriefcaseIcon class="w-6 h-6 text-green-600" />
@@ -90,9 +90,9 @@
               <p class="text-2xl font-semibold text-gray-900">{{ stats.total_teachers || 0 }}</p>
             </div>
           </div>
-        </div>
+        </button>
 
-        <div class="bg-white rounded-lg shadow p-6">
+        <button @click="$router.push('/admin/users')" class="bg-white rounded-lg shadow p-6 hover:shadow-xl transition-all cursor-pointer text-left w-full">
           <div class="flex items-center">
             <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
               <UserGroupIcon class="w-6 h-6 text-purple-600" />
@@ -102,9 +102,9 @@
               <p class="text-2xl font-semibold text-gray-900">{{ stats.total_groups || 0 }}</p>
             </div>
           </div>
-        </div>
+        </button>
 
-        <div class="bg-white rounded-lg shadow p-6">
+        <button @click="$router.push('/admin/moderation')" class="bg-white rounded-lg shadow p-6 hover:shadow-xl transition-all cursor-pointer text-left w-full">
           <div class="flex items-center">
             <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center">
               <ChatBubbleLeftRightIcon class="w-6 h-6 text-orange-600" />
@@ -114,9 +114,9 @@
               <p class="text-2xl font-semibold text-gray-900">{{ stats.total_messages || 0 }}</p>
             </div>
           </div>
-        </div>
+        </button>
 
-        <div class="bg-white rounded-lg shadow p-6">
+        <button @click="$router.push('/admin/moderation')" class="bg-white rounded-lg shadow p-6 hover:shadow-xl transition-all cursor-pointer text-left w-full">
           <div class="flex items-center">
             <div class="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center">
               <ExclamationCircleIcon class="w-6 h-6 text-red-600" />
@@ -126,7 +126,7 @@
               <p class="text-2xl font-semibold text-gray-900">{{ stats.pending_messages || 0 }}</p>
             </div>
           </div>
-        </div>
+        </button>
       </div>
 
       <!-- Main Content -->
