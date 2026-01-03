@@ -1,8 +1,9 @@
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Body
 from sqlalchemy.orm import Session
 from sqlalchemy import func, and_, or_
 from datetime import datetime, timedelta
-from typing import List
+from typing import List, Optional
+from pydantic import BaseModel
 from ..core.database import get_db
 from ..models.user import User, UserRole
 from ..models.group import Group
@@ -13,6 +14,17 @@ from ..models.incident import Incident, IncidentStatus
 from ..models.resource import Resource
 from ..services.auth_service import get_current_user
 from ..core.security import get_password_hash
+
+class CreateUserRequest(BaseModel):
+    email: str
+    password: str
+    full_name: str
+    role: str
+    school_id: int
+    province: str
+    district: str
+    locale: str
+    grade: Optional[int] = None
 
 router = APIRouter(prefix="/admin", tags=["admin"])
 
@@ -186,28 +198,24 @@ def list_users(
 
 @router.post("/users")
 def create_user(
-    email: str,
-    password: str,
-    full_name: str,
-    role: str,
-    grade: int = None,
+    request: CreateUserRequest,
     current_user: User = Depends(require_admin),
     db: Session = Depends(get_db)
 ):
     # Check if email exists
-    if db.query(User).filter(User.email == email).first():
+    if db.query(User).filter(User.email == request.email).first():
         raise HTTPException(status_code=400, detail="Email already exists")
     
     user = User(
-        email=email,
-        hashed_password=get_password_hash(password),
-        full_name=full_name,
-        role=UserRole(role),
+        email=request.email,
+        hashed_password=get_password_hash(request.password),
+        full_name=request.full_name,
+        role=UserRole(request.role),
         school_id=current_user.school_id,
         province=current_user.province,
         district=current_user.district,
-        grade=grade,
-        locale="rw"
+        grade=request.grade,
+        locale=request.locale or "rw"
     )
     
     db.add(user)
