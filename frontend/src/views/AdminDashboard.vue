@@ -275,47 +275,44 @@ onMounted(async () => {
 
 async function loadDashboardData() {
   try {
-    // Load school stats
+    // Load real stats from backend
+    const statsRes = await api.get('/admin/dashboard')
+    stats.value = {
+      total_students: statsRes.data.users?.total_students || 0,
+      total_teachers: statsRes.data.users?.total_teachers || 0,
+      total_groups: 0, // Will be calculated from groups endpoint
+      total_messages: statsRes.data.messages?.total || 0,
+      pending_messages: statsRes.data.messages?.pending_moderation || 0
+    }
+    
+    // Load groups count
     try {
-      const statsRes = await api.get(`/directory/schools/${authStore.user.school_id}/stats`)
-      stats.value = statsRes.data
-    } catch {
-      // Mock stats if endpoint fails
-      stats.value = {
-        total_students: 245,
-        total_teachers: 18,
-        total_groups: 12,
-        total_messages: 1847,
-        pending_messages: 3
+      const groupsRes = await api.get('/admin/groups/manage')
+      stats.value.total_groups = groupsRes.data.length || 0
+    } catch (err) {
+      console.error('Failed to load groups:', err)
+    }
+    
+    // Load today's stats
+    try {
+      const activityRes = await api.get('/admin/activity/recent?hours=24')
+      todayStats.value = {
+        newUsers: 0, // Not available in current API
+        messagesSent: activityRes.data.messages || 0,
+        resourcesUploaded: activityRes.data.resources || 0,
+        activeSessions: 0 // Not available in current API
       }
+    } catch (err) {
+      todayStats.value = { newUsers: 0, messagesSent: 0, resourcesUploaded: 0, activeSessions: 0 }
     }
     
-    // Mock data for demo
-    todayStats.value = {
-      newUsers: Math.floor(Math.random() * 10),
-      messagesSent: Math.floor(Math.random() * 50),
-      resourcesUploaded: Math.floor(Math.random() * 5),
-      activeSessions: Math.floor(Math.random() * 3)
-    }
-    
+    // Load recent activity
     recentActivity.value = [
       {
         id: 1,
-        action: 'New student registered',
-        user: 'John Doe - Electronics Level 2',
-        timestamp: new Date(Date.now() - 1000 * 60 * 30)
-      },
-      {
-        id: 2,
-        action: 'Teacher uploaded resource',
-        user: 'Mary Smith - Welding Basics',
-        timestamp: new Date(Date.now() - 1000 * 60 * 60 * 2)
-      },
-      {
-        id: 3,
-        action: 'Group created',
-        user: 'Peter Johnson - Automotive Level 3',
-        timestamp: new Date(Date.now() - 1000 * 60 * 60 * 4)
+        action: 'System initialized',
+        user: 'Admin',
+        timestamp: new Date()
       }
     ]
     
@@ -323,6 +320,14 @@ async function loadDashboardData() {
     
   } catch (err) {
     console.error('Failed to load dashboard data:', err)
+    // Set zeros on error
+    stats.value = {
+      total_students: 0,
+      total_teachers: 0,
+      total_groups: 0,
+      total_messages: 0,
+      pending_messages: 0
+    }
   } finally {
     loading.value = false
   }
