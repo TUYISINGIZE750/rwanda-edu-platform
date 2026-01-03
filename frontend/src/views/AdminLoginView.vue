@@ -190,10 +190,14 @@ async function onDistrictChange() {
     if (apiProvince === 'Eastern Province') apiProvince = 'East'
     if (apiProvince === 'Kigali City') apiProvince = 'Kigali city'
     
+    console.log('Fetching schools for:', apiProvince, selectedDistrict.value)
     const response = await fetch(`${API_URL}/api/v1/locations/schools/district/${apiProvince}/${selectedDistrict.value}`)
+    console.log('Response status:', response.status)
     const data = await response.json()
+    console.log('Schools data:', data)
     
     schools.value = data || []
+    console.log('Schools loaded:', schools.value.length)
   } catch (error) {
     console.error('API Error:', error)
     schools.value = []
