@@ -106,4 +106,31 @@ def wake_up():
         "version": settings.VERSION
     }
 
+@app.get("/api/v1/locations/schools/district/{province_name}/{district_name}")
+def get_schools_hotfix(province_name: str, district_name: str):
+    """Hotfix endpoint for schools dropdown"""
+    from urllib.parse import unquote
+    from .core.database import get_db
+    from .models.school import School
+    from sqlalchemy import func
+    
+    province_name = unquote(province_name)
+    district_name = unquote(district_name)
+    
+    db = next(get_db())
+    schools = db.query(School).filter(
+        func.lower(School.province) == province_name.lower(),
+        func.lower(School.district) == district_name.lower()
+    ).all()
+    
+    return [{
+        "id": s.id,
+        "name": s.name,
+        "type": s.type,
+        "category": s.category,
+        "province": s.province,
+        "district": s.district,
+        "trades": s.trades if hasattr(s, 'trades') else []
+    } for s in schools]
+
 

@@ -1,0 +1,33 @@
+SCHOOLS DROPDOWN FIX - READY TO DEPLOY
+======================================
+
+THE FIX IS READY. GitHub push is failing due to network.
+
+DEPLOY NOW:
+-----------
+
+Go to Render Dashboard: https://dashboard.render.com
+1. Click on "rwanda-edu-backend" service
+2. Click "Manual Deploy" button
+3. Select "Clear build cache & deploy"
+4. Wait 2-3 minutes
+
+OR use Render Shell:
+1. Go to Shell tab in Render dashboard
+2. Run: cd app/api
+3. Run: nano locations.py
+4. Find line 145-146 and change:
+   FROM: func.lower(School.province) == func.lower(province_name)
+   TO:   func.lower(School.province) == province_name.lower()
+   
+   FROM: func.lower(School.district) == func.lower(district_name)
+   TO:   func.lower(School.district) == district_name.lower()
+5. Save (Ctrl+O, Enter, Ctrl+X)
+6. Restart service
+
+TEST:
+-----
+https://tssanywhere.pages.dev/admin-login
+Select: South > Kamonyi > Should show 6 schools
+
+The fix is committed locally. Will auto-sync when network is stable.
