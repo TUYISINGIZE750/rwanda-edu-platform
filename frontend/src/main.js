@@ -4,7 +4,6 @@ import { createI18n } from 'vue-i18n'
 import router from './router'
 import App from './App.vue'
 import './style.css'
-import { startKeepAlive } from './utils/keepAlive'
 
 // Import locales
 import en from './locales/en.json'
@@ -45,23 +44,37 @@ if (import.meta.env.DEV) {
 
 app.mount('#app')
 
-// Start keep-alive service
-startKeepAlive()
+// Service Worker registration DISABLED - causing localhost caching issues
+// if ('serviceWorker' in navigator && import.meta.env.PROD) {
+//   window.addEventListener('load', () => {
+//     navigator.serviceWorker.register('/sw.js')
+//       .then((registration) => {
+//         console.log('SW registered: ', registration)
+//       })
+//       .catch((registrationError) => {
+//         console.log('SW registration failed: ', registrationError)
+//       })
+//   })
+// }
 
 // Handle online/offline status
 window.addEventListener('online', () => {
   console.log('App is online')
+  // Reconnect chat if needed
 })
 
 window.addEventListener('offline', () => {
   console.log('App is offline')
+  // Handle offline state
 })
 
 // Handle visibility change for chat optimization
 document.addEventListener('visibilitychange', () => {
   if (document.hidden) {
     console.log('App is hidden')
+    // Reduce chat polling or pause real-time updates
   } else {
     console.log('App is visible')
+    // Resume full functionality
   }
 })

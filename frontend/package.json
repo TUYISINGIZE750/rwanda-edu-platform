@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "build:cloudflare": "cp .env.cloudflare .env.production && vite build",
     "preview": "vite preview",
     "update-deps": "npm update && npm audit fix",
     "check-updates": "npm outdated",

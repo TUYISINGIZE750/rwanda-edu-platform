@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.middleware.gzip import GZipMiddleware
 from fastapi.staticfiles import StaticFiles
+from datetime import datetime
 import os
 from .core.config import settings
 from .core.redis_client import redis_client
@@ -76,6 +77,32 @@ async def shutdown():
 
 @app.get("/health")
 def health_check():
-    return {"status": "healthy", "version": settings.VERSION}
+    return {"status": "healthy", "version": settings.VERSION, "timestamp": datetime.now().isoformat()}
+
+@app.get("/api/v1/health")
+def api_health_check():
+    return {"status": "healthy", "api_version": "v1", "timestamp": datetime.now().isoformat()}
+
+@app.get("/api/v1/auth/test")
+def auth_test():
+    return {"status": "auth_service_healthy", "timestamp": datetime.now().isoformat()}
+
+@app.get("/wake-up")
+def wake_up():
+    """Dedicated wake-up endpoint with more processing to ensure full server activation"""
+    import time
+    start_time = time.time()
+    
+    # Simulate some processing to ensure server is fully awake
+    dummy_data = [i**2 for i in range(1000)]
+    processing_time = time.time() - start_time
+    
+    return {
+        "status": "fully_awake",
+        "message": "Server is active and processing requests",
+        "processing_time_ms": round(processing_time * 1000, 2),
+        "timestamp": datetime.now().isoformat(),
+        "version": settings.VERSION
+    }
 
 

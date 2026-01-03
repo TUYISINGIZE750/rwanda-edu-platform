@@ -1,8 +1,8 @@
 import axios from 'axios'
 
 const api = axios.create({
-  baseURL: 'https://rwanda-edu-platform.onrender.com/api/v1',
-  timeout: 30000,
+  baseURL: 'http://localhost:8080/api/v1',
+  timeout: 10000,
   headers: {
     'Content-Type': 'application/json'
   }
