@@ -235,7 +235,7 @@ const form = ref({
   email: '',
   password: '',
   full_name: '',
-  role: 'student',
+  role: 'STUDENT',
   school_id: '',
   grade: null,
   locale: 'en',

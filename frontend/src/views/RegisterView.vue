@@ -171,7 +171,7 @@ const form = ref({
   email: '',
   password: '',
   full_name: '',
-  role: 'student',
+  role: 'STUDENT',
   school_id: '',
   locale: 'rw',
   selected_trade: '',
