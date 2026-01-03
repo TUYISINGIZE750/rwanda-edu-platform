@@ -65,7 +65,7 @@
             <select v-model="selectedSchoolId" required
                     class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent">
               <option value="">Select School</option>
-              <option v-for="school in schools" :key="school.id" :value="school.id">
+              <option v-for="school in schools" :key="school.id" :value="String(school.id)">
                 {{ school.name }} ({{ school.type }})
               </option>
             </select>
@@ -85,7 +85,7 @@
         <button 
           type="submit" 
           class="w-full bg-gradient-to-r from-red-600 to-red-700 text-white py-3 px-4 rounded-lg font-semibold hover:from-red-700 hover:to-red-800 focus:ring-4 focus:ring-red-200 transition-all disabled:opacity-50 disabled:cursor-not-allowed transform hover:scale-[1.02]" 
-          :disabled="loading || !selectedSchoolId || selectedSchoolId === ''"
+          :disabled="loading || !form.email || !form.password || !selectedProvince || !selectedDistrict || !selectedSchoolId"
         >
           <span v-if="!loading">Sign In as DOS</span>
           <span v-else class="flex items-center justify-center">
