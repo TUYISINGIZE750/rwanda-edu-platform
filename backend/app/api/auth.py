@@ -44,7 +44,8 @@ def login(credentials: UserLogin, db: Session = Depends(get_db)):
     if not user.is_active:
         raise HTTPException(status_code=403, detail="Account inactive")
     
-    token = create_access_token({"sub": str(user.id), "role": user.role.value})
+    role_value = user.role.value if hasattr(user.role, 'value') else str(user.role)
+    token = create_access_token({"sub": str(user.id), "role": role_value})
     return Token(access_token=token, token_type="bearer", user=user)
 
 @router.get("/me", response_model=UserResponse)
