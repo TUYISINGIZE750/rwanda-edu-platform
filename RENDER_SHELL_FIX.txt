@@ -1,0 +1,33 @@
+APPLY FIX ON RENDER DIRECTLY
+=============================
+
+Since GitHub push is failing, apply the fix directly on Render:
+
+1. Go to: https://dashboard.render.com
+2. Select: rwanda-edu-backend
+3. Click: Shell tab
+4. Run these commands:
+
+cd /opt/render/project/src/app/api
+nano locations.py
+
+5. Find line ~145 (the get_schools_by_district function)
+6. Change these two lines:
+
+FROM:
+    func.lower(School.province) == func.lower(province_name),
+    func.lower(School.district) == func.lower(district_name)
+
+TO:
+    func.lower(School.province) == province_name.lower(),
+    func.lower(School.district) == district_name.lower(),
+
+7. Save: Ctrl+O, Enter, Ctrl+X
+8. Restart: exit shell, click "Manual Deploy"
+
+TEST:
+https://tssanywhere.pages.dev/admin-login
+South > Kamonyi = 6 schools
+
+The fix changes func.lower(string) to string.lower()
+This fixes the SQL query generation.

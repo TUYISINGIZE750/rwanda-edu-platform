@@ -1,0 +1,59 @@
+URGENT: SCHOOLS DROPDOWN HOTFIX
+================================
+
+The fix is committed but GitHub push is failing.
+
+DEPLOY NOW - 2 OPTIONS:
+
+OPTION 1: Render Dashboard (FASTEST)
+-------------------------------------
+1. Open: https://dashboard.render.com
+2. Login and select "rwanda-edu-backend"
+3. Click "Manual Deploy" button (top right)
+4. Select "Clear build cache & deploy"
+5. Wait 2-3 minutes
+6. Test: https://tssanywhere.pages.dev/admin-login
+
+OPTION 2: Direct File Edit
+---------------------------
+1. Go to Render Dashboard > rwanda-edu-backend > Shell
+2. Run: nano app/main.py
+3. Scroll to bottom (before last line)
+4. Add this code:
+
+@app.get("/api/v1/locations/schools/district/{province_name}/{district_name}")
+def get_schools_hotfix(province_name: str, district_name: str):
+    from urllib.parse import unquote
+    from .core.database import get_db
+    from .models.school import School
+    from sqlalchemy import func
+    
+    province_name = unquote(province_name)
+    district_name = unquote(district_name)
+    
+    db = next(get_db())
+    schools = db.query(School).filter(
+        func.lower(School.province) == province_name.lower(),
+        func.lower(School.district) == district_name.lower()
+    ).all()
+    
+    return [{
+        "id": s.id,
+        "name": s.name,
+        "type": s.type,
+        "category": s.category,
+        "province": s.province,
+        "district": s.district,
+        "trades": s.trades if hasattr(s, 'trades') else []
+    } for s in schools]
+
+5. Save: Ctrl+O, Enter, Ctrl+X
+6. Restart: Click "Manual Deploy" in dashboard
+
+TEST AFTER DEPLOYMENT:
+----------------------
+Visit: https://tssanywhere.pages.dev/admin-login
+- Select: Kigali city > Gasabo = Should show 2 schools
+- Select: South > Kamonyi = Should show 6 schools
+
+The hotfix overrides the broken endpoint with a working one.

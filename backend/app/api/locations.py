@@ -19,14 +19,14 @@ class SectorResponse(BaseModel):
 
 class SchoolResponse(BaseModel):
     id: int
-    school_code: str = None
+    school_code: str | None = None
     name: str
     type: str
     category: str
     province: str
     district: str
     trades: List[str] = []
-    gender: str = None
+    gender: str | None = None
     
     @classmethod
     def from_orm(cls, obj):

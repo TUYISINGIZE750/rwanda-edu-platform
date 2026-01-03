@@ -1,0 +1,66 @@
+FINAL SOLUTION - SCHOOLS DROPDOWN FIX
+======================================
+
+PROBLEM:
+- Schools dropdown empty on DOS login page
+- Backend API returns [] for all districts
+- Bug: SQL query uses func.lower(string) instead of string.lower()
+- Fix is ready locally but can't push to GitHub (network issue)
+
+SOLUTION OPTIONS:
+
+OPTION 1: Wait and retry git push (EASIEST)
+--------------------------------------------
+Wait 5-10 minutes, then run:
+  cd f:\SIDE HUSTLE\Holidays learning\rwanda-edu-platform
+  git push origin main
+
+If successful, Render auto-deploys in 2 minutes.
+
+OPTION 2: Use GitHub Web Interface (MANUAL)
+--------------------------------------------
+1. Go to: https://github.com/TUYISINGIZE750/rwanda-edu-platform
+2. Navigate to: backend/app/api/locations.py
+3. Click "Edit" (pencil icon)
+4. Find line 165-166:
+   
+   FROM:
+   func.lower(School.province) == func.lower(province_name),
+   func.lower(School.district) == func.lower(district_name)
+   
+   TO:
+   func.lower(School.province) == province_name.lower(),
+   func.lower(School.district) == district_name.lower()
+
+5. Commit: "Fix schools dropdown query"
+6. Render auto-deploys in 2 minutes
+
+OPTION 3: Use GitHub API (AUTOMATED)
+-------------------------------------
+1. Create GitHub Personal Access Token:
+   - Go to: https://github.com/settings/tokens
+   - Generate new token (classic)
+   - Select: repo (full control)
+   - Copy token
+
+2. Run:
+   cd backend
+   python push_via_api.py
+   (Enter token when prompted)
+
+OPTION 4: Manual Deploy on Render
+----------------------------------
+1. Go to: https://dashboard.render.com
+2. Select: rwanda-edu-backend
+3. Click: "Manual Deploy" > "Deploy latest commit"
+   (This pulls from GitHub even if local push failed)
+
+VERIFICATION:
+-------------
+After deployment, test at:
+https://tssanywhere.pages.dev/admin-login
+
+Select: South > Kamonyi
+Expected: 6 schools appear in dropdown
+
+THE FIX IS READY - JUST NEEDS TO REACH GITHUB/RENDER

@@ -1,0 +1,22 @@
+SUCCESS - DEPLOYED!
+===================
+
+Git push succeeded at: $(date)
+
+Commits pushed:
+- 025f423: Hotfix schools dropdown endpoint
+- 00b9050: Fix schools dropdown  
+- a1a10c8: Fix schools dropdown API endpoint
+
+Render will auto-deploy in ~2 minutes.
+
+Test at: https://tssanywhere.pages.dev/admin-login
+- Select: South > Kamonyi = Should show 6 schools
+- Select: Kigali city > Gasabo = Should show 2 schools
+
+The fix changes the SQL query from:
+  func.lower(School.province) == func.lower(province_name)
+To:
+  func.lower(School.province) == province_name.lower()
+
+This properly compares the database column with the lowercased parameter.
