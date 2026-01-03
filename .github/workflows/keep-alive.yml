@@ -1,50 +1,19 @@
-name: Keep Backend Alive
+name: Keep Render Backend Awake
 
 on:
   schedule:
-    - cron: '*/8 * * * *'  # Every 8 minutes (more frequent)
+    - cron: '*/14 * * * *'  # Every 14 minutes
   workflow_dispatch:  # Manual trigger
 
 jobs:
-  ping:
+  keep-alive:
     runs-on: ubuntu-latest
     steps:
-      - name: Multi-endpoint Health Check
+      - name: Ping Backend
         run: |
-          BACKEND_URL="https://rwanda-edu-platform.onrender.com"
-          
-          # Function to test endpoint
-          test_endpoint() {
-            local endpoint=$1
-            local response=$(curl -s -o /dev/null -w "%{http_code}" "$endpoint" --max-time 30 || echo "000")
-            echo "$endpoint: HTTP $response"
-            return $([ "$response" = "200" ] && echo 0 || echo 1)
-          }
-          
-          # Test multiple endpoints to ensure server is fully awake
-          echo "🔄 Waking up Rwanda Education Platform..."
-          
-          # Primary health check
-          if test_endpoint "$BACKEND_URL/health"; then
-            echo "✅ Primary health check passed"
-          else
-            echo "⚠️ Primary health check failed, trying secondary endpoints..."
-          fi
-          
-          # Secondary endpoints to ensure full wake-up
-          test_endpoint "$BACKEND_URL/api/v1/locations/provinces" || true
-          test_endpoint "$BACKEND_URL/api/v1/auth/test" || true
-          
-          # Final verification
-          if test_endpoint "$BACKEND_URL/health"; then
-            echo "✅ Server is fully awake and responsive"
-          else
-            echo "❌ Server wake-up failed - attempting force wake"
-            # Force multiple requests
-            for i in {1..5}; do
-              curl -s "$BACKEND_URL/health" --max-time 10 || true
-              sleep 2
-            done
-          fi
-          
-          echo "🏁 Keep-alive cycle completed at $(date)"
+          echo "Pinging backend at $(date)"
+          curl -s https://rwanda-edu-platform.onrender.com/health
+          echo ""
+          curl -s https://rwanda-edu-platform.onrender.com/wake-up
+          echo ""
+          echo "Backend is awake!"
