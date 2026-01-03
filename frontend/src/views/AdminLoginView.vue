@@ -219,7 +219,7 @@ async function handleLogin() {
     await authStore.login(form.value.email, form.value.password)
     
     // Verify user is admin
-    if (authStore.user?.role?.toLowerCase() !== 'admin') {
+    if (authStore.user?.role?.toUpperCase() !== 'ADMIN') {
       error.value = 'Access denied. DOS credentials required.'
       authStore.logout()
       return
