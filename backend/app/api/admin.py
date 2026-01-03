@@ -26,97 +26,123 @@ def get_admin_dashboard(
     current_user: User = Depends(require_admin),
     db: Session = Depends(get_db)
 ):
-    school_id = current_user.school_id
-    now = datetime.utcnow()
-    week_ago = now - timedelta(days=7)
-    
-    # User stats
-    total_students = db.query(func.count(User.id)).filter(
-        User.school_id == school_id,
-        User.role == UserRole.STUDENT
-    ).scalar()
-    
-    total_teachers = db.query(func.count(User.id)).filter(
-        User.school_id == school_id,
-        User.role == UserRole.TEACHER
-    ).scalar()
-    
-    active_users_week = db.query(func.count(User.id)).filter(
-        User.school_id == school_id,
-        User.updated_at >= week_ago
-    ).scalar()
-    
-    # Message stats
-    total_messages = db.query(func.count(Message.id)).join(Channel).join(Group).filter(
-        Group.school_id == school_id
-    ).scalar()
-    
-    pending_messages = db.query(func.count(Message.id)).join(Channel).join(Group).filter(
-        Group.school_id == school_id,
-        Message.status == MessageStatus.PENDING
-    ).scalar()
-    
-    messages_this_week = db.query(func.count(Message.id)).join(Channel).join(Group).filter(
-        Group.school_id == school_id,
-        Message.created_at >= week_ago
-    ).scalar()
-    
-    # DM Request stats
-    pending_dm_requests = db.query(func.count(DMRequest.id)).join(
-        User, DMRequest.student_id == User.id
-    ).filter(
-        User.school_id == school_id,
-        DMRequest.status == DMRequestStatus.PENDING
-    ).scalar()
-    
-    active_dm_windows = db.query(func.count(DMRequest.id)).join(
-        User, DMRequest.student_id == User.id
-    ).filter(
-        User.school_id == school_id,
-        DMRequest.status == DMRequestStatus.APPROVED,
-        DMRequest.window_end > now
-    ).scalar()
-    
-    # Incident stats
-    pending_incidents = db.query(func.count(Incident.id)).join(
-        Message, Incident.message_id == Message.id
-    ).join(Channel).join(Group).filter(
-        Group.school_id == school_id,
-        Incident.status == IncidentStatus.PENDING
-    ).scalar()
-    
-    # Resource stats
-    total_resources = db.query(func.count(Resource.id)).join(User).filter(
-        User.school_id == school_id
-    ).scalar()
-    
-    total_storage_mb = (db.query(func.sum(Resource.size)).join(User).filter(
-        User.school_id == school_id
-    ).scalar() or 0) / (1024 * 1024)
-    
-    return {
-        "users": {
-            "total_students": total_students,
-            "total_teachers": total_teachers,
-            "active_this_week": active_users_week
-        },
-        "messages": {
-            "total": total_messages,
-            "pending_moderation": pending_messages,
-            "this_week": messages_this_week
-        },
-        "dm_requests": {
-            "pending": pending_dm_requests,
-            "active_windows": active_dm_windows
-        },
-        "incidents": {
-            "pending": pending_incidents
-        },
-        "resources": {
-            "total": total_resources,
-            "storage_mb": round(total_storage_mb, 2)
+    try:
+        school_id = current_user.school_id
+        now = datetime.utcnow()
+        week_ago = now - timedelta(days=7)
+        
+        # User stats
+        total_students = db.query(func.count(User.id)).filter(
+            User.school_id == school_id,
+            User.role == UserRole.STUDENT
+        ).scalar() or 0
+        
+        total_teachers = db.query(func.count(User.id)).filter(
+            User.school_id == school_id,
+            User.role == UserRole.TEACHER
+        ).scalar() or 0
+        
+        active_users_week = db.query(func.count(User.id)).filter(
+            User.school_id == school_id,
+            User.updated_at >= week_ago
+        ).scalar() or 0
+        
+        # Message stats
+        total_messages = db.query(func.count(Message.id)).join(Channel).join(Group).filter(
+            Group.school_id == school_id
+        ).scalar() or 0
+        
+        pending_messages = db.query(func.count(Message.id)).join(Channel).join(Group).filter(
+            Group.school_id == school_id,
+            Message.status == MessageStatus.PENDING
+        ).scalar() or 0
+        
+        messages_this_week = db.query(func.count(Message.id)).join(Channel).join(Group).filter(
+            Group.school_id == school_id,
+            Message.created_at >= week_ago
+        ).scalar() or 0
+        
+        # DM Request stats
+        pending_dm_requests = db.query(func.count(DMRequest.id)).join(
+            User, DMRequest.student_id == User.id
+        ).filter(
+            User.school_id == school_id,
+            DMRequest.status == DMRequestStatus.PENDING
+        ).scalar() or 0
+        
+        active_dm_windows = db.query(func.count(DMRequest.id)).join(
+            User, DMRequest.student_id == User.id
+        ).filter(
+            User.school_id == school_id,
+            DMRequest.status == DMRequestStatus.APPROVED,
+            DMRequest.window_end > now
+        ).scalar() or 0
+        
+        # Incident stats
+        pending_incidents = db.query(func.count(Incident.id)).join(
+            Message, Incident.message_id == Message.id
+        ).join(Channel).join(Group).filter(
+            Group.school_id == school_id,
+            Incident.status == IncidentStatus.PENDING
+        ).scalar() or 0
+        
+        # Resource stats
+        total_resources = db.query(func.count(Resource.id)).join(User).filter(
+            User.school_id == school_id
+        ).scalar() or 0
+        
+        total_storage_mb = (db.query(func.sum(Resource.size)).join(User).filter(
+            User.school_id == school_id
+        ).scalar() or 0) / (1024 * 1024)
+        
+        return {
+            "users": {
+                "total_students": total_students,
+                "total_teachers": total_teachers,
+                "active_this_week": active_users_week
+            },
+            "messages": {
+                "total": total_messages,
+                "pending_moderation": pending_messages,
+                "this_week": messages_this_week
+            },
+            "dm_requests": {
+                "pending": pending_dm_requests,
+                "active_windows": active_dm_windows
+            },
+            "incidents": {
+                "pending": pending_incidents
+            },
+            "resources": {
+                "total": total_resources,
+                "storage_mb": round(total_storage_mb, 2)
+            }
         }
-    }
+    except Exception as e:
+        # Return zeros if any query fails
+        return {
+            "users": {
+                "total_students": 0,
+                "total_teachers": 0,
+                "active_this_week": 0
+            },
+            "messages": {
+                "total": 0,
+                "pending_moderation": 0,
+                "this_week": 0
+            },
+            "dm_requests": {
+                "pending": 0,
+                "active_windows": 0
+            },
+            "incidents": {
+                "pending": 0
+            },
+            "resources": {
+                "total": 0,
+                "storage_mb": 0.0
+            }
+        }
 
 @router.get("/users")
 def list_users(
@@ -254,44 +280,53 @@ def get_recent_activity(
     current_user: User = Depends(require_admin),
     db: Session = Depends(get_db)
 ):
-    since = datetime.utcnow() - timedelta(hours=hours)
-    school_id = current_user.school_id
-    
-    # Recent messages
-    recent_messages = db.query(Message).join(Channel).join(Group).filter(
-        Group.school_id == school_id,
-        Message.created_at >= since
-    ).count()
-    
-    # Recent DM requests
-    recent_dm_requests = db.query(DMRequest).join(
-        User, DMRequest.student_id == User.id
-    ).filter(
-        User.school_id == school_id,
-        DMRequest.created_at >= since
-    ).count()
-    
-    # Recent incidents
-    recent_incidents = db.query(Incident).join(
-        Message, Incident.message_id == Message.id
-    ).join(Channel).join(Group).filter(
-        Group.school_id == school_id,
-        Incident.created_at >= since
-    ).count()
-    
-    # Recent resources
-    recent_resources = db.query(Resource).join(User).filter(
-        User.school_id == school_id,
-        Resource.created_at >= since
-    ).count()
-    
-    return {
-        "period_hours": hours,
-        "messages": recent_messages,
-        "dm_requests": recent_dm_requests,
-        "incidents": recent_incidents,
-        "resources": recent_resources
-    }
+    try:
+        since = datetime.utcnow() - timedelta(hours=hours)
+        school_id = current_user.school_id
+        
+        # Recent messages
+        recent_messages = db.query(Message).join(Channel).join(Group).filter(
+            Group.school_id == school_id,
+            Message.created_at >= since
+        ).count()
+        
+        # Recent DM requests
+        recent_dm_requests = db.query(DMRequest).join(
+            User, DMRequest.student_id == User.id
+        ).filter(
+            User.school_id == school_id,
+            DMRequest.created_at >= since
+        ).count()
+        
+        # Recent incidents
+        recent_incidents = db.query(Incident).join(
+            Message, Incident.message_id == Message.id
+        ).join(Channel).join(Group).filter(
+            Group.school_id == school_id,
+            Incident.created_at >= since
+        ).count()
+        
+        # Recent resources
+        recent_resources = db.query(Resource).join(User).filter(
+            User.school_id == school_id,
+            Resource.created_at >= since
+        ).count()
+        
+        return {
+            "period_hours": hours,
+            "messages": recent_messages,
+            "dm_requests": recent_dm_requests,
+            "incidents": recent_incidents,
+            "resources": recent_resources
+        }
+    except Exception as e:
+        return {
+            "period_hours": hours,
+            "messages": 0,
+            "dm_requests": 0,
+            "incidents": 0,
+            "resources": 0
+        }
 
 @router.get("/groups/manage")
 def manage_groups(
