@@ -238,6 +238,8 @@ router.beforeEach(async (to, from, next) => {
     next('/home')
   } else if ((to.path === '/' || to.path === '/login') && authStore.isAuthenticated) {
     next('/home')
+  } else if (to.path === '/admin-login' && authStore.isAuthenticated && authStore.user?.role?.toLowerCase() === 'admin') {
+    next('/admin-dashboard')
   } else {
     next()
   }
