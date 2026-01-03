@@ -10,4 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Ping Backend Health Endpoint
-        run: curl -f https://rwanda-edu-platform.onrender.com/health || exit 0
+        run: |
+          echo "Pinging backend to keep it awake..."
+          curl -s --max-time 60 https://rwanda-edu-platform.onrender.com/health || echo "Backend is waking up..."
+          echo "✅ Ping completed"
