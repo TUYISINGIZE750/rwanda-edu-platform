@@ -30,47 +30,7 @@
     <div class="flex-1 overflow-y-auto">
       <div class="max-w-7xl mx-auto px-6 py-6">
         <!-- Stats Grid -->
-        <div class="grid grid-cols-4 gap-4 mb-6">
-          <div class="bg-white/80 backdrop-blur-xl rounded-2xl p-6 shadow-lg border-2 border-indigo-200">
-            <div class="flex items-center gap-4">
-              <div class="w-14 h-14 bg-gradient-to-br from-indigo-500 to-purple-500 rounded-2xl flex items-center justify-center text-2xl shadow-lg">👨‍🏫</div>
-              <div>
-                <p class="text-3xl font-bold text-gray-900">{{ stats.total_teachers }}</p>
-                <p class="text-sm text-gray-600">Total Teachers</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="bg-white/80 backdrop-blur-xl rounded-2xl p-6 shadow-lg border-2 border-green-200">
-            <div class="flex items-center gap-4">
-              <div class="w-14 h-14 bg-gradient-to-br from-green-500 to-emerald-500 rounded-2xl flex items-center justify-center text-2xl shadow-lg">👥</div>
-              <div>
-                <p class="text-3xl font-bold text-gray-900">{{ stats.total_students }}</p>
-                <p class="text-sm text-gray-600">Total Students</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="bg-white/80 backdrop-blur-xl rounded-2xl p-6 shadow-lg border-2 border-orange-200">
-            <div class="flex items-center gap-4">
-              <div class="w-14 h-14 bg-gradient-to-br from-orange-500 to-red-500 rounded-2xl flex items-center justify-center text-2xl shadow-lg">📚</div>
-              <div>
-                <p class="text-3xl font-bold text-gray-900">{{ stats.total_classes }}</p>
-                <p class="text-sm text-gray-600">Total Classes</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="bg-white/80 backdrop-blur-xl rounded-2xl p-6 shadow-lg border-2 border-purple-200">
-            <div class="flex items-center gap-4">
-              <div class="w-14 h-14 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center text-2xl shadow-lg">⭐</div>
-              <div>
-                <p class="text-3xl font-bold text-gray-900">{{ stats.class_teachers }}</p>
-                <p class="text-sm text-gray-600">Class Teachers</p>
-              </div>
-            </div>
-          </div>
-        </div>
+        <div class="grid grid-cols-4 gap-4 mb-6"><button @click="$router.push('/admin/users?role=TEACHER')" class="bg-white/80 backdrop-blur-xl rounded-2xl p-6 shadow-lg border-2 border-indigo-200 hover:border-indigo-400 hover:shadow-xl transition-all cursor-pointer text-left w-full"><div class="flex items-center gap-4"><div class="w-14 h-14 bg-gradient-to-br from-indigo-500 to-purple-500 rounded-2xl flex items-center justify-center text-2xl shadow-lg">????</div><div><p class="text-3xl font-bold text-gray-900">{{ stats.total_teachers }}</p><p class="text-sm text-gray-600">Total Teachers</p></div></div></button><button @click="$router.push('/admin/users?role=STUDENT')" class="bg-white/80 backdrop-blur-xl rounded-2xl p-6 shadow-lg border-2 border-green-200 hover:border-green-400 hover:shadow-xl transition-all cursor-pointer text-left w-full"><div class="flex items-center gap-4"><div class="w-14 h-14 bg-gradient-to-br from-green-500 to-emerald-500 rounded-2xl flex items-center justify-center text-2xl shadow-lg">??</div><div><p class="text-3xl font-bold text-gray-900">{{ stats.total_students }}</p><p class="text-sm text-gray-600">Total Students</p></div></div></button><button @click="loadAllTeachers" class="bg-white/80 backdrop-blur-xl rounded-2xl p-6 shadow-lg border-2 border-orange-200 hover:border-orange-400 hover:shadow-xl transition-all cursor-pointer text-left w-full"><div class="flex items-center gap-4"><div class="w-14 h-14 bg-gradient-to-br from-orange-500 to-red-500 rounded-2xl flex items-center justify-center text-2xl shadow-lg">??</div><div><p class="text-3xl font-bold text-gray-900">{{ stats.total_classes }}</p><p class="text-sm text-gray-600">Total Classes</p></div></div></button><button @click="loadAllTeachers" class="bg-white/80 backdrop-blur-xl rounded-2xl p-6 shadow-lg border-2 border-purple-200 hover:border-purple-400 hover:shadow-xl transition-all cursor-pointer text-left w-full"><div class="flex items-center gap-4"><div class="w-14 h-14 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center text-2xl shadow-lg">?</div><div><p class="text-3xl font-bold text-gray-900">{{ stats.class_teachers }}</p><p class="text-sm text-gray-600">Class Teachers</p></div></div></button></div>
 
         <!-- Quick Actions -->
         <div class="bg-white/80 backdrop-blur-xl rounded-3xl shadow-2xl p-6 mb-6 border-2 border-indigo-200">
@@ -494,3 +454,4 @@ onMounted(async () => {
   await loadDashboard()
 })
 </script>
+
