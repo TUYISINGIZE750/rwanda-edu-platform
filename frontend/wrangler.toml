@@ -1,22 +1,6 @@
-name = "rwanda-edu-platform"
-type = "javascript"
-account_id = ""
-workers_dev = true
-route = ""
-zone_id = ""
+name = "tssanywhere"
+compatibility_date = "2024-01-01"
+pages_build_output_dir = "dist"
 
 [env.production]
-name = "rwanda-edu-platform-prod"
-route = "example.com/*"
-zone_id = ""
-
-[build]
-command = "npm run build"
-cwd = "./"
-watch_paths = ["src/**/*.js"]
-
-[build.upload]
-format = "service-worker"
-
-[triggers]
-crons = []
+name = "tssanywhere-prod"

@@ -190,10 +190,10 @@ async function onDistrictChange() {
     if (apiProvince === 'Eastern Province') apiProvince = 'East'
     if (apiProvince === 'Kigali City') apiProvince = 'Kigali city'
     
-    const response = await fetch(`${API_URL}/api/v1/schools-by-district/district/${apiProvince}/${selectedDistrict.value}`)
+    const response = await fetch(`${API_URL}/api/v1/locations/schools/district/${apiProvince}/${selectedDistrict.value}`)
     const data = await response.json()
     
-    schools.value = data.schools || []
+    schools.value = data || []
   } catch (error) {
     console.error('API Error:', error)
     schools.value = []

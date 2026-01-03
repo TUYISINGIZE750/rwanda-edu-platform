@@ -360,3 +360,26 @@ def get_school_classes(
             })
     
     return {"classes": classes}
+
+@router.post("/fix-password")
+def fix_dos_password(
+    current_user: User = Depends(get_current_user),
+    db: Session = Depends(get_db)
+):
+    """Fix DOS password - emergency endpoint"""
+    # Find the DOS user for RUNDA TVET
+    dos_user = db.query(User).filter(User.email == "dos.rundatvet.kamonyi@iprc.ac.rw").first()
+    
+    if not dos_user:
+        raise HTTPException(status_code=404, detail="DOS user not found")
+    
+    # Update password
+    new_password = "dos123"
+    dos_user.hashed_password = get_password_hash(new_password)
+    db.commit()
+    
+    return {
+        "message": "DOS password updated successfully",
+        "email": dos_user.email,
+        "password": new_password
+    }

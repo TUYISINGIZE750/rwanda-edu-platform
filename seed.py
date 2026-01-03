@@ -2,6 +2,8 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from ..core.database import get_db
 from ..models.school import School
+from ..models.user import User
+from ..core.security import get_password_hash
 from collections import defaultdict
 
 router = APIRouter(prefix="/admin/seed", tags=["admin"])
@@ -40,6 +42,29 @@ def seed_schools(db: Session = Depends(get_db)):
         
         total = db.query(School).count()
         return {"message": f"Successfully seeded {total} schools", "total": total}
+    except Exception as e:
+        db.rollback()
+        raise HTTPException(status_code=500, detail=str(e))
+
+@router.post("/fix-dos-password")
+def fix_dos_password(db: Session = Depends(get_db)):
+    try:
+        # Find the DOS user
+        dos_user = db.query(User).filter(User.email == "dos.rundatvet.kamonyi@iprc.ac.rw").first()
+        
+        if not dos_user:
+            raise HTTPException(status_code=404, detail="DOS user not found")
+        
+        # Update password
+        new_password = "dos123"
+        dos_user.password_hash = get_password_hash(new_password)
+        db.commit()
+        
+        return {
+            "message": "DOS password updated successfully",
+            "email": dos_user.email,
+            "password": new_password
+        }
     except Exception as e:
         db.rollback()
         raise HTTPException(status_code=500, detail=str(e))
