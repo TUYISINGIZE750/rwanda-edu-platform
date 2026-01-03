@@ -134,12 +134,32 @@ async function loadUsers() {
 
 async function createUser() {
   try {
-    await api.post('/admin/users', newUser.value)
+    const payload = {
+      full_name: newUser.value.full_name,
+      email: newUser.value.email,
+      password: newUser.value.password,
+      role: newUser.value.role,
+      school_id: authStore.user.school_id,
+      province: authStore.user.province,
+      district: authStore.user.district,
+      locale: 'en'
+    }
+    
+    if (newUser.value.role === 'STUDENT' && newUser.value.grade) {
+      payload.grade = newUser.value.grade
+    }
+    
+    await api.post('/admin/users', payload)
     showCreateModal.value = false
     newUser.value = { full_name: '', email: '', password: '', role: '', grade: null }
     loadUsers()
   } catch (err) {
-    alert(err.response?.data?.detail || 'Failed to create user')
+    const errorMsg = err.response?.data?.detail
+    if (Array.isArray(errorMsg)) {
+      alert(errorMsg.map(e => `${e.loc?.join('.')}: ${e.msg}`).join('\n'))
+    } else {
+      alert(errorMsg || 'Failed to create user')
+    }
   }
 }
 
