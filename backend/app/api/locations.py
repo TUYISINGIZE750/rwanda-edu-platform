@@ -152,8 +152,8 @@ def get_schools_by_district(
         district_name = unquote(district_name)
         
         schools = db.query(School).filter(
-            func.lower(School.province) == func.lower(province_name),
-            func.lower(School.district) == func.lower(district_name)
+            func.lower(School.province) == province_name.lower(),
+            func.lower(School.district) == district_name.lower()
         ).all()
         return [SchoolResponse.from_orm(school) for school in schools]
     except Exception as e:
