@@ -312,7 +312,7 @@ onMounted(async () => {
     return
   }
   
-  if (authStore.user?.role !== 'teacher') {
+  if (authStore.user?.role?.toUpperCase() !== 'TEACHER') {
     router.push('/student-dashboard')
     return
   }
