@@ -778,3 +778,66 @@ def get_school_info(
             "students_by_level": [{"level": level, "count": count} for level, count in students_by_level]
         }
     }
+
+class CreateLessonRequest(BaseModel):
+    group_id: int
+    title: str
+    description: Optional[str] = None
+
+@router.post("/modules")
+async def create_lesson(
+    request: CreateLessonRequest,
+    current_user: User = Depends(get_current_user),
+    db: Session = Depends(get_db)
+):
+    """Create a lesson/module in a class"""
+    if current_user.role != UserRole.TEACHER:
+        raise HTTPException(status_code=403, detail="Teacher only")
+    
+    # Verify group exists and teacher has access
+    group = db.query(Group).filter(Group.id == request.group_id).first()
+    if not group:
+        raise HTTPException(status_code=404, detail="Class not found")
+    
+    if group.school_id != current_user.school_id:
+        raise HTTPException(status_code=403, detail="Cannot add lessons to other schools' classes")
+    
+    # Create lesson as a channel in the group
+    lesson_channel = Channel(
+        group_id=request.group_id,
+        name=request.title,
+        type=ChannelType.DISCUSSION,
+        description=request.description
+    )
+    db.add(lesson_channel)
+    db.commit()
+    db.refresh(lesson_channel)
+    
+    # Notify students in the class
+    from ..models.group_member import GroupMember
+    from ..models.notification import NotificationType
+    from .notifications import create_notification
+    
+    student_ids = db.query(GroupMember.user_id).join(User).filter(
+        GroupMember.group_id == request.group_id,
+        User.role == UserRole.STUDENT
+    ).all()
+    
+    for (student_id,) in student_ids:
+        await create_notification(
+            db=db,
+            user_id=student_id,
+            notification_type=NotificationType.RESOURCE_UPLOADED,
+            title=f"📚 New Lesson: {request.title}",
+            message=f"{current_user.full_name} added a new lesson in {group.name}",
+            link=f"/hubs/{group.id}",
+            related_id=lesson_channel.id,
+            related_type="channel"
+        )
+    
+    return {
+        "id": lesson_channel.id,
+        "title": lesson_channel.name,
+        "group_id": request.group_id,
+        "message": f"Lesson created successfully! {len(student_ids)} students notified."
+    }
