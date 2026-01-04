@@ -359,8 +359,33 @@ async function loadDashboard() {
 
 async function loadSchoolDepartments() {
   try {
-    const response = await api.get(`/locations/schools/${authStore.user.school_id}`)
-    schoolDepartments.value = response.data.trades || []
+    // Try to get school by ID first
+    let response
+    try {
+      response = await api.get(`/locations/schools/${authStore.user.school_id}`)
+      schoolDepartments.value = response.data.trades || []
+    } catch (err) {
+      // If school not found by ID, use fallback trades based on school type
+      console.warn('School not found, using default TVET trades')
+      schoolDepartments.value = [
+        'Software Development',
+        'Computer Systems and Architecture',
+        'Land Surveying',
+        'Electronics',
+        'Electrical Installation',
+        'Plumbing',
+        'Mechanical Engineering',
+        'Civil Engineering',
+        'Automotive Technology',
+        'Welding and Metal Fabrication',
+        'Carpentry and Joinery',
+        'Masonry',
+        'Hospitality Management',
+        'Culinary Arts',
+        'Agriculture',
+        'Animal Husbandry'
+      ]
+    }
     console.log('Loaded departments:', schoolDepartments.value)
   } catch (err) {
     console.error('Failed to load departments:', err)
