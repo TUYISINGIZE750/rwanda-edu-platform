@@ -354,8 +354,8 @@ async function loadDashboard() {
 
 async function loadSchoolDepartments() {
   try {
-    const response = await api.get(`/locations/schools/${authStore.user.school_id}`)
-    schoolDepartments.value = response.data.trades || []
+    const response = await api.get('/teacher/school-info')
+    schoolDepartments.value = response.data.school.trades || []
     console.log('Loaded school trades:', schoolDepartments.value)
   } catch (err) {
     console.error('Failed to load school trades:', err)
