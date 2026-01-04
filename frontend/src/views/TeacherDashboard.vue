@@ -31,7 +31,7 @@
           <p class="text-xl text-gray-300 mb-8">Manage your classes, inspire students, and track progress all in one place</p>
           <div class="flex gap-4">
             <button @click="showCreateModuleModal = true" class="px-8 py-3 bg-orange-600 hover:bg-orange-700 text-white rounded-lg font-semibold transition-all">
-              Create Module
+              Create Class
             </button>
             <button @click="showCreateGroupModal = true" class="px-8 py-3 bg-gray-700 hover:bg-gray-600 text-white rounded-lg font-semibold transition-all">
               Create Group
@@ -79,7 +79,7 @@
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
           <button @click="showCreateModuleModal = true" class="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition-all text-center group">
             <div class="text-4xl mb-3">➕</div>
-            <p class="font-semibold text-gray-900 group-hover:text-orange-600">Create Module</p>
+            <p class="font-semibold text-gray-900 group-hover:text-orange-600">Create Class</p>
             <p class="text-xs text-gray-500 mt-1">Add new class</p>
           </button>
 
@@ -111,7 +111,7 @@
           <p class="text-gray-600 mb-6">Create your first module or group to get started</p>
           <div class="flex gap-3 justify-center">
             <button @click="showCreateModuleModal = true" class="px-6 py-3 bg-orange-600 hover:bg-orange-700 text-white rounded-lg font-semibold transition-all">
-              Create Module
+              Create Class
             </button>
             <button @click="showCreateGroupModal = true" class="px-6 py-3 bg-gray-600 hover:bg-gray-700 text-white rounded-lg font-semibold transition-all">
               Create Group
@@ -142,35 +142,39 @@
     <div v-if="showCreateModuleModal" class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4" @click="showCreateModuleModal = false">
       <div class="bg-white rounded-lg w-full max-w-2xl shadow-2xl" @click.stop>
         <div class="p-8 border-b border-gray-200">
-          <h3 class="text-2xl font-bold text-gray-900">Create Module</h3>
-          <p class="text-gray-600 mt-1">Add a new module to your class</p>
+          <h3 class="text-2xl font-bold text-gray-900">Create Class</h3>
+          <p class="text-gray-600 mt-1">Create a new class for your students</p>
         </div>
         
         <div class="p-8 space-y-6">
           <div>
-            <label class="block text-sm font-semibold text-gray-900 mb-2">Select Class</label>
-            <select v-model="newModule.classId" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-orange-500 focus:outline-none">
-              <option :value="null">Choose a class...</option>
-              <option v-for="group in groups" :key="group.id" :value="group.id">
-                {{ group.name }} ({{ group.member_count }} students)
-              </option>
+            <label class="block text-sm font-semibold text-gray-900 mb-2">Class Name</label>
+            <input v-model="newModule.name" type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-orange-500 focus:outline-none" placeholder="e.g., L5 Software Development">
+            <p class="text-xs text-gray-500 mt-1">Include level (L1-L6) and department for auto-assignment</p>
+          </div>
+          
+          <div>
+            <label class="block text-sm font-semibold text-gray-900 mb-2">Department/Trade</label>
+            <input v-model="newModule.department" type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-orange-500 focus:outline-none" placeholder="e.g., Software Development, Electronics">
+          </div>
+          
+          <div>
+            <label class="block text-sm font-semibold text-gray-900 mb-2">Level</label>
+            <select v-model="newModule.grade" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-orange-500 focus:outline-none">
+              <option :value="null">Select level...</option>
+              <option :value="1">Level 1</option>
+              <option :value="2">Level 2</option>
+              <option :value="3">Level 3</option>
+              <option :value="4">Level 4</option>
+              <option :value="5">Level 5</option>
+              <option :value="6">Level 6</option>
             </select>
-          </div>
-          
-          <div>
-            <label class="block text-sm font-semibold text-gray-900 mb-2">Module Name</label>
-            <input v-model="newModule.name" type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-orange-500 focus:outline-none" placeholder="e.g., Mathematics, Physics">
-          </div>
-          
-          <div>
-            <label class="block text-sm font-semibold text-gray-900 mb-2">Description</label>
-            <textarea v-model="newModule.description" rows="3" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-orange-500 focus:outline-none" placeholder="Brief description"></textarea>
           </div>
         </div>
         
         <div class="p-8 border-t border-gray-200 flex gap-3">
           <button @click="createModule" class="flex-1 px-6 py-3 bg-orange-600 hover:bg-orange-700 text-white rounded-lg font-semibold transition-all">
-            Create Module
+            Create Class
           </button>
           <button @click="showCreateModuleModal = false" class="px-6 py-3 bg-gray-100 hover:bg-gray-200 text-gray-900 rounded-lg font-semibold transition-all">
             Cancel
@@ -235,7 +239,7 @@ const resources = ref([])
 const loading = ref(false)
 const showCreateModuleModal = ref(false)
 const showCreateGroupModal = ref(false)
-const newModule = ref({ name: '', description: '', classId: null })
+const newModule = ref({ name: '', department: '', grade: null })
 const newGroup = ref({ name: '', description: '', type: 'CLUB' })
 
 const totalStudents = computed(() => {
@@ -253,22 +257,26 @@ function getIcon(type) {
 }
 
 async function createModule() {
-  if (!newModule.value.name || !newModule.value.classId) {
-    alert('Please fill in all required fields')
+  if (!newModule.value.name) {
+    alert('Please enter class name')
     return
   }
   
   try {
-    await api.post(`/directory/groups/${newModule.value.classId}/channels`, {
+    const response = await api.post('/teacher/groups', {
       name: newModule.value.name,
-      type: 'DISCUSSION'
+      type: 'CLASS',
+      department: newModule.value.department || null,
+      grade: newModule.value.grade
     })
     
-    newModule.value = { name: '', description: '', classId: null }
+    alert(response.data.message || 'Class created successfully!')
+    newModule.value = { name: '', department: '', grade: null }
     showCreateModuleModal.value = false
     await loadDashboard()
   } catch (err) {
-    console.error('Failed to create module:', err)
+    console.error('Failed to create class:', err)
+    alert(err.response?.data?.detail || 'Failed to create class')
   }
 }
 
@@ -279,17 +287,19 @@ async function createGroup() {
   }
   
   try {
-    await api.post('/directory/groups', {
+    const response = await api.post('/teacher/groups', {
       name: newGroup.value.name,
       type: newGroup.value.type,
       description: newGroup.value.description || null
     })
     
+    alert(response.data.message || 'Group created successfully!')
     newGroup.value = { name: '', description: '', type: 'CLUB' }
     showCreateGroupModal.value = false
     await loadDashboard()
   } catch (err) {
     console.error('Failed to create group:', err)
+    alert(err.response?.data?.detail || 'Failed to create group')
   }
 }
 
