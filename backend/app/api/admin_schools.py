@@ -1,38 +1,25 @@
-"""Load TVET schools from Excel file with proper structure"""
-import sys
-import os
-sys.path.append(os.path.dirname(__file__))
-
+from fastapi import APIRouter, Depends, HTTPException
+from sqlalchemy.orm import Session
+from ..core.database import get_db
+from ..models.school import School
 import pandas as pd
-import json
+import os
 from collections import defaultdict
-from app.core.database import SessionLocal, engine, Base
-from app.models.school import School
 
-def load_tvet_schools():
-    """Load TVET schools from Excel file"""
+router = APIRouter(prefix="/admin/schools", tags=["admin-schools"])
+
+@router.post("/reload-from-excel")
+def reload_schools_from_excel(db: Session = Depends(get_db)):
+    """Reload schools from Excel file - ADMIN ONLY"""
     file_path = "10__3__22_UPDATED_LIST_OF_TVET_SCHOOLS_AND_TRADES_TO_BE_CHOSEN_BY_S3_CANDIDATES__2022_1_.xlsx"
     
     if not os.path.exists(file_path):
-        print(f"Excel file not found: {file_path}")
-        return
+        raise HTTPException(status_code=404, detail=f"Excel file not found: {file_path}")
     
-    print("Reading Excel file...")
     try:
-        # Read with header=1 since row 1 contains the actual headers
+        # Read Excel
         df = pd.read_excel(file_path, header=1)
-        print(f"Found {len(df)} rows in Excel")
-        print(f"Columns: {list(df.columns)}")
-        
-        # Clean column names
         df.columns = [col.strip() if isinstance(col, str) else col for col in df.columns]
-        
-        db = SessionLocal()
-        Base.metadata.create_all(bind=engine)
-        
-        # Clear existing schools
-        db.query(School).delete()
-        db.commit()
         
         # Group trades by school
         schools_data = defaultdict(lambda: {
@@ -45,66 +32,63 @@ def load_tvet_schools():
         })
         
         for idx, row in df.iterrows():
-            # Skip rows with missing essential data
             if pd.isna(row['School Name']) or pd.isna(row['District']):
                 continue
             
             school_key = (str(row['School Name']).strip(), str(row['District']).strip())
             school_data = schools_data[school_key]
             
-            # Set basic school info (same for all trades of this school)
             school_data['school_code'] = str(row['School code']).strip() if pd.notna(row['School code']) else None
             school_data['name'] = str(row['School Name']).strip()
             school_data['province'] = str(row['Province']).strip()
             school_data['district'] = str(row['District']).strip()
             school_data['gender'] = str(row['Gender']).strip() if pd.notna(row['Gender']) else 'Mixt'
             
-            # Add trades (use Trade in full as primary)
             if pd.notna(row['Trade in full']):
                 trade = str(row['Trade in full']).strip()
                 if trade and trade not in school_data['trades']:
                     school_data['trades'].append(trade)
         
-        schools_added = 0
+        # Clear existing schools
+        db.query(School).delete()
+        db.commit()
         
+        # Insert schools
+        schools_added = 0
         for (school_name, district), school_data in schools_data.items():
             school = School(
                 school_code=school_data['school_code'],
                 name=school_data['name'],
-                type="TVET",
-                category="Public",
+                type='TVET',
+                category='Public',
                 province=school_data['province'],
                 district=school_data['district'],
-                trades=school_data['trades'] if school_data['trades'] else [],
+                trades=school_data['trades'],
                 gender=school_data['gender']
             )
             db.add(school)
             schools_added += 1
-            print(f"  Added: {school_data['name']} ({school_data['district']}) - {len(school_data['trades'])} trades")
         
         db.commit()
-        print(f"\nSuccessfully added {schools_added} schools from Excel")
         
-        # Show statistics
-        total = db.query(School).count()
-        print(f"\nDatabase Statistics:")
-        print(f"  Total schools: {total}")
+        # Verify RUNDA TVET
+        runda = db.query(School).filter(School.name.ilike('%RUNDA%')).first()
+        runda_info = None
+        if runda:
+            runda_info = {
+                "id": runda.id,
+                "name": runda.name,
+                "district": runda.district,
+                "trades_count": len(runda.trades) if runda.trades else 0,
+                "trades": runda.trades
+            }
         
-        # Show sample data
-        sample_schools = db.query(School).limit(3).all()
-        print(f"\nSample schools:")
-        for school in sample_schools:
-            trades = school.trades if school.trades else []
-            print(f"  - {school.name} ({school.school_code})")
-            print(f"    District: {school.district}")
-            print(f"    Trades ({len(trades)}): {', '.join(trades[:3])}{'...' if len(trades) > 3 else ''}")
-        
-        db.close()
+        return {
+            "success": True,
+            "schools_loaded": schools_added,
+            "runda_tvet_verification": runda_info
+        }
         
     except Exception as e:
-        print(f"Error: {e}")
-        import traceback
-        traceback.print_exc()
-
-if __name__ == "__main__":
-    load_tvet_schools()
+        db.rollback()
+        raise HTTPException(status_code=500, detail=f"Error reloading schools: {str(e)}")
