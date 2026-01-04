@@ -310,7 +310,7 @@ async function onDistrictChange() {
     try {
       const res = await api.get(`/locations/schools/district/${encodeURIComponent(newUser.value.province)}/${encodeURIComponent(newUser.value.district)}`)
       schools.value = res.data
-      console.log('Loaded schools:', schools.value)
+      console.log('Loaded schools:', schools.value.length, schools.value)
     } catch (err) {
       console.error('Failed to load schools:', err)
     }
