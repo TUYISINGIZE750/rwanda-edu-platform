@@ -256,30 +256,7 @@ const resources = ref([])
 const loading = ref(false)
 const hasPermissions = ref(true)
 const isClassTeacher = ref(false)
-const schoolDepartments = ref([
-  'Software Development',
-  'Computer Systems and Architecture',
-  'Land Surveying',
-  'Electronics',
-  'Electrical Installation',
-  'Plumbing',
-  'Mechanical Engineering',
-  'Civil Engineering',
-  'Automotive Technology',
-  'Welding and Metal Fabrication',
-  'Carpentry and Joinery',
-  'Masonry',
-  'Hospitality Management',
-  'Culinary Arts',
-  'Agriculture',
-  'Animal Husbandry',
-  'Building Construction',
-  'Tailoring and Fashion Design',
-  'Hairdressing and Beauty',
-  'ICT Support',
-  'Accounting',
-  'Secretarial Studies'
-])
+const schoolDepartments = ref([])
 const showCreateModuleModal = ref(false)
 const showCreateGroupModal = ref(false)
 const newModule = ref({ name: '', department: '', grade: null })
@@ -378,62 +355,11 @@ async function loadDashboard() {
 async function loadSchoolDepartments() {
   try {
     const response = await api.get(`/locations/schools/${authStore.user.school_id}`)
-    if (response.data.trades && response.data.trades.length > 0) {
-      schoolDepartments.value = response.data.trades
-    } else {
-      // Fallback to default trades
-      schoolDepartments.value = [
-        'Software Development',
-        'Computer Systems and Architecture',
-        'Land Surveying',
-        'Electronics',
-        'Electrical Installation',
-        'Plumbing',
-        'Mechanical Engineering',
-        'Civil Engineering',
-        'Automotive Technology',
-        'Welding and Metal Fabrication',
-        'Carpentry and Joinery',
-        'Masonry',
-        'Hospitality Management',
-        'Culinary Arts',
-        'Agriculture',
-        'Animal Husbandry',
-        'Building Construction',
-        'Tailoring and Fashion Design',
-        'Hairdressing and Beauty',
-        'ICT Support',
-        'Accounting',
-        'Secretarial Studies'
-      ]
-    }
+    schoolDepartments.value = response.data.trades || []
+    console.log('Loaded school trades:', schoolDepartments.value)
   } catch (err) {
     console.error('Failed to load school trades:', err)
-    // Use fallback
-    schoolDepartments.value = [
-      'Software Development',
-      'Computer Systems and Architecture',
-      'Land Surveying',
-      'Electronics',
-      'Electrical Installation',
-      'Plumbing',
-      'Mechanical Engineering',
-      'Civil Engineering',
-      'Automotive Technology',
-      'Welding and Metal Fabrication',
-      'Carpentry and Joinery',
-      'Masonry',
-      'Hospitality Management',
-      'Culinary Arts',
-      'Agriculture',
-      'Animal Husbandry',
-      'Building Construction',
-      'Tailoring and Fashion Design',
-      'Hairdressing and Beauty',
-      'ICT Support',
-      'Accounting',
-      'Secretarial Studies'
-    ]
+    schoolDepartments.value = []
   }
 }
 

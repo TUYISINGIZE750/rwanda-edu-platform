@@ -478,11 +478,11 @@ async def upload_resource(
     title: str = Form(...),
     type: str = Form(...),
     description: Optional[str] = Form(None),
-    file: Optional[UploadFile] = File(None),
+    file: UploadFile = File(...),
     current_user: User = Depends(get_current_user),
     db: Session = Depends(get_db)
 ):
-    """Upload a resource to a group"""
+    """Upload a resource to a group - accepts all file types"""
     if current_user.role != UserRole.TEACHER:
         raise HTTPException(status_code=403, detail="Teacher only")
     
@@ -490,20 +490,28 @@ async def upload_resource(
     from ..models.group_member import GroupMember
     from ..models.notification import Notification, NotificationType
     
-    file_url = None
-    if file:
-        upload_dir = "uploads/resources"
-        os.makedirs(upload_dir, exist_ok=True)
-        
-        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        file_extension = os.path.splitext(file.filename)[1]
-        filename = f"{timestamp}_{file.filename}"
-        file_path = os.path.join(upload_dir, filename)
-        
+    # Create upload directory
+    upload_dir = "uploads/resources"
+    os.makedirs(upload_dir, exist_ok=True)
+    
+    # Generate unique filename
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    file_extension = os.path.splitext(file.filename)[1]
+    safe_filename = f"{timestamp}_{file.filename.replace(' ', '_')}"
+    file_path = os.path.join(upload_dir, safe_filename)
+    
+    # Save file
+    try:
         with open(file_path, "wb") as buffer:
             shutil.copyfileobj(file.file, buffer)
-        
-        file_url = f"http://localhost:8080/uploads/resources/{filename}"
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Failed to save file: {str(e)}")
+    
+    # Get file size
+    file_size = os.path.getsize(file_path)
+    
+    # Create resource URL
+    file_url = f"/uploads/resources/{safe_filename}"
     
     resource = Resource(
         group_id=group_id,
@@ -511,7 +519,8 @@ async def upload_resource(
         title=title,
         type=type,
         url=file_url,
-        description=description
+        description=description,
+        size=file_size
     )
     db.add(resource)
     db.commit()
@@ -547,6 +556,7 @@ async def upload_resource(
         "id": resource.id,
         "title": resource.title,
         "url": file_url,
+        "size": file_size,
         "message": f"Resource uploaded successfully! {notification_count} students notified."
     }
 
