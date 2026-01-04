@@ -196,14 +196,14 @@ def get_school_by_id(school_id: int, db: Session = Depends(get_db)):
     # Directly construct response to ensure trades are included
     return SchoolResponse(
         id=school.id,
-        school_code=school.school_code if hasattr(school, 'school_code') else None,
+        school_code=getattr(school, 'school_code', None),
         name=school.name,
         type=school.type,
         category=school.category,
         province=school.province,
         district=school.district,
         trades=school.trades if school.trades else [],
-        gender=school.gender if hasattr(school, 'gender') else None
+        gender=getattr(school, 'gender', None)
     )
 
 @router.get("/schools/{school_id}/trades")
