@@ -23,6 +23,17 @@ def seed_schools():
         # Create tables
         Base.metadata.create_all(bind=engine)
         
+        # Add missing columns if they don't exist (PostgreSQL)
+        try:
+            from sqlalchemy import text
+            db.execute(text("ALTER TABLE schools ADD COLUMN IF NOT EXISTS school_code VARCHAR"))
+            db.execute(text("ALTER TABLE schools ADD COLUMN IF NOT EXISTS gender VARCHAR"))
+            db.commit()
+            print("Added missing columns (if needed)")
+        except Exception as e:
+            print(f"Note: Could not add columns (might already exist): {e}")
+            db.rollback()
+        
         # Check if schools already exist
         existing_count = db.query(School).count()
         if existing_count > 0:
