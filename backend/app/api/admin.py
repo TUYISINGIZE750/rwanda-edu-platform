@@ -29,6 +29,7 @@ class CreateUserRequest(BaseModel):
     selected_level: Optional[str] = None
     is_class_teacher: bool = False
     managed_class_id: Optional[int] = None
+    can_create_groups: bool = False
 
 router = APIRouter(prefix="/admin", tags=["admin"])
 
@@ -212,6 +213,7 @@ def list_users(
         "selected_level": u.selected_level,
         "is_class_teacher": u.is_class_teacher,
         "managed_class_id": u.managed_class_id,
+        "can_create_groups": u.can_create_groups,
         "is_active": u.is_active,
         "locale": u.locale,
         "created_at": u.created_at,
@@ -242,6 +244,7 @@ def create_user(
         selected_level=request.selected_level,
         is_class_teacher=1 if request.is_class_teacher else 0,
         managed_class_id=request.managed_class_id,
+        can_create_groups=1 if (request.can_create_groups or request.is_class_teacher) else 0,
         generated_password=request.password
     )
     
@@ -751,3 +754,33 @@ def get_available_groups(
         "grade": g.grade,
         "department": g.department
     } for g in groups]
+
+class GrantPermissionRequest(BaseModel):
+    teacher_id: int
+    can_create_groups: bool
+
+@router.post("/grant-permission")
+def grant_create_permission(
+    request: GrantPermissionRequest,
+    current_user: User = Depends(require_admin),
+    db: Session = Depends(get_db)
+):
+    """Grant or revoke permission for teacher to create classes/groups"""
+    teacher = db.query(User).filter(
+        User.id == request.teacher_id,
+        User.school_id == current_user.school_id,
+        User.role == UserRole.TEACHER
+    ).first()
+    
+    if not teacher:
+        raise HTTPException(status_code=404, detail="Teacher not found")
+    
+    teacher.can_create_groups = 1 if request.can_create_groups else 0
+    db.commit()
+    
+    return {
+        "status": "success",
+        "message": f"Permission {'granted to' if request.can_create_groups else 'revoked from'} {teacher.full_name}",
+        "teacher": teacher.full_name,
+        "can_create_groups": bool(teacher.can_create_groups)
+    }

@@ -106,7 +106,9 @@ def get_teacher_dashboard(
             "teacher_info": {
                 "name": current_user.full_name,
                 "email": current_user.email,
-                "school_id": current_user.school_id
+                "school_id": current_user.school_id,
+                "is_class_teacher": current_user.is_class_teacher,
+                "can_create_groups": current_user.can_create_groups or current_user.is_class_teacher
             },
             "stats": {
                 "groups_count": len(groups),
@@ -135,6 +137,13 @@ async def create_group(
     """Create a new group with auto-assignment based on department"""
     if current_user.role != UserRole.TEACHER:
         raise HTTPException(status_code=403, detail="Teacher only")
+    
+    # Check if teacher has permission to create groups
+    if not current_user.is_class_teacher and not current_user.can_create_groups:
+        raise HTTPException(
+            status_code=403, 
+            detail="You don't have permission to create classes/groups. Please contact your administrator."
+        )
     
     try:
         group_type = GroupType(request.type.upper())

@@ -67,6 +67,10 @@
               </td>
               <td class="px-6 py-4 whitespace-nowrap text-sm space-x-2">
                 <button @click="editUser(user)" class="text-blue-600 hover:text-blue-800">Edit</button>
+                <button v-if="user.role === 'TEACHER'" @click="togglePermission(user)" 
+                        class="text-purple-600 hover:text-purple-800">
+                  {{ user.can_create_groups ? '🔓 Revoke' : '🔒 Grant' }}
+                </button>
                 <button v-if="user.role === 'TEACHER'" @click="assignTeacher(user)" 
                         class="text-green-600 hover:text-green-800">Assign</button>
                 <button v-if="user.role !== 'ADMIN'" @click="toggleStatus(user)" 
@@ -139,12 +143,21 @@
             </div>
             
             <div class="flex items-center space-x-2">
+              <input v-model="newUser.can_create_groups" type="checkbox" id="canCreateGroups" class="rounded">
+              <label for="canCreateGroups" class="text-sm font-medium text-gray-700">
+                Can create classes/groups?
+              </label>
+            </div>
+            <p class="text-xs text-gray-500 ml-6 -mt-2">Grant permission to create classes and groups</p>
+            
+            <div class="flex items-center space-x-2">
               <input v-model="newUser.is_class_teacher" type="checkbox" id="newIsClassTeacher" 
                      @change="onClassTeacherChange" class="rounded">
               <label for="newIsClassTeacher" class="text-sm font-medium text-gray-700">
-                Is Class Teacher? (Full permissions)
+                Is Class Teacher?
               </label>
             </div>
+            <p class="text-xs text-gray-500 ml-6 -mt-2">Class teachers automatically get create permission</p>
             
             <div v-if="newUser.is_class_teacher">
               <label class="block text-sm font-medium text-gray-700 mb-2">Managed Class</label>
@@ -154,7 +167,6 @@
                   {{ group.name }} ({{ group.type }})
                 </option>
               </select>
-              <p class="text-xs text-gray-500 mt-1">Class teacher can create modules and manage students</p>
             </div>
           </template>
         </div>
@@ -258,7 +270,8 @@ const newUser = ref({
   selected_trade: '',
   selected_level: '',
   is_class_teacher: false,
-  managed_class_id: null
+  managed_class_id: null,
+  can_create_groups: false
 })
 const provinces = ref([])
 const districts = ref([])
@@ -376,6 +389,7 @@ async function createUser() {
       payload.selected_trade = newUser.value.selected_trade || null
       payload.is_class_teacher = newUser.value.is_class_teacher
       payload.managed_class_id = newUser.value.managed_class_id || null
+      payload.can_create_groups = newUser.value.can_create_groups
     }
     
     await api.post('/admin/users', payload)
@@ -393,7 +407,8 @@ async function createUser() {
       selected_trade: '',
       selected_level: '',
       is_class_teacher: false,
-      managed_class_id: null
+      managed_class_id: null,
+      can_create_groups: false
     }
     loadUsers()
   } catch (err) {
@@ -494,6 +509,24 @@ async function submitAssignment() {
     loadUsers()
   } catch (err) {
     alert(err.response?.data?.detail || 'Failed to assign teacher')
+  }
+}
+
+async function togglePermission(user) {
+  const action = user.can_create_groups ? 'revoke' : 'grant'
+  if (!confirm(`${action === 'grant' ? 'Grant' : 'Revoke'} permission to create classes/groups for ${user.full_name}?`)) {
+    return
+  }
+  
+  try {
+    await api.post('/admin/grant-permission', {
+      teacher_id: user.id,
+      can_create_groups: !user.can_create_groups
+    })
+    alert(`Permission ${action === 'grant' ? 'granted' : 'revoked'} successfully!`)
+    loadUsers()
+  } catch (err) {
+    alert(err.response?.data?.detail || 'Failed to update permission')
   }
 }
 </script>

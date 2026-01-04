@@ -30,7 +30,7 @@
         <div class="max-w-2xl">
           <h1 class="text-5xl font-bold mb-4">Welcome back, {{ authStore.user?.full_name?.split(' ')[0] }}</h1>
           <p class="text-xl text-gray-300 mb-8">Manage your classes, inspire students, and track progress all in one place</p>
-          <div v-if="isClassTeacher" class="flex gap-4">
+          <div v-if="canCreateGroups" class="flex gap-4">
             <button @click="openCreateClassModal" class="px-8 py-3 bg-orange-600 hover:bg-orange-700 text-white rounded-lg font-semibold transition-all">
               Create Class
             </button>
@@ -39,7 +39,7 @@
             </button>
           </div>
           <div v-else-if="!hasPermissions" class="bg-yellow-600 bg-opacity-20 border border-yellow-500 rounded-lg p-4">
-            <p class="text-yellow-200">⏳ Waiting for class or group assignment from your administrator</p>
+            <p class="text-yellow-200">⏳ Waiting for permission from administrator to create classes or group assignment</p>
           </div>
         </div>
       </div>
@@ -109,7 +109,7 @@
           <p class="text-gray-600 mb-6">You haven't been assigned to any classes or groups yet. Please contact your administrator (DOS) or class teacher for assignment.</p>
         </div>
 
-        <div v-else-if="groups.length === 0 && isClassTeacher" class="bg-white border border-gray-200 rounded-lg p-12 text-center">
+        <div v-else-if="groups.length === 0 && canCreateGroups" class="bg-white border border-gray-200 rounded-lg p-12 text-center">
           <div class="text-6xl mb-4">📚</div>
           <p class="text-xl font-semibold text-gray-900 mb-2">No classes, groups or clubs yet</p>
           <p class="text-gray-600 mb-6">Create your first class or group to get started</p>
@@ -291,7 +291,7 @@ const groups = ref([])
 const resources = ref([])
 const loading = ref(false)
 const hasPermissions = ref(true)
-const isClassTeacher = ref(false)
+const canCreateGroups = ref(false)
 const schoolDepartments = ref([])
 const showCreateModuleModal = ref(false)
 const showCreateGroupModal = ref(false)
@@ -390,21 +390,10 @@ async function loadDashboard() {
     groups.value = response.data.groups || []
     resources.value = response.data.resources || []
     
-    // Check if teacher has permissions
-    const user = authStore.user
-    if (user.is_class_teacher && user.managed_class_id) {
-      // Class teacher - can manage their class
-      hasPermissions.value = true
-      isClassTeacher.value = true
-    } else if (groups.value.length > 0) {
-      // Regular teacher with group assignments
-      hasPermissions.value = true
-      isClassTeacher.value = false
-    } else {
-      // No permissions yet
-      hasPermissions.value = false
-      isClassTeacher.value = false
-    }
+    // Check permissions from backend
+    const teacherInfo = response.data.teacher_info || {}
+    canCreateGroups.value = teacherInfo.can_create_groups || false
+    hasPermissions.value = canCreateGroups.value || groups.value.length > 0
   } catch (err) {
     console.error('Failed to load dashboard:', err)
   } finally {
