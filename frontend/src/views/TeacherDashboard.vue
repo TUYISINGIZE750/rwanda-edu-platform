@@ -44,7 +44,7 @@
     <!-- Main Content -->
     <main class="max-w-7xl mx-auto px-8 py-16">
       <!-- Stats Grid -->
-      <div class="grid grid-cols-3 gap-6 mb-16">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
         <div class="bg-white border border-gray-200 rounded-lg p-8 hover:shadow-lg transition-all">
           <div class="flex items-center justify-between mb-4">
             <div class="text-4xl font-bold text-gray-900">{{ groups.length }}</div>
@@ -76,7 +76,7 @@
       <!-- Quick Actions -->
       <section class="mb-16">
         <h2 class="text-2xl font-bold text-gray-900 mb-8">Quick Actions</h2>
-        <div class="grid grid-cols-3 gap-4">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
           <button @click="showCreateModuleModal = true" class="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition-all text-center group">
             <div class="text-4xl mb-3">➕</div>
             <p class="font-semibold text-gray-900 group-hover:text-orange-600">Create Module</p>
@@ -119,7 +119,7 @@
           </div>
         </div>
 
-        <div v-else class="grid grid-cols-2 gap-6">
+        <div v-else class="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div v-for="group in groups" :key="group.id" 
                @click="$router.push(`/hubs/${group.id}`)"
                class="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg hover:border-orange-300 transition-all cursor-pointer">
