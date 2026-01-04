@@ -230,15 +230,17 @@ router.beforeEach(async (to, from, next) => {
     await authStore.fetchUser()
   }
   
+  const userRole = authStore.user?.role?.toUpperCase()
+  
   if (to.meta.requiresAuth && !authStore.isAuthenticated) {
     next('/login')
-  } else if (to.meta.requiresTeacher && authStore.user?.role?.toLowerCase() !== 'teacher') {
+  } else if (to.meta.requiresTeacher && userRole !== 'TEACHER') {
     next('/home')
-  } else if (to.meta.requiresAdmin && authStore.user?.role?.toLowerCase() !== 'admin') {
+  } else if (to.meta.requiresAdmin && userRole !== 'ADMIN') {
     next('/home')
   } else if ((to.path === '/' || to.path === '/login') && authStore.isAuthenticated) {
     next('/home')
-  } else if (to.path === '/admin-login' && authStore.isAuthenticated && authStore.user?.role?.toLowerCase() === 'admin') {
+  } else if (to.path === '/admin-login' && authStore.isAuthenticated && userRole === 'ADMIN') {
     next('/admin-dashboard')
   } else {
     next()

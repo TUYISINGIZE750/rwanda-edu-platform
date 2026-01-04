@@ -266,13 +266,13 @@ const loading = ref(true)
 
 onMounted(async () => {
   if (!authStore.isAuthenticated) {
-    router.push('/login')
+    router.push('/admin-login')
     return
   }
   
   const userRole = authStore.user?.role?.toUpperCase()
   if (userRole !== 'ADMIN') {
-    router.push('/login')
+    router.push('/admin-login')
     return
   }
   
