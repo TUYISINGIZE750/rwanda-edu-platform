@@ -56,10 +56,20 @@ def get_teacher_dashboard(
                 groups = []
             print(f"Regular teacher - showing {len(groups)} groups from {len(group_ids)} memberships")
         
-        total_students = db.query(func.count(User.id)).filter(
-            User.school_id == current_user.school_id,
-            User.role == UserRole.STUDENT
-        ).scalar() or 0
+        # Get students filtered by teacher's department
+        if current_user.selected_trade:
+            # Teacher has department - show only students in same department
+            total_students = db.query(func.count(User.id)).filter(
+                User.school_id == current_user.school_id,
+                User.role == UserRole.STUDENT,
+                User.selected_trade == current_user.selected_trade
+            ).scalar() or 0
+        else:
+            # Teacher has no department - show all students
+            total_students = db.query(func.count(User.id)).filter(
+                User.school_id == current_user.school_id,
+                User.role == UserRole.STUDENT
+            ).scalar() or 0
         
         # Get resources uploaded by this teacher
         from ..models.resource import Resource
@@ -117,12 +127,12 @@ def get_teacher_dashboard(
         raise HTTPException(status_code=500, detail=str(e))
 
 @router.post("/groups")
-def create_group(
+async def create_group(
     request: CreateGroupRequest,
     current_user: User = Depends(get_current_user),
     db: Session = Depends(get_db)
 ):
-    """Create a new group with auto-assignment"""
+    """Create a new group with auto-assignment based on department"""
     if current_user.role != UserRole.TEACHER:
         raise HTTPException(status_code=403, detail="Teacher only")
     
@@ -153,46 +163,20 @@ def create_group(
     
     db.commit()
     
-    # AUTO-ASSIGN STUDENTS (requires BOTH level AND trade)
+    # AUTO-ASSIGN STUDENTS based on department match
     from ..models.group_member import GroupMember
-    from sqlalchemy import or_
-    
-    name_upper = group.name.upper()
-    level = None
-    for num in ['1', '2', '3', '4', '5', '6']:
-        if f'L{num}' in name_upper or f'LEVEL {num}' in name_upper or f'LEVEL{num}' in name_upper:
-            level = f'Level {num}'
-            break
-    
-    trade_keywords = []
-    if group.department:
-        trade_keywords = [w for w in group.department.split() if len(w) > 2]
-    else:
-        trade_map = {
-            'SWD': 'Software Development',
-            'SOFTWARE': 'Software Development',
-            'ELECTRONICS': 'Electronics',
-            'ELECTRICAL': 'Electrical',
-            'MECHANICAL': 'Mechanical',
-            'CIVIL': 'Civil',
-            'PLUMBING': 'Plumbing'
-        }
-        for word in name_upper.split():
-            if word in trade_map:
-                trade_keywords.append(trade_map[word])
+    from ..models.notification import NotificationType
+    from .notifications import create_notification
     
     assigned_count = 0
-    if level and trade_keywords:
-        query = db.query(User).filter(
+    
+    if group.department:
+        # Find students with matching department
+        matching_students = db.query(User).filter(
             User.school_id == group.school_id,
             User.role == UserRole.STUDENT,
-            User.selected_level == level
-        )
-        
-        filters = [User.selected_trade.ilike(f'%{keyword}%') for keyword in trade_keywords]
-        query = query.filter(or_(*filters))
-        
-        matching_students = query.all()
+            User.selected_trade == group.department
+        ).all()
         
         for student in matching_students:
             existing = db.query(GroupMember).filter(
@@ -207,19 +191,32 @@ def create_group(
                 )
                 db.add(member)
                 assigned_count += 1
+                
+                # Send notification to student
+                await create_notification(
+                    db=db,
+                    user_id=student.id,
+                    notification_type=NotificationType.CLASS_ASSIGNED,
+                    title=f"Added to {group.name}",
+                    message=f"You've been added to {group.name} by {current_user.full_name}",
+                    link=f"/hubs/{group.id}",
+                    related_id=group.id,
+                    related_type="group"
+                )
         
         db.commit()
     
     message = f"Group created successfully!"
-    if level and trade_keywords:
-        message += f" {assigned_count} students auto-assigned ({level} + {', '.join(trade_keywords)})."
+    if group.department:
+        message += f" {assigned_count} students auto-assigned from {group.department} department."
     else:
-        message += " No auto-assignment (include level like 'L5' and trade in name)."
+        message += " No department specified - no auto-assignment."
     
     return {
         "id": group.id,
         "name": group.name,
         "type": group.type.value,
+        "department": group.department,
         "students_assigned": assigned_count,
         "message": message
     }
@@ -306,7 +303,7 @@ def get_group_students(
     current_user: User = Depends(get_current_user),
     db: Session = Depends(get_db)
 ):
-    """Get students in a group"""
+    """Get students in a group - filtered by teacher's department"""
     if current_user.role != UserRole.TEACHER:
         raise HTTPException(status_code=403, detail="Teacher only")
     
@@ -314,10 +311,16 @@ def get_group_students(
     if not group:
         raise HTTPException(status_code=404, detail="Group not found")
     
-    students = db.query(User).filter(
+    # Filter students by teacher's department
+    query = db.query(User).filter(
         User.school_id == group.school_id,
         User.role == UserRole.STUDENT
-    ).all()
+    )
+    
+    if current_user.selected_trade:
+        query = query.filter(User.selected_trade == current_user.selected_trade)
+    
+    students = query.all()
     
     return [{
         "id": s.id,
@@ -653,3 +656,34 @@ def get_resource_details(
         "group_name": group.name if group else "Unknown",
         "created_at": resource.created_at.isoformat() if resource.created_at else None
     }
+
+
+@router.get("/students")
+def get_department_students(
+    current_user: User = Depends(get_current_user),
+    db: Session = Depends(get_db)
+):
+    """Get all students in teacher's department"""
+    if current_user.role != UserRole.TEACHER:
+        raise HTTPException(status_code=403, detail="Teacher only")
+    
+    query = db.query(User).filter(
+        User.school_id == current_user.school_id,
+        User.role == UserRole.STUDENT
+    )
+    
+    # Filter by teacher's department if assigned
+    if current_user.selected_trade:
+        query = query.filter(User.selected_trade == current_user.selected_trade)
+    
+    students = query.order_by(User.selected_level, User.full_name).all()
+    
+    return [{
+        "id": s.id,
+        "full_name": s.full_name,
+        "email": s.email,
+        "selected_trade": s.selected_trade,
+        "selected_level": s.selected_level,
+        "grade": s.grade,
+        "created_at": s.created_at.isoformat() if s.created_at else None
+    } for s in students]

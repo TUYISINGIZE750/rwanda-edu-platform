@@ -25,6 +25,10 @@ class CreateUserRequest(BaseModel):
     district: str
     locale: str
     grade: Optional[int] = None
+    selected_trade: Optional[str] = None
+    selected_level: Optional[str] = None
+    is_class_teacher: bool = False
+    managed_class_id: Optional[int] = None
 
 router = APIRouter(prefix="/admin", tags=["admin"])
 
@@ -204,6 +208,10 @@ def list_users(
         "full_name": u.full_name,
         "role": u.role.value,
         "grade": u.grade,
+        "selected_trade": u.selected_trade,
+        "selected_level": u.selected_level,
+        "is_class_teacher": u.is_class_teacher,
+        "managed_class_id": u.managed_class_id,
         "is_active": u.is_active,
         "locale": u.locale,
         "created_at": u.created_at,
@@ -229,7 +237,12 @@ def create_user(
         province=current_user.province,
         district=current_user.district,
         grade=request.grade,
-        locale=request.locale or "rw"
+        locale=request.locale or "rw",
+        selected_trade=request.selected_trade,
+        selected_level=request.selected_level,
+        is_class_teacher=1 if request.is_class_teacher else 0,
+        managed_class_id=request.managed_class_id,
+        generated_password=request.password
     )
     
     db.add(user)
@@ -240,7 +253,9 @@ def create_user(
         "id": user.id,
         "email": user.email,
         "full_name": user.full_name,
-        "role": user.role.value
+        "role": user.role.value,
+        "selected_trade": user.selected_trade,
+        "is_class_teacher": user.is_class_teacher
     }
 
 @router.put("/users/{user_id}")
@@ -714,6 +729,7 @@ def get_available_teachers(
         "id": t.id,
         "full_name": t.full_name,
         "email": t.email,
+        "selected_trade": t.selected_trade,
         "is_class_teacher": t.is_class_teacher,
         "managed_class_id": t.managed_class_id
     } for t in teachers]

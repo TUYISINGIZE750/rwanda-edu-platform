@@ -9,7 +9,7 @@ from ..services.school_service import validate_trade_for_school
 router = APIRouter(prefix="/auth", tags=["auth"])
 
 @router.post("/register", response_model=UserResponse)
-def register(user_data: UserCreate, db: Session = Depends(get_db)):
+async def register(user_data: UserCreate, db: Session = Depends(get_db)):
     if db.query(User).filter(User.email == user_data.email).first():
         raise HTTPException(status_code=400, detail="Email already registered")
     
@@ -33,6 +33,49 @@ def register(user_data: UserCreate, db: Session = Depends(get_db)):
     db.add(user)
     db.commit()
     db.refresh(user)
+    
+    # AUTO-ASSIGN to matching modules if student
+    if user.role == UserRole.STUDENT and user.selected_trade:
+        from ..models.group import Group
+        from ..models.group_member import GroupMember
+        from ..models.notification import NotificationType
+        from .notifications import create_notification
+        
+        # Find all classes with matching department
+        matching_groups = db.query(Group).filter(
+            Group.school_id == user.school_id,
+            Group.department == user.selected_trade,
+            Group.type == 'CLASS'
+        ).all()
+        
+        for group in matching_groups:
+            # Check if not already member
+            existing = db.query(GroupMember).filter(
+                GroupMember.group_id == group.id,
+                GroupMember.user_id == user.id
+            ).first()
+            
+            if not existing:
+                member = GroupMember(
+                    group_id=group.id,
+                    user_id=user.id
+                )
+                db.add(member)
+                
+                # Notify student
+                await create_notification(
+                    db=db,
+                    user_id=user.id,
+                    notification_type=NotificationType.CLASS_ASSIGNED,
+                    title=f"Added to {group.name}",
+                    message=f"You've been automatically added to {group.name} based on your department",
+                    link=f"/hubs/{group.id}",
+                    related_id=group.id,
+                    related_type="group"
+                )
+        
+        db.commit()
+    
     return user
 
 @router.post("/login", response_model=Token)
