@@ -368,11 +368,6 @@ async function loadDashboard() {
       hasPermissions.value = false
       isClassTeacher.value = false
     }
-    
-    // Load school departments/trades if class teacher
-    if (isClassTeacher.value || groups.value.length > 0) {
-      loadSchoolDepartments() // Load in background, don't wait
-    }
   } catch (err) {
     console.error('Failed to load dashboard:', err)
   } finally {
@@ -381,44 +376,64 @@ async function loadDashboard() {
 }
 
 async function loadSchoolDepartments() {
-  // Always start with default TVET trades to ensure dropdown works
-  const defaultTrades = [
-    'Software Development',
-    'Computer Systems and Architecture',
-    'Land Surveying',
-    'Electronics',
-    'Electrical Installation',
-    'Plumbing',
-    'Mechanical Engineering',
-    'Civil Engineering',
-    'Automotive Technology',
-    'Welding and Metal Fabrication',
-    'Carpentry and Joinery',
-    'Masonry',
-    'Hospitality Management',
-    'Culinary Arts',
-    'Agriculture',
-    'Animal Husbandry',
-    'Building Construction',
-    'Tailoring and Fashion Design',
-    'Hairdressing and Beauty',
-    'ICT Support',
-    'Accounting',
-    'Secretarial Studies'
-  ]
-  
   try {
     const response = await api.get(`/locations/schools/${authStore.user.school_id}`)
     if (response.data.trades && response.data.trades.length > 0) {
-      // Merge school-specific trades with defaults (school trades first)
-      const uniqueTrades = [...new Set([...response.data.trades, ...defaultTrades])]
-      schoolDepartments.value = uniqueTrades
+      schoolDepartments.value = response.data.trades
     } else {
-      schoolDepartments.value = defaultTrades
+      // Fallback to default trades
+      schoolDepartments.value = [
+        'Software Development',
+        'Computer Systems and Architecture',
+        'Land Surveying',
+        'Electronics',
+        'Electrical Installation',
+        'Plumbing',
+        'Mechanical Engineering',
+        'Civil Engineering',
+        'Automotive Technology',
+        'Welding and Metal Fabrication',
+        'Carpentry and Joinery',
+        'Masonry',
+        'Hospitality Management',
+        'Culinary Arts',
+        'Agriculture',
+        'Animal Husbandry',
+        'Building Construction',
+        'Tailoring and Fashion Design',
+        'Hairdressing and Beauty',
+        'ICT Support',
+        'Accounting',
+        'Secretarial Studies'
+      ]
     }
   } catch (err) {
-    // Always fallback to default trades
-    schoolDepartments.value = defaultTrades
+    console.error('Failed to load school trades:', err)
+    // Use fallback
+    schoolDepartments.value = [
+      'Software Development',
+      'Computer Systems and Architecture',
+      'Land Surveying',
+      'Electronics',
+      'Electrical Installation',
+      'Plumbing',
+      'Mechanical Engineering',
+      'Civil Engineering',
+      'Automotive Technology',
+      'Welding and Metal Fabrication',
+      'Carpentry and Joinery',
+      'Masonry',
+      'Hospitality Management',
+      'Culinary Arts',
+      'Agriculture',
+      'Animal Husbandry',
+      'Building Construction',
+      'Tailoring and Fashion Design',
+      'Hairdressing and Beauty',
+      'ICT Support',
+      'Accounting',
+      'Secretarial Studies'
+    ]
   }
 }
 
@@ -432,6 +447,7 @@ onMounted(async () => {
     return
   }
   
+  await loadSchoolDepartments()
   await loadDashboard()
 })
 </script>
