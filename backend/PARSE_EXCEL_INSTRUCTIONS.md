@@ -1,7 +1,7 @@
 # 🚀 Automated TVET Schools Excel Parser
 
 ## What This Does
-Automatically reads the TVET schools Excel file, intelligently detects columns, and updates all 165 schools in the database with their real trades.
+Automatically reads the TVET schools Excel file using school codes for accurate identification, and updates all 164 schools in the database with their real trades from Ministry of Education data.
 
 ## Prerequisites
 ```bash
@@ -28,7 +28,7 @@ pip install pandas openpyxl sqlalchemy psycopg2-binary
 ✅ **Automatic Column Detection** - Finds school, trade, province, district columns automatically  
 ✅ **Smart Matching** - Uses exact and fuzzy matching to find schools in database  
 ✅ **Handles Any Format** - Skips header rows, handles merged cells, cleans data  
-✅ **All 165 Schools** - Processes every school in the Excel file  
+✅ **All 164 Schools** - Uses school codes to accurately identify and process every unique school  
 ✅ **Real Trades** - Updates with actual trades from Ministry of Education data  
 
 ## Expected Output
@@ -41,15 +41,15 @@ pip install pandas openpyxl sqlalchemy psycopg2-binary
    trade: 'TRADE'
    province: 'PROVINCE'
    district: 'DISTRICT'
-📊 Parsed 165 unique schools
-✅ Updated 165 schools with trades
+📊 Parsed 164 unique schools (by school code)
+✅ Updated 164/164 schools
 🎯 RUNDA TVET School:
    Trades: {Software Development,Computer system and architecture,Land surveying,Building construction}
 ✅ SUCCESS! All schools updated with trades from Excel
 ```
 
 ## After Running
-- All 165 TVET schools have real trades from Excel
+- All 164 TVET schools have real trades from Excel
 - Teachers see actual trades in department dropdown
 - No more fallback trades needed
 - RUNDA TVET shows: Software Development, Computer Systems and Architecture, Land Surveying, Building Construction
