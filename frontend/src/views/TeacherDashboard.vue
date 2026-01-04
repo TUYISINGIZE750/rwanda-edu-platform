@@ -256,7 +256,30 @@ const resources = ref([])
 const loading = ref(false)
 const hasPermissions = ref(true)
 const isClassTeacher = ref(false)
-const schoolDepartments = ref([])
+const schoolDepartments = ref([
+  'Software Development',
+  'Computer Systems and Architecture',
+  'Land Surveying',
+  'Electronics',
+  'Electrical Installation',
+  'Plumbing',
+  'Mechanical Engineering',
+  'Civil Engineering',
+  'Automotive Technology',
+  'Welding and Metal Fabrication',
+  'Carpentry and Joinery',
+  'Masonry',
+  'Hospitality Management',
+  'Culinary Arts',
+  'Agriculture',
+  'Animal Husbandry',
+  'Building Construction',
+  'Tailoring and Fashion Design',
+  'Hairdressing and Beauty',
+  'ICT Support',
+  'Accounting',
+  'Secretarial Studies'
+])
 const showCreateModuleModal = ref(false)
 const showCreateGroupModal = ref(false)
 const newModule = ref({ name: '', department: '', grade: null })
@@ -348,7 +371,7 @@ async function loadDashboard() {
     
     // Load school departments/trades if class teacher
     if (isClassTeacher.value || groups.value.length > 0) {
-      await loadSchoolDepartments()
+      loadSchoolDepartments() // Load in background, don't wait
     }
   } catch (err) {
     console.error('Failed to load dashboard:', err)
@@ -358,48 +381,48 @@ async function loadDashboard() {
 }
 
 async function loadSchoolDepartments() {
+  // Always start with default TVET trades to ensure dropdown works
+  const defaultTrades = [
+    'Software Development',
+    'Computer Systems and Architecture',
+    'Land Surveying',
+    'Electronics',
+    'Electrical Installation',
+    'Plumbing',
+    'Mechanical Engineering',
+    'Civil Engineering',
+    'Automotive Technology',
+    'Welding and Metal Fabrication',
+    'Carpentry and Joinery',
+    'Masonry',
+    'Hospitality Management',
+    'Culinary Arts',
+    'Agriculture',
+    'Animal Husbandry',
+    'Building Construction',
+    'Tailoring and Fashion Design',
+    'Hairdressing and Beauty',
+    'ICT Support',
+    'Accounting',
+    'Secretarial Studies'
+  ]
+  
   try {
-    console.log('Loading departments for school_id:', authStore.user.school_id)
     const response = await api.get(`/locations/schools/${authStore.user.school_id}`)
-    console.log('School API response:', response.data)
-    
     if (response.data.trades && response.data.trades.length > 0) {
-      schoolDepartments.value = response.data.trades
-      console.log('Loaded departments from API:', schoolDepartments.value)
+      // Merge school-specific trades with defaults (school trades first)
+      const uniqueTrades = [...new Set([...response.data.trades, ...defaultTrades])]
+      schoolDepartments.value = uniqueTrades
     } else {
-      throw new Error('No trades found for school')
+      schoolDepartments.value = defaultTrades
     }
   } catch (err) {
-    console.warn('School not found or no trades, using default TVET trades:', err.message)
-    schoolDepartments.value = [
-      'Software Development',
-      'Computer Systems and Architecture',
-      'Land Surveying',
-      'Electronics',
-      'Electrical Installation',
-      'Plumbing',
-      'Mechanical Engineering',
-      'Civil Engineering',
-      'Automotive Technology',
-      'Welding and Metal Fabrication',
-      'Carpentry and Joinery',
-      'Masonry',
-      'Hospitality Management',
-      'Culinary Arts',
-      'Agriculture',
-      'Animal Husbandry'
-    ]
-    console.log('Using fallback departments:', schoolDepartments.value.length)
+    // Always fallback to default trades
+    schoolDepartments.value = defaultTrades
   }
 }
 
 async function openCreateClassModal() {
-  // Load departments first, then show modal
-  if (schoolDepartments.value.length === 0) {
-    await loadSchoolDepartments()
-  }
-  // Small delay to ensure state updates
-  await new Promise(resolve => setTimeout(resolve, 100))
   showCreateModuleModal.value = true
 }
 
