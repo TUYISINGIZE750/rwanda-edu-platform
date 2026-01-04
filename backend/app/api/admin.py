@@ -622,3 +622,115 @@ def list_backups(
             "status": "completed"
         }
     ]
+
+class AssignTeacherRequest(BaseModel):
+    teacher_id: int
+    group_id: int
+    is_class_teacher: bool = False
+
+@router.post("/assign-teacher")
+def assign_teacher_to_group(
+    request: AssignTeacherRequest,
+    current_user: User = Depends(require_admin),
+    db: Session = Depends(get_db)
+):
+    """Assign teacher to class/group with instant notification"""
+    from ..models.group_member import GroupMember
+    from ..models.notification import Notification, NotificationType
+    
+    # Verify teacher exists
+    teacher = db.query(User).filter(
+        User.id == request.teacher_id,
+        User.school_id == current_user.school_id,
+        User.role == UserRole.TEACHER
+    ).first()
+    
+    if not teacher:
+        raise HTTPException(status_code=404, detail="Teacher not found")
+    
+    # Verify group exists
+    group = db.query(Group).filter(
+        Group.id == request.group_id,
+        Group.school_id == current_user.school_id
+    ).first()
+    
+    if not group:
+        raise HTTPException(status_code=404, detail="Class/Group not found")
+    
+    # If assigning as class teacher
+    if request.is_class_teacher:
+        teacher.is_class_teacher = 1
+        teacher.managed_class_id = request.group_id
+    
+    # Add teacher to group members
+    existing = db.query(GroupMember).filter(
+        GroupMember.group_id == request.group_id,
+        GroupMember.user_id == request.teacher_id
+    ).first()
+    
+    if not existing:
+        member = GroupMember(
+            group_id=request.group_id,
+            user_id=request.teacher_id
+        )
+        db.add(member)
+    
+    # Create notification for teacher
+    notification = Notification(
+        user_id=request.teacher_id,
+        type=NotificationType.TEACHER_ASSIGNED if request.is_class_teacher else NotificationType.GROUP_ASSIGNED,
+        title=f"{'Class Teacher' if request.is_class_teacher else 'Group'} Assignment",
+        message=f"You have been assigned to {group.name} by {current_user.full_name}",
+        link=f"/hubs/{group.id}",
+        related_id=group.id,
+        related_type="group"
+    )
+    db.add(notification)
+    
+    db.commit()
+    
+    return {
+        "status": "success",
+        "message": f"Teacher assigned to {group.name}",
+        "teacher": teacher.full_name,
+        "group": group.name,
+        "is_class_teacher": request.is_class_teacher,
+        "notification_sent": True
+    }
+
+@router.get("/teachers/available")
+def get_available_teachers(
+    current_user: User = Depends(require_admin),
+    db: Session = Depends(get_db)
+):
+    """Get list of teachers for assignment"""
+    teachers = db.query(User).filter(
+        User.school_id == current_user.school_id,
+        User.role == UserRole.TEACHER
+    ).all()
+    
+    return [{
+        "id": t.id,
+        "full_name": t.full_name,
+        "email": t.email,
+        "is_class_teacher": t.is_class_teacher,
+        "managed_class_id": t.managed_class_id
+    } for t in teachers]
+
+@router.get("/groups/available")
+def get_available_groups(
+    current_user: User = Depends(require_admin),
+    db: Session = Depends(get_db)
+):
+    """Get list of groups for assignment"""
+    groups = db.query(Group).filter(
+        Group.school_id == current_user.school_id
+    ).all()
+    
+    return [{
+        "id": g.id,
+        "name": g.name,
+        "type": g.type.value,
+        "grade": g.grade,
+        "department": g.department
+    } for g in groups]

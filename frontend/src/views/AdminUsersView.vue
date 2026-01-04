@@ -67,6 +67,8 @@
               </td>
               <td class="px-6 py-4 whitespace-nowrap text-sm space-x-2">
                 <button @click="editUser(user)" class="text-blue-600 hover:text-blue-800">Edit</button>
+                <button v-if="user.role === 'TEACHER'" @click="assignTeacher(user)" 
+                        class="text-green-600 hover:text-green-800">Assign</button>
                 <button v-if="user.role !== 'ADMIN'" @click="toggleStatus(user)" 
                         class="text-red-600 hover:text-red-800">
                   {{ user.is_active ? 'Deactivate' : 'Activate' }}
@@ -128,6 +130,44 @@
         </div>
       </div>
     </div>
+
+    <!-- Assign Teacher Modal -->
+    <div v-if="showAssignModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+      <div class="bg-white rounded-lg p-6 w-full max-w-md">
+        <h3 class="text-lg font-semibold mb-4">Assign Teacher to Class/Group</h3>
+        <p class="text-sm text-gray-600 mb-4">Teacher: <strong>{{ assigningTeacher?.full_name }}</strong></p>
+        <div class="space-y-4">
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-2">Select Class/Group</label>
+            <select v-model="assignData.group_id" class="w-full px-4 py-2 border rounded-lg">
+              <option value="">Choose a class or group...</option>
+              <option v-for="group in availableGroups" :key="group.id" :value="group.id">
+                {{ group.name }} ({{ group.type }})
+              </option>
+            </select>
+          </div>
+          <div class="flex items-center">
+            <input v-model="assignData.is_class_teacher" type="checkbox" id="isClassTeacher" class="mr-2">
+            <label for="isClassTeacher" class="text-sm font-medium text-gray-700">
+              Assign as Class Teacher (full permissions)
+            </label>
+          </div>
+          <div class="bg-blue-50 border border-blue-200 rounded-lg p-3">
+            <p class="text-xs text-blue-800">
+              ✓ Teacher will receive instant notification<br>
+              ✓ Teacher will get immediate access to the class/group
+            </p>
+          </div>
+        </div>
+        <div class="flex justify-end space-x-3 mt-6">
+          <button @click="showAssignModal = false" class="px-4 py-2 text-gray-600 hover:text-gray-800">Cancel</button>
+          <button @click="submitAssignment" :disabled="!assignData.group_id" 
+                  class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed">
+            Assign Teacher
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -143,8 +183,12 @@ const filterRole = ref('')
 const filterGrade = ref('')
 const showCreateModal = ref(false)
 const showEditModal = ref(false)
+const showAssignModal = ref(false)
 const newUser = ref({ full_name: '', email: '', password: '', role: '', grade: null })
 const editingUser = ref({ id: null, full_name: '', role: '', grade: null, is_active: 1 })
+const assigningTeacher = ref(null)
+const assignData = ref({ teacher_id: null, group_id: '', is_class_teacher: false })
+const availableGroups = ref([])
 
 onMounted(() => loadUsers())
 
@@ -234,5 +278,30 @@ function roleClass(role) {
     ADMIN: 'bg-purple-100 text-purple-800'
   }
   return classes[role] || 'bg-gray-100 text-gray-800'
+}
+
+async function assignTeacher(teacher) {
+  assigningTeacher.value = teacher
+  assignData.value = { teacher_id: teacher.id, group_id: '', is_class_teacher: false }
+  
+  // Load available groups
+  try {
+    const res = await api.get('/admin/groups/available')
+    availableGroups.value = res.data
+    showAssignModal.value = true
+  } catch (err) {
+    alert('Failed to load groups')
+  }
+}
+
+async function submitAssignment() {
+  try {
+    const res = await api.post('/admin/assign-teacher', assignData.value)
+    alert(res.data.message + '\n\nTeacher has been notified instantly!')
+    showAssignModal.value = false
+    loadUsers()
+  } catch (err) {
+    alert(err.response?.data?.detail || 'Failed to assign teacher')
+  }
 }
 </script>
