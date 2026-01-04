@@ -1,5 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
+from sqlalchemy import text
 from ..core.database import get_db
 from ..models.school import School
 import pandas as pd
@@ -7,6 +8,20 @@ import os
 from collections import defaultdict
 
 router = APIRouter(prefix="/admin/schools", tags=["admin-schools"])
+
+@router.post("/schools/add-columns")
+def add_missing_columns(db: Session = Depends(get_db)):
+    """Add missing school_code and gender columns - ADMIN ONLY"""
+    try:
+        # Execute raw SQL to add columns
+        db.execute(text("ALTER TABLE schools ADD COLUMN IF NOT EXISTS school_code VARCHAR"))
+        db.execute(text("ALTER TABLE schools ADD COLUMN IF NOT EXISTS gender VARCHAR"))
+        db.commit()
+        
+        return {"success": True, "message": "Columns added successfully"}
+    except Exception as e:
+        db.rollback()
+        return {"success": False, "error": str(e)}
 
 @router.post("/reload-from-excel")
 def reload_schools_from_excel(db: Session = Depends(get_db)):
