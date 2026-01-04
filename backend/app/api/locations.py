@@ -189,30 +189,57 @@ def get_all_schools(db: Session = Depends(get_db)):
 @router.get("/schools/{school_id}", response_model=SchoolResponse)
 def get_school_by_id(school_id: int, db: Session = Depends(get_db)):
     """Get a specific school by ID with its trades"""
-    school = db.query(School).filter(School.id == school_id).first()
-    if not school:
-        raise HTTPException(status_code=404, detail="School not found")
-    
-    # Directly construct response to ensure trades are included
-    return SchoolResponse(
-        id=school.id,
-        school_code=getattr(school, 'school_code', None),
-        name=school.name,
-        type=school.type,
-        category=school.category,
-        province=school.province,
-        district=school.district,
-        trades=school.trades if school.trades else [],
-        gender=getattr(school, 'gender', None)
-    )
+    try:
+        school = db.query(School).filter(School.id == school_id).first()
+        if not school:
+            raise HTTPException(status_code=404, detail="School not found")
+        
+        # Safely get trades
+        trades = []
+        try:
+            trades = school.trades if school.trades else []
+        except:
+            trades = []
+        
+        return SchoolResponse(
+            id=school.id,
+            school_code=getattr(school, 'school_code', None),
+            name=school.name,
+            type=school.type,
+            category=school.category,
+            province=school.province,
+            district=school.district,
+            trades=trades,
+            gender=getattr(school, 'gender', None)
+        )
+    except HTTPException:
+        raise
+    except Exception as e:
+        print(f"Error in get_school_by_id: {e}")
+        import traceback
+        traceback.print_exc()
+        raise HTTPException(status_code=500, detail=f"Error fetching school: {str(e)}")
 
 @router.get("/schools/{school_id}/trades")
 def get_school_trades(school_id: int, db: Session = Depends(get_db)):
     """Get all trades offered by a specific school"""
-    school = db.query(School).filter(School.id == school_id).first()
-    if not school:
-        raise HTTPException(status_code=404, detail="School not found")
-    return {"school_id": school_id, "school_name": school.name, "trades": school.trades or []}
+    try:
+        school = db.query(School).filter(School.id == school_id).first()
+        if not school:
+            raise HTTPException(status_code=404, detail="School not found")
+        
+        trades = []
+        try:
+            trades = school.trades if school.trades else []
+        except:
+            trades = []
+        
+        return {"school_id": school_id, "school_name": school.name, "trades": trades}
+    except HTTPException:
+        raise
+    except Exception as e:
+        print(f"Error in get_school_trades: {e}")
+        return {"school_id": school_id, "school_name": "Unknown", "trades": []}
 
 @router.get("/levels")
 def get_tvet_levels():
