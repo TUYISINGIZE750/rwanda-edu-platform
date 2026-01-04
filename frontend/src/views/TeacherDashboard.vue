@@ -31,7 +31,7 @@
           <h1 class="text-5xl font-bold mb-4">Welcome back, {{ authStore.user?.full_name?.split(' ')[0] }}</h1>
           <p class="text-xl text-gray-300 mb-8">Manage your classes, inspire students, and track progress all in one place</p>
           <div v-if="isClassTeacher" class="flex gap-4">
-            <button @click="showCreateModuleModal = true" class="px-8 py-3 bg-orange-600 hover:bg-orange-700 text-white rounded-lg font-semibold transition-all">
+            <button @click="openCreateClassModal" class="px-8 py-3 bg-orange-600 hover:bg-orange-700 text-white rounded-lg font-semibold transition-all">
               Create Class
             </button>
             <button @click="showCreateGroupModal = true" class="px-8 py-3 bg-gray-700 hover:bg-gray-600 text-white rounded-lg font-semibold transition-all">
@@ -81,7 +81,7 @@
       <section class="mb-16">
         <h2 class="text-2xl font-bold text-gray-900 mb-8">Quick Actions</h2>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <button @click="showCreateModuleModal = true" class="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition-all text-center group">
+          <button @click="openCreateClassModal" class="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition-all text-center group">
             <div class="text-4xl mb-3">➕</div>
             <p class="font-semibold text-gray-900 group-hover:text-orange-600">Create Class</p>
             <p class="text-xs text-gray-500 mt-1">Add new class</p>
@@ -120,7 +120,7 @@
           <p class="text-xl font-semibold text-gray-900 mb-2">No classes, groups or clubs yet</p>
           <p class="text-gray-600 mb-6">Create your first class or group to get started</p>
           <div class="flex gap-3 justify-center">
-            <button @click="showCreateModuleModal = true" class="px-6 py-3 bg-orange-600 hover:bg-orange-700 text-white rounded-lg font-semibold transition-all">
+            <button @click="openCreateClassModal" class="px-6 py-3 bg-orange-600 hover:bg-orange-700 text-white rounded-lg font-semibold transition-all">
               Create Class
             </button>
             <button @click="showCreateGroupModal = true" class="px-6 py-3 bg-gray-600 hover:bg-gray-700 text-white rounded-lg font-semibold transition-all">
@@ -347,7 +347,7 @@ async function loadDashboard() {
     }
     
     // Load school departments/trades if class teacher
-    if (isClassTeacher.value) {
+    if (isClassTeacher.value || groups.value.length > 0) {
       await loadSchoolDepartments()
     }
   } catch (err) {
@@ -361,10 +361,16 @@ async function loadSchoolDepartments() {
   try {
     const response = await api.get(`/locations/schools/${authStore.user.school_id}`)
     schoolDepartments.value = response.data.trades || []
+    console.log('Loaded departments:', schoolDepartments.value)
   } catch (err) {
     console.error('Failed to load departments:', err)
     schoolDepartments.value = []
   }
+}
+
+async function openCreateClassModal() {
+  await loadSchoolDepartments()
+  showCreateModuleModal.value = true
 }
 
 onMounted(async () => {
