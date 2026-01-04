@@ -80,19 +80,7 @@
       <!-- Quick Actions -->
       <section class="mb-16">
         <h2 class="text-2xl font-bold text-gray-900 mb-8">Quick Actions</h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <button @click="openCreateClassModal" class="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition-all text-center group">
-            <div class="text-4xl mb-3">➕</div>
-            <p class="font-semibold text-gray-900 group-hover:text-orange-600">Create Class</p>
-            <p class="text-xs text-gray-500 mt-1">Add new class</p>
-          </button>
-
-          <button @click="showCreateGroupModal = true" class="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition-all text-center group">
-            <div class="text-4xl mb-3">👥</div>
-            <p class="font-semibold text-gray-900 group-hover:text-orange-600">Create Group</p>
-            <p class="text-xs text-gray-500 mt-1">New club or discussion</p>
-          </button>
-
+        <div class="grid grid-cols-1 md:grid-cols-1 gap-4">
           <button @click="$router.push('/upload-resource')" class="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition-all text-center group">
             <div class="text-4xl mb-3">📤</div>
             <p class="font-semibold text-gray-900 group-hover:text-orange-600">Upload Resource</p>
