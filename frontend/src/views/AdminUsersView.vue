@@ -100,6 +100,34 @@
         </div>
       </div>
     </div>
+
+    <!-- Edit User Modal -->
+    <div v-if="showEditModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+      <div class="bg-white rounded-lg p-6 w-full max-w-md">
+        <h3 class="text-lg font-semibold mb-4">Edit User</h3>
+        <div class="space-y-4">
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
+            <input v-model="editingUser.full_name" class="w-full px-4 py-2 border rounded-lg">
+          </div>
+          <div v-if="editingUser.role === 'STUDENT'">
+            <label class="block text-sm font-medium text-gray-700 mb-2">Level</label>
+            <input v-model.number="editingUser.grade" type="number" min="1" max="6" class="w-full px-4 py-2 border rounded-lg">
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-2">Status</label>
+            <select v-model="editingUser.is_active" class="w-full px-4 py-2 border rounded-lg">
+              <option :value="1">Active</option>
+              <option :value="0">Inactive</option>
+            </select>
+          </div>
+        </div>
+        <div class="flex justify-end space-x-3 mt-6">
+          <button @click="showEditModal = false" class="px-4 py-2 text-gray-600 hover:text-gray-800">Cancel</button>
+          <button @click="updateUser" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">Save Changes</button>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -114,7 +142,9 @@ const search = ref('')
 const filterRole = ref('')
 const filterGrade = ref('')
 const showCreateModal = ref(false)
+const showEditModal = ref(false)
 const newUser = ref({ full_name: '', email: '', password: '', role: '', grade: null })
+const editingUser = ref({ id: null, full_name: '', role: '', grade: null, is_active: 1 })
 
 onMounted(() => loadUsers())
 
@@ -173,7 +203,28 @@ async function toggleStatus(user) {
 }
 
 function editUser(user) {
-  alert('Edit functionality coming soon')
+  editingUser.value = {
+    id: user.id,
+    full_name: user.full_name,
+    role: user.role,
+    grade: user.grade,
+    is_active: user.is_active ? 1 : 0
+  }
+  showEditModal.value = true
+}
+
+async function updateUser() {
+  try {
+    await api.put(`/admin/users/${editingUser.value.id}`, {
+      full_name: editingUser.value.full_name,
+      grade: editingUser.value.grade,
+      is_active: editingUser.value.is_active
+    })
+    showEditModal.value = false
+    loadUsers()
+  } catch (err) {
+    alert('Failed to update user')
+  }
 }
 
 function roleClass(role) {

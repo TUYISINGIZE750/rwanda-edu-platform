@@ -246,9 +246,9 @@ def create_user(
 @router.put("/users/{user_id}")
 def update_user(
     user_id: int,
-    full_name: str = None,
-    is_active: int = None,
-    grade: int = None,
+    full_name: str = Body(None),
+    is_active: int = Body(None),
+    grade: int = Body(None),
     current_user: User = Depends(require_admin),
     db: Session = Depends(get_db)
 ):
@@ -271,8 +271,17 @@ def update_user(
     
     user.updated_at = datetime.utcnow()
     db.commit()
+    db.refresh(user)
     
-    return {"status": "success"}
+    return {
+        "status": "success",
+        "user": {
+            "id": user.id,
+            "full_name": user.full_name,
+            "is_active": user.is_active,
+            "grade": user.grade
+        }
+    }
 
 @router.delete("/users/{user_id}")
 def deactivate_user(
