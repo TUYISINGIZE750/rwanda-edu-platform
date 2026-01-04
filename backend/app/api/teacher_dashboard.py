@@ -762,12 +762,12 @@ def get_school_info(
         "school": {
             "id": school.id,
             "name": school.name,
-            "school_code": school.school_code,
+            "school_code": getattr(school, 'school_code', None),
             "type": school.type,
             "category": school.category,
             "province": school.province,
             "district": school.district,
-            "gender": school.gender,
+            "gender": getattr(school, 'gender', None),
             "trades": school.trades if school.trades else []
         },
         "statistics": {

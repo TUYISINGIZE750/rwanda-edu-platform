@@ -6,7 +6,15 @@ import os
 from .core.config import settings
 from .core.redis_client import redis_client
 from .core.timezone import rwanda_now_iso
-from .api import auth, groups, messages, dm_requests, resources, incidents, sessions, websocket, admin, locations, registration, schools_by_district, modules, student_dashboard, teacher_dashboard, chat, direct_messages, simple_chat, uploads, reactions, replies, live_sessions, dos_admin, class_teacher, super_admin, inter_school, seed, cleanup, emergency, notifications, admin_schools
+from .api import auth, groups, messages, dm_requests, resources, incidents, sessions, websocket, admin, locations, registration, schools_by_district, modules, student_dashboard, teacher_dashboard, chat, direct_messages, simple_chat, uploads, reactions, replies, live_sessions, dos_admin, class_teacher, super_admin, inter_school, seed, cleanup, emergency, notifications
+
+# Lazy import admin_schools to avoid pandas dependency issues
+try:
+    from .api import admin_schools
+    HAS_ADMIN_SCHOOLS = True
+except ImportError as e:
+    print(f"Warning: admin_schools module not available: {e}")
+    HAS_ADMIN_SCHOOLS = False
 
 app = FastAPI(title=settings.PROJECT_NAME, version=settings.VERSION)
 
@@ -67,7 +75,8 @@ app.include_router(seed.router, prefix=settings.API_V1_STR)
 app.include_router(cleanup.router, prefix=settings.API_V1_STR)
 app.include_router(emergency.router, prefix=settings.API_V1_STR)
 app.include_router(notifications.router, prefix=settings.API_V1_STR)
-app.include_router(admin_schools.router, prefix=settings.API_V1_STR)
+if HAS_ADMIN_SCHOOLS:
+    app.include_router(admin_schools.router, prefix=settings.API_V1_STR)
 app.include_router(websocket.router)
 
 @app.on_event("startup")
