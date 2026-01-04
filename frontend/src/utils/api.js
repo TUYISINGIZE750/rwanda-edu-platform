@@ -1,11 +1,20 @@
 import axios from 'axios'
 
-// Auto-detect hostname for network access (works on phone too!)
+// Production backend URL
+const PRODUCTION_API = 'https://rwanda-edu-platform.onrender.com/api/v1'
+
 const getBaseURL = () => {
+  // Always use production API for deployed frontend
+  if (window.location.hostname.includes('pages.dev') || window.location.hostname.includes('tssanywhere')) {
+    console.log('🌐 Using Production API:', PRODUCTION_API)
+    return PRODUCTION_API
+  }
+  
+  // Local development
   if (import.meta.env.VITE_API_URL) {
     return import.meta.env.VITE_API_URL
   }
-  // Use current hostname so it works on laptop and phone
+  
   const hostname = window.location.hostname
   const baseURL = `http://${hostname}:8080/api/v1`
   console.log('🌐 API Base URL:', baseURL)
