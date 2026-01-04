@@ -209,6 +209,7 @@ const getIconColor = (type) => {
 }
 
 const formatTime = (timestamp) => {
+  // Parse timestamp and convert to Rwanda time (CAT/UTC+2)
   const date = new Date(timestamp)
   const now = new Date()
   const diff = Math.floor((now - date) / 1000)
@@ -217,7 +218,15 @@ const formatTime = (timestamp) => {
   if (diff < 3600) return `${Math.floor(diff / 60)}m ago`
   if (diff < 86400) return `${Math.floor(diff / 3600)}h ago`
   if (diff < 604800) return `${Math.floor(diff / 86400)}d ago`
-  return date.toLocaleDateString()
+  
+  // Format in Rwanda timezone
+  return date.toLocaleString('en-RW', { 
+    timeZone: 'Africa/Kigali',
+    month: 'short',
+    day: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit'
+  })
 }
 
 onMounted(() => {

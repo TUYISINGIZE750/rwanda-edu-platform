@@ -1,6 +1,6 @@
 from fastapi import APIRouter, WebSocket, WebSocketDisconnect
 import json
-from datetime import datetime
+from ..core.timezone import rwanda_now_iso
 
 router = APIRouter()
 
@@ -28,7 +28,7 @@ class ConnectionManager:
         await self.broadcast(channel_id, json.dumps({
             "type": "user_joined",
             "user": user_data["name"],
-            "timestamp": datetime.now().isoformat()
+            "timestamp": rwanda_now_iso()
         }), exclude=websocket)
     
     def disconnect(self, websocket: WebSocket, channel_id: int):
@@ -82,7 +82,7 @@ async def websocket_endpoint(websocket: WebSocket, channel_id: int, user_id: int
             message_data = json.loads(data)
             
             # Add server timestamp
-            message_data["server_timestamp"] = datetime.now().isoformat()
+            message_data["server_timestamp"] = rwanda_now_iso()
             message_data["channel_id"] = channel_id
             
             # Broadcast to all users in channel
@@ -94,7 +94,7 @@ async def websocket_endpoint(websocket: WebSocket, channel_id: int, user_id: int
         await manager.broadcast(channel_id, json.dumps({
             "type": "user_left",
             "user": user_data["name"],
-            "timestamp": datetime.now().isoformat()
+            "timestamp": rwanda_now_iso()
         }))
     except Exception as e:
         print(f"WebSocket error: {e}")

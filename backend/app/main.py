@@ -2,10 +2,10 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.middleware.gzip import GZipMiddleware
 from fastapi.staticfiles import StaticFiles
-from datetime import datetime
 import os
 from .core.config import settings
 from .core.redis_client import redis_client
+from .core.timezone import rwanda_now_iso
 from .api import auth, groups, messages, dm_requests, resources, incidents, sessions, websocket, admin, locations, registration, schools_by_district, modules, student_dashboard, teacher_dashboard, chat, direct_messages, simple_chat, uploads, reactions, replies, live_sessions, dos_admin, class_teacher, super_admin, inter_school, seed, cleanup, emergency, notifications
 
 app = FastAPI(title=settings.PROJECT_NAME, version=settings.VERSION)
@@ -79,15 +79,15 @@ async def shutdown():
 
 @app.get("/health")
 def health_check():
-    return {"status": "healthy", "version": settings.VERSION, "timestamp": datetime.now().isoformat()}
+    return {"status": "healthy", "version": settings.VERSION, "timestamp": rwanda_now_iso(), "timezone": "CAT (UTC+2)"}
 
 @app.get("/api/v1/health")
 def api_health_check():
-    return {"status": "healthy", "api_version": "v1", "timestamp": datetime.now().isoformat()}
+    return {"status": "healthy", "api_version": "v1", "timestamp": rwanda_now_iso(), "timezone": "CAT (UTC+2)"}
 
 @app.get("/api/v1/auth/test")
 def auth_test():
-    return {"status": "auth_service_healthy", "timestamp": datetime.now().isoformat()}
+    return {"status": "auth_service_healthy", "timestamp": rwanda_now_iso(), "timezone": "CAT (UTC+2)"}
 
 @app.get("/wake-up")
 def wake_up():
@@ -103,7 +103,8 @@ def wake_up():
         "status": "fully_awake",
         "message": "Server is active and processing requests",
         "processing_time_ms": round(processing_time * 1000, 2),
-        "timestamp": datetime.now().isoformat(),
+        "timestamp": rwanda_now_iso(),
+        "timezone": "CAT (UTC+2) - Rwanda Time",
         "version": settings.VERSION
     }
 

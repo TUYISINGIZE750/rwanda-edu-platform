@@ -1,7 +1,7 @@
 from sqlalchemy import Column, Integer, String, Text, DateTime, Boolean, ForeignKey, Enum
 from sqlalchemy.orm import relationship
 from ..core.database import Base
-from datetime import datetime
+from ..core.timezone import get_rwanda_time
 import enum
 
 class NotificationType(str, enum.Enum):
@@ -25,7 +25,7 @@ class Notification(Base):
     message = Column(Text, nullable=False)
     link = Column(String(500), nullable=True)  # URL to navigate to
     is_read = Column(Boolean, default=False, index=True)
-    created_at = Column(DateTime, default=datetime.utcnow, index=True)
+    created_at = Column(DateTime, default=get_rwanda_time, index=True)
     
     # Optional: Reference to related entity
     related_id = Column(Integer, nullable=True)  # ID of resource, message, etc.
