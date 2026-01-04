@@ -670,10 +670,12 @@ def get_resource_details(
 
 @router.get("/students")
 def get_department_students(
+    department: Optional[str] = None,
+    level: Optional[str] = None,
     current_user: User = Depends(get_current_user),
     db: Session = Depends(get_db)
 ):
-    """Get all students in teacher's department"""
+    """Get all students in teacher's school filtered by department and level"""
     if current_user.role != UserRole.TEACHER:
         raise HTTPException(status_code=403, detail="Teacher only")
     
@@ -682,9 +684,15 @@ def get_department_students(
         User.role == UserRole.STUDENT
     )
     
-    # Filter by teacher's department if assigned
-    if current_user.selected_trade:
+    # Apply filters
+    if department:
+        query = query.filter(User.selected_trade == department)
+    elif current_user.selected_trade:
+        # Default to teacher's department if no filter specified
         query = query.filter(User.selected_trade == current_user.selected_trade)
+    
+    if level:
+        query = query.filter(User.selected_level == level)
     
     students = query.order_by(User.selected_level, User.full_name).all()
     
@@ -695,5 +703,78 @@ def get_department_students(
         "selected_trade": s.selected_trade,
         "selected_level": s.selected_level,
         "grade": s.grade,
+        "province": s.province,
+        "district": s.district,
         "created_at": s.created_at.isoformat() if s.created_at else None
     } for s in students]
+
+@router.get("/school-info")
+def get_school_info(
+    current_user: User = Depends(get_current_user),
+    db: Session = Depends(get_db)
+):
+    """Get teacher's school details with statistics"""
+    if current_user.role != UserRole.TEACHER:
+        raise HTTPException(status_code=403, detail="Teacher only")
+    
+    from ..models.school import School
+    
+    school = db.query(School).filter(School.id == current_user.school_id).first()
+    if not school:
+        raise HTTPException(status_code=404, detail="School not found")
+    
+    # Get statistics
+    total_students = db.query(func.count(User.id)).filter(
+        User.school_id == current_user.school_id,
+        User.role == UserRole.STUDENT
+    ).scalar() or 0
+    
+    total_teachers = db.query(func.count(User.id)).filter(
+        User.school_id == current_user.school_id,
+        User.role == UserRole.TEACHER
+    ).scalar() or 0
+    
+    total_groups = db.query(func.count(Group.id)).filter(
+        Group.school_id == current_user.school_id
+    ).scalar() or 0
+    
+    # Get students by department
+    students_by_dept = db.query(
+        User.selected_trade,
+        func.count(User.id).label('count')
+    ).filter(
+        User.school_id == current_user.school_id,
+        User.role == UserRole.STUDENT,
+        User.selected_trade.isnot(None)
+    ).group_by(User.selected_trade).all()
+    
+    # Get students by level
+    students_by_level = db.query(
+        User.selected_level,
+        func.count(User.id).label('count')
+    ).filter(
+        User.school_id == current_user.school_id,
+        User.role == UserRole.STUDENT,
+        User.selected_level.isnot(None)
+    ).group_by(User.selected_level).all()
+    
+    return {
+        "school": {
+            "id": school.id,
+            "name": school.name,
+            "school_code": school.school_code,
+            "type": school.type,
+            "category": school.category,
+            "province": school.province,
+            "district": school.district,
+            "gender": school.gender,
+            "trades": school.trades if school.trades else []
+        },
+        "statistics": {
+            "total_students": total_students,
+            "total_teachers": total_teachers,
+            "total_groups": total_groups,
+            "students_by_department": [{"department": dept, "count": count} for dept, count in students_by_dept],
+            "students_by_level": [{"level": level, "count": count} for level, count in students_by_level]
+        }
+    }

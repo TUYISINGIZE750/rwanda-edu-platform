@@ -11,10 +11,22 @@ router = APIRouter(prefix="/admin/schools", tags=["admin-schools"])
 @router.post("/reload-from-excel")
 def reload_schools_from_excel(db: Session = Depends(get_db)):
     """Reload schools from Excel file - ADMIN ONLY"""
-    file_path = "10__3__22_UPDATED_LIST_OF_TVET_SCHOOLS_AND_TRADES_TO_BE_CHOSEN_BY_S3_CANDIDATES__2022_1_.xlsx"
+    # Try multiple possible paths
+    possible_paths = [
+        "10__3__22_UPDATED_LIST_OF_TVET_SCHOOLS_AND_TRADES_TO_BE_CHOSEN_BY_S3_CANDIDATES__2022_1_.xlsx",
+        "../10__3__22_UPDATED_LIST_OF_TVET_SCHOOLS_AND_TRADES_TO_BE_CHOSEN_BY_S3_CANDIDATES__2022_1_.xlsx",
+        "/app/10__3__22_UPDATED_LIST_OF_TVET_SCHOOLS_AND_TRADES_TO_BE_CHOSEN_BY_S3_CANDIDATES__2022_1_.xlsx",
+        os.path.join(os.path.dirname(__file__), "../../10__3__22_UPDATED_LIST_OF_TVET_SCHOOLS_AND_TRADES_TO_BE_CHOSEN_BY_S3_CANDIDATES__2022_1_.xlsx")
+    ]
     
-    if not os.path.exists(file_path):
-        raise HTTPException(status_code=404, detail=f"Excel file not found: {file_path}")
+    file_path = None
+    for path in possible_paths:
+        if os.path.exists(path):
+            file_path = path
+            break
+    
+    if not file_path:
+        raise HTTPException(status_code=404, detail=f"Excel file not found in any of the expected locations")
     
     try:
         # Read Excel
