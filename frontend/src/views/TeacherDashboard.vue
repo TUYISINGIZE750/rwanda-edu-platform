@@ -78,9 +78,15 @@
       </div>
 
       <!-- Quick Actions -->
-      <section class="mb-16">
+      <section class="mb-16" v-if="groups.length > 0">
         <h2 class="text-2xl font-bold text-gray-900 mb-8">Quick Actions</h2>
-        <div class="grid grid-cols-1 md:grid-cols-1 gap-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <button @click="showAddModuleModal = true" class="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition-all text-center group">
+            <div class="text-4xl mb-3">📝</div>
+            <p class="font-semibold text-gray-900 group-hover:text-orange-600">Add Lesson/Module</p>
+            <p class="text-xs text-gray-500 mt-1">Create lesson in your class</p>
+          </button>
+
           <button @click="$router.push('/upload-resource')" class="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition-all text-center group">
             <div class="text-4xl mb-3">📤</div>
             <p class="font-semibold text-gray-900 group-hover:text-orange-600">Upload Resource</p>
@@ -226,6 +232,48 @@
         </div>
       </div>
     </div>
+
+    <!-- Add Lesson/Module Modal -->
+    <div v-if="showAddModuleModal" class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4" @click="showAddModuleModal = false">
+      <div class="bg-white rounded-lg w-full max-w-2xl shadow-2xl" @click.stop>
+        <div class="p-8 border-b border-gray-200">
+          <h3 class="text-2xl font-bold text-gray-900">Add Lesson/Module</h3>
+          <p class="text-gray-600 mt-1">Create a new lesson in your assigned class</p>
+        </div>
+        
+        <div class="p-8 space-y-6">
+          <div>
+            <label class="block text-sm font-semibold text-gray-900 mb-2">Select Class</label>
+            <select v-model="newLesson.class_id" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-orange-500 focus:outline-none">
+              <option :value="null">Choose a class...</option>
+              <option v-for="group in groups" :key="group.id" :value="group.id">
+                {{ group.name }} ({{ group.type }})
+              </option>
+            </select>
+            <p class="text-xs text-gray-500 mt-1">Select the class where you want to add this lesson</p>
+          </div>
+          
+          <div>
+            <label class="block text-sm font-semibold text-gray-900 mb-2">Lesson Title</label>
+            <input v-model="newLesson.title" type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-orange-500 focus:outline-none" placeholder="e.g., Introduction to Python">
+          </div>
+          
+          <div>
+            <label class="block text-sm font-semibold text-gray-900 mb-2">Description</label>
+            <textarea v-model="newLesson.description" rows="3" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-orange-500 focus:outline-none" placeholder="Brief description of the lesson"></textarea>
+          </div>
+        </div>
+        
+        <div class="p-8 border-t border-gray-200 flex gap-3">
+          <button @click="createLesson" class="flex-1 px-6 py-3 bg-orange-600 hover:bg-orange-700 text-white rounded-lg font-semibold transition-all">
+            Create Lesson
+          </button>
+          <button @click="showAddModuleModal = false" class="px-6 py-3 bg-gray-100 hover:bg-gray-200 text-gray-900 rounded-lg font-semibold transition-all">
+            Cancel
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -247,8 +295,10 @@ const isClassTeacher = ref(false)
 const schoolDepartments = ref([])
 const showCreateModuleModal = ref(false)
 const showCreateGroupModal = ref(false)
+const showAddModuleModal = ref(false)
 const newModule = ref({ name: '', department: '', grade: null })
 const newGroup = ref({ name: '', description: '', type: 'CLUB' })
+const newLesson = ref({ class_id: null, title: '', description: '' })
 
 const totalStudents = computed(() => {
   return groups.value.reduce((sum, group) => sum + (group.member_count || 0), 0)
@@ -308,6 +358,28 @@ async function createGroup() {
   } catch (err) {
     console.error('Failed to create group:', err)
     alert(err.response?.data?.detail || 'Failed to create group')
+  }
+}
+
+async function createLesson() {
+  if (!newLesson.value.class_id || !newLesson.value.title) {
+    alert('Please select a class and enter lesson title')
+    return
+  }
+  
+  try {
+    const response = await api.post('/teacher/modules', {
+      group_id: newLesson.value.class_id,
+      title: newLesson.value.title,
+      description: newLesson.value.description || ''
+    })
+    
+    alert('Lesson created successfully!')
+    newLesson.value = { class_id: null, title: '', description: '' }
+    showAddModuleModal.value = false
+  } catch (err) {
+    console.error('Failed to create lesson:', err)
+    alert(err.response?.data?.detail || 'Failed to create lesson')
   }
 }
 
