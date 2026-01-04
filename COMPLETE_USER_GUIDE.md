@@ -8,10 +8,9 @@
 ## 👨‍💼 ADMIN/DOS USER GUIDE
 
 ### Login
-1. Go to https://tssanywhere.pages.dev
-2. Click "Login" or go to `/login`
-3. Enter admin credentials
-4. Role: ADMIN or DOS
+1. Go to https://tssanywhere.pages.dev/admin-login
+2. Enter admin credentials
+3. Role: ADMIN or DOS
 
 ### Admin Dashboard Features
 
