@@ -265,7 +265,13 @@ const alerts = ref([])
 const loading = ref(true)
 
 onMounted(async () => {
-  if (!authStore.isAuthenticated || authStore.user?.role !== 'ADMIN') {
+  if (!authStore.isAuthenticated) {
+    router.push('/login')
+    return
+  }
+  
+  const userRole = authStore.user?.role?.toUpperCase()
+  if (userRole !== 'ADMIN') {
     router.push('/login')
     return
   }
@@ -280,29 +286,22 @@ async function loadDashboardData() {
     stats.value = {
       total_students: statsRes.data.users?.total_students || 0,
       total_teachers: statsRes.data.users?.total_teachers || 0,
-      total_groups: 0, // Will be calculated from groups endpoint
+      total_groups: statsRes.data.groups?.total || 0,
       total_messages: statsRes.data.messages?.total || 0,
       pending_messages: statsRes.data.messages?.pending_moderation || 0
-    }
-    
-    // Load groups count
-    try {
-      const groupsRes = await api.get('/admin/groups/manage')
-      stats.value.total_groups = groupsRes.data.length || 0
-    } catch (err) {
-      console.error('Failed to load groups:', err)
     }
     
     // Load today's stats
     try {
       const activityRes = await api.get('/admin/activity/recent?hours=24')
       todayStats.value = {
-        newUsers: 0, // Not available in current API
+        newUsers: 0,
         messagesSent: activityRes.data.messages || 0,
         resourcesUploaded: activityRes.data.resources || 0,
-        activeSessions: 0 // Not available in current API
+        activeSessions: 0
       }
     } catch (err) {
+      console.error('Failed to load activity:', err)
       todayStats.value = { newUsers: 0, messagesSent: 0, resourcesUploaded: 0, activeSessions: 0 }
     }
     
@@ -310,8 +309,8 @@ async function loadDashboardData() {
     recentActivity.value = [
       {
         id: 1,
-        action: 'System initialized',
-        user: 'Admin',
+        action: 'Dashboard loaded successfully',
+        user: authStore.user?.full_name || 'Admin',
         timestamp: new Date()
       }
     ]
@@ -328,6 +327,7 @@ async function loadDashboardData() {
       total_messages: 0,
       pending_messages: 0
     }
+    todayStats.value = { newUsers: 0, messagesSent: 0, resourcesUploaded: 0, activeSessions: 0 }
   } finally {
     loading.value = false
   }

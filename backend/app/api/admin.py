@@ -59,6 +59,11 @@ def get_admin_dashboard(
             User.updated_at >= week_ago
         ).scalar() or 0
         
+        # Group stats
+        total_groups = db.query(func.count(Group.id)).filter(
+            Group.school_id == school_id
+        ).scalar() or 0
+        
         # Message stats
         total_messages = db.query(func.count(Message.id)).join(Channel).join(Group).filter(
             Group.school_id == school_id
@@ -113,6 +118,9 @@ def get_admin_dashboard(
                 "total_teachers": total_teachers,
                 "active_this_week": active_users_week
             },
+            "groups": {
+                "total": total_groups
+            },
             "messages": {
                 "total": total_messages,
                 "pending_moderation": pending_messages,
@@ -131,12 +139,18 @@ def get_admin_dashboard(
             }
         }
     except Exception as e:
+        print(f"Admin dashboard error: {e}")
+        import traceback
+        traceback.print_exc()
         # Return zeros if any query fails
         return {
             "users": {
                 "total_students": 0,
                 "total_teachers": 0,
                 "active_this_week": 0
+            },
+            "groups": {
+                "total": 0
             },
             "messages": {
                 "total": 0,
