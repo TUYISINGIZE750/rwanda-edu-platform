@@ -21,6 +21,7 @@
             </div>
           </div>
           <div class="flex items-center gap-4">
+            <NotificationBell />
             <div class="text-right">
               <p class="text-sm font-semibold text-gray-900">{{ authStore.user?.full_name }}</p>
               <p class="text-xs text-gray-600">Student</p>
@@ -198,6 +199,7 @@ import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { useAuthStore } from '../stores/auth'
 import api from '../utils/api'
+import NotificationBell from '../components/NotificationBell.vue'
 
 const router = useRouter()
 const authStore = useAuthStore()

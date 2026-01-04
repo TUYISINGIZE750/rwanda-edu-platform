@@ -484,24 +484,22 @@ async def upload_resource(
         raise HTTPException(status_code=403, detail="Teacher only")
     
     from ..models.resource import Resource
+    from ..models.group_member import GroupMember
+    from ..models.notification import Notification, NotificationType
     
     file_url = None
     if file:
-        # Create uploads directory if it doesn't exist
         upload_dir = "uploads/resources"
         os.makedirs(upload_dir, exist_ok=True)
         
-        # Generate unique filename
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         file_extension = os.path.splitext(file.filename)[1]
         filename = f"{timestamp}_{file.filename}"
         file_path = os.path.join(upload_dir, filename)
         
-        # Save file
         with open(file_path, "wb") as buffer:
             shutil.copyfileobj(file.file, buffer)
         
-        # Generate URL
         file_url = f"http://localhost:8080/uploads/resources/{filename}"
     
     resource = Resource(
@@ -516,11 +514,37 @@ async def upload_resource(
     db.commit()
     db.refresh(resource)
     
+    # Get group name
+    group = db.query(Group).filter(Group.id == group_id).first()
+    group_name = group.name if group else "your class"
+    
+    # Create notifications for all students in the group
+    student_ids = db.query(GroupMember.user_id).join(User).filter(
+        GroupMember.group_id == group_id,
+        User.role == UserRole.STUDENT
+    ).all()
+    
+    notification_count = 0
+    for (student_id,) in student_ids:
+        notification = Notification(
+            user_id=student_id,
+            type=NotificationType.RESOURCE_UPLOADED,
+            title=f"📚 New Resource: {title}",
+            message=f"{current_user.full_name} uploaded a new {type} in {group_name}",
+            link=f"/hubs/{group_id}",
+            related_id=resource.id,
+            related_type="resource"
+        )
+        db.add(notification)
+        notification_count += 1
+    
+    db.commit()
+    
     return {
         "id": resource.id,
         "title": resource.title,
         "url": file_url,
-        "message": "Resource uploaded successfully"
+        "message": f"Resource uploaded successfully! {notification_count} students notified."
     }
 
 @router.put("/resources/{resource_id}")
