@@ -1,6 +1,5 @@
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.dialects.postgresql import ARRAY
-from sqlalchemy.types import JSON
 from ..core.database import Base
 
 class School(Base):
@@ -13,7 +12,7 @@ class School(Base):
     category = Column(String, nullable=False)
     province = Column(String, nullable=False, index=True)
     district = Column(String, nullable=False, index=True)
-    trades = Column(JSON, nullable=True)
+    trades = Column(ARRAY(String), nullable=True)  # PostgreSQL array, not JSON
     gender = Column(String, nullable=True)
     
     def __repr__(self):
