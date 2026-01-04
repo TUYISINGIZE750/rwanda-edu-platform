@@ -8,7 +8,10 @@
             <div class="w-8 h-8 bg-red-600 rounded-lg flex items-center justify-center mr-3">
               <ShieldCheckIcon class="w-5 h-5 text-white" />
             </div>
-            <h1 class="text-xl font-semibold text-gray-900">Admin Dashboard</h1>
+            <div>
+              <h1 class="text-xl font-semibold text-gray-900">Admin Dashboard</h1>
+              <p class="text-xs text-green-600 font-medium">v2.0 - Latest (Notifications Enabled)</p>
+            </div>
           </div>
           <div class="flex items-center space-x-4">
             <span class="text-sm text-gray-600">{{ authStore.user?.full_name }}</span>
