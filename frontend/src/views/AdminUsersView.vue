@@ -95,6 +95,33 @@
             <option value="ADMIN">Admin</option>
           </select>
           
+          <!-- Location Fields -->
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-2">Province</label>
+            <select v-model="newUser.province" @change="onProvinceChange" class="w-full px-4 py-2 border rounded-lg">
+              <option value="">Select province...</option>
+              <option v-for="prov in provinces" :key="prov" :value="prov">{{ prov }}</option>
+            </select>
+          </div>
+          
+          <div v-if="newUser.province">
+            <label class="block text-sm font-medium text-gray-700 mb-2">District</label>
+            <select v-model="newUser.district" @change="onDistrictChange" class="w-full px-4 py-2 border rounded-lg">
+              <option value="">Select district...</option>
+              <option v-for="dist in districts" :key="dist" :value="dist">{{ dist }}</option>
+            </select>
+          </div>
+          
+          <div v-if="newUser.district">
+            <label class="block text-sm font-medium text-gray-700 mb-2">School</label>
+            <select v-model="newUser.school_id" @change="onSchoolChange" class="w-full px-4 py-2 border rounded-lg">
+              <option :value="null">Select school...</option>
+              <option v-for="school in schools" :key="school.id" :value="school.id">
+                {{ school.name }}
+              </option>
+            </select>
+          </div>
+          
           <!-- Student Fields -->
           <template v-if="newUser.role === 'STUDENT'">
             <input v-model.number="newUser.grade" type="number" placeholder="Level (1-6)" class="w-full px-4 py-2 border rounded-lg">
@@ -225,11 +252,17 @@ const newUser = ref({
   password: '', 
   role: '', 
   grade: null,
+  province: '',
+  district: '',
+  school_id: null,
   selected_trade: '',
   selected_level: '',
   is_class_teacher: false,
   managed_class_id: null
 })
+const provinces = ref([])
+const districts = ref([])
+const schools = ref([])
 const schoolTrades = ref([])
 const availableClasses = ref([])
 const editingUser = ref({ id: null, full_name: '', role: '', grade: null, is_active: 1 })
@@ -239,12 +272,60 @@ const availableGroups = ref([])
 
 onMounted(() => {
   loadUsers()
-  loadSchoolTrades()
+  loadProvinces()
 })
 
-async function loadSchoolTrades() {
+async function loadProvinces() {
   try {
-    const res = await api.get(`/locations/schools/${authStore.user.school_id}`)
+    const res = await api.get('/locations/provinces')
+    provinces.value = res.data.map(p => p.name)
+  } catch (err) {
+    console.error('Failed to load provinces:', err)
+  }
+}
+
+async function onProvinceChange() {
+  districts.value = []
+  schools.value = []
+  newUser.value.district = ''
+  newUser.value.school_id = null
+  schoolTrades.value = []
+  
+  if (newUser.value.province) {
+    try {
+      const res = await api.get(`/locations/districts/${encodeURIComponent(newUser.value.province)}`)
+      districts.value = res.data.map(d => d.name)
+    } catch (err) {
+      console.error('Failed to load districts:', err)
+    }
+  }
+}
+
+async function onDistrictChange() {
+  schools.value = []
+  newUser.value.school_id = null
+  schoolTrades.value = []
+  
+  if (newUser.value.district) {
+    try {
+      const res = await api.get(`/locations/schools/district/${encodeURIComponent(newUser.value.province)}/${encodeURIComponent(newUser.value.district)}`)
+      schools.value = res.data
+    } catch (err) {
+      console.error('Failed to load schools:', err)
+    }
+  }
+}
+
+async function onSchoolChange() {
+  schoolTrades.value = []
+  if (newUser.value.school_id) {
+    await loadSchoolTradesForSchool(newUser.value.school_id)
+  }
+}
+
+async function loadSchoolTradesForSchool(schoolId) {
+  try {
+    const res = await api.get(`/locations/schools/${schoolId}`)
     schoolTrades.value = res.data.trades || []
   } catch (err) {
     console.error('Failed to load school trades:', err)
@@ -273,9 +354,9 @@ async function createUser() {
       email: newUser.value.email,
       password: newUser.value.password,
       role: newUser.value.role,
-      school_id: authStore.user.school_id,
-      province: authStore.user.province,
-      district: authStore.user.district,
+      school_id: newUser.value.school_id,
+      province: newUser.value.province,
+      district: newUser.value.district,
       locale: 'en'
     }
     
@@ -298,6 +379,9 @@ async function createUser() {
       password: '', 
       role: '', 
       grade: null,
+      province: '',
+      district: '',
+      school_id: null,
       selected_trade: '',
       selected_level: '',
       is_class_teacher: false,
