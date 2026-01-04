@@ -46,15 +46,82 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
 import { useRouter } from 'vue-router'
-import api from '../utils/api'
+import { useAuthStore } from '../stores/auth'
+import api, { getWebSocketURL } from '../utils/api'
 import { BellIcon, DocumentTextIcon, ChatBubbleLeftIcon, UserGroupIcon, CheckCircleIcon, XCircleIcon } from '@heroicons/vue/24/outline'
 
 const router = useRouter()
+const authStore = useAuthStore()
 const showDropdown = ref(false)
 const notifications = ref([])
 const unreadCount = ref(0)
 const loading = ref(false)
-let pollInterval = null
+let ws = null
+let reconnectTimeout = null
+
+const connectWebSocket = () => {
+  if (!authStore.user?.id) return
+  
+  const wsUrl = getWebSocketURL()
+  const fullWsUrl = `${wsUrl}/ws/notifications/${authStore.user.id}`
+  
+  console.log('🔌 Connecting to notification WebSocket:', fullWsUrl)
+  
+  try {
+    ws = new WebSocket(fullWsUrl)
+    
+    ws.onopen = () => {
+      console.log('✅ Notification WebSocket connected')
+      // Send ping every 30 seconds to keep alive
+      setInterval(() => {
+        if (ws?.readyState === WebSocket.OPEN) {
+          ws.send('ping')
+        }
+      }, 30000)
+    }
+    
+    ws.onmessage = (event) => {
+      if (event.data === 'pong') return
+      
+      try {
+        const data = JSON.parse(event.data)
+        if (data.type === 'notification') {
+          // New notification received!
+          console.log('🔔 New notification:', data.data.title)
+          unreadCount.value++
+          
+          // Show browser notification if permitted
+          if (Notification.permission === 'granted') {
+            new Notification(data.data.title, {
+              body: data.data.message,
+              icon: '/logo.png',
+              badge: '/logo.png'
+            })
+          }
+          
+          // Refresh notifications if dropdown is open
+          if (showDropdown.value) {
+            fetchNotifications()
+          }
+        }
+      } catch (err) {
+        console.error('Failed to parse notification:', err)
+      }
+    }
+    
+    ws.onerror = (error) => {
+      console.error('❌ WebSocket error:', error)
+    }
+    
+    ws.onclose = () => {
+      console.log('🔌 WebSocket closed, reconnecting in 5s...')
+      reconnectTimeout = setTimeout(connectWebSocket, 5000)
+    }
+  } catch (err) {
+    console.error('Failed to connect WebSocket:', err)
+    reconnectTimeout = setTimeout(connectWebSocket, 5000)
+  }
+}
 
 const toggleDropdown = async () => {
   showDropdown.value = !showDropdown.value
@@ -155,10 +222,21 @@ const formatTime = (timestamp) => {
 
 onMounted(() => {
   fetchUnreadCount()
-  pollInterval = setInterval(fetchUnreadCount, 30000) // Poll every 30 seconds
+  connectWebSocket()
+  
+  // Request browser notification permission
+  if ('Notification' in window && Notification.permission === 'default') {
+    Notification.requestPermission()
+  }
 })
 
 onUnmounted(() => {
-  if (pollInterval) clearInterval(pollInterval)
+  if (ws) {
+    ws.close()
+    ws = null
+  }
+  if (reconnectTimeout) {
+    clearTimeout(reconnectTimeout)
+  }
 })
 </script>

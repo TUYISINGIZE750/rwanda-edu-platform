@@ -114,7 +114,7 @@ def delete_notification(
     return {"status": "success"}
 
 # Helper function to create notifications (used by other services)
-def create_notification(
+async def create_notification(
     db: Session,
     user_id: int,
     notification_type: NotificationType,
@@ -124,7 +124,10 @@ def create_notification(
     related_id: int | None = None,
     related_type: str | None = None
 ):
-    """Create a new notification"""
+    """Create a new notification and broadcast via WebSocket"""
+    from .websocket import manager
+    import json
+    
     notification = Notification(
         user_id=user_id,
         type=notification_type,
@@ -137,9 +140,23 @@ def create_notification(
     db.add(notification)
     db.commit()
     db.refresh(notification)
+    
+    # Broadcast to user via WebSocket
+    await manager.send_to_user(user_id, json.dumps({
+        "type": "notification",
+        "data": {
+            "id": notification.id,
+            "type": notification.type.value,
+            "title": notification.title,
+            "message": notification.message,
+            "link": notification.link,
+            "created_at": notification.created_at.isoformat()
+        }
+    }))
+    
     return notification
 
-def create_bulk_notifications(
+async def create_bulk_notifications(
     db: Session,
     user_ids: List[int],
     notification_type: NotificationType,
@@ -149,7 +166,10 @@ def create_bulk_notifications(
     related_id: int | None = None,
     related_type: str | None = None
 ):
-    """Create notifications for multiple users"""
+    """Create notifications for multiple users and broadcast via WebSocket"""
+    from .websocket import manager
+    import json
+    
     notifications = []
     for user_id in user_ids:
         notification = Notification(
@@ -165,4 +185,17 @@ def create_bulk_notifications(
     
     db.bulk_save_objects(notifications)
     db.commit()
+    
+    # Broadcast to all users via WebSocket
+    for user_id in user_ids:
+        await manager.send_to_user(user_id, json.dumps({
+            "type": "notification",
+            "data": {
+                "type": notification_type.value,
+                "title": title,
+                "message": message,
+                "link": link
+            }
+        }))
+    
     return len(notifications)

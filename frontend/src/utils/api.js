@@ -58,3 +58,19 @@ api.interceptors.response.use(
 )
 
 export default api
+
+// WebSocket URL helper
+export const getWebSocketURL = () => {
+  // Production WebSocket
+  if (window.location.hostname.includes('pages.dev') || window.location.hostname.includes('tssanywhere')) {
+    return 'wss://rwanda-edu-platform.onrender.com'
+  }
+  
+  // Local development
+  if (import.meta.env.VITE_WS_URL) {
+    return import.meta.env.VITE_WS_URL
+  }
+  
+  const hostname = window.location.hostname
+  return `ws://${hostname}:8080`
+}

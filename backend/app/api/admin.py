@@ -629,14 +629,15 @@ class AssignTeacherRequest(BaseModel):
     is_class_teacher: bool = False
 
 @router.post("/assign-teacher")
-def assign_teacher_to_group(
+async def assign_teacher_to_group(
     request: AssignTeacherRequest,
     current_user: User = Depends(require_admin),
     db: Session = Depends(get_db)
 ):
     """Assign teacher to class/group with instant notification"""
     from ..models.group_member import GroupMember
-    from ..models.notification import Notification, NotificationType
+    from ..models.notification import NotificationType
+    from .notifications import create_notification
     
     # Verify teacher exists
     teacher = db.query(User).filter(
@@ -675,19 +676,19 @@ def assign_teacher_to_group(
         )
         db.add(member)
     
-    # Create notification for teacher
-    notification = Notification(
+    db.commit()
+    
+    # Create notification with WebSocket broadcast
+    await create_notification(
+        db=db,
         user_id=request.teacher_id,
-        type=NotificationType.TEACHER_ASSIGNED if request.is_class_teacher else NotificationType.GROUP_ASSIGNED,
+        notification_type=NotificationType.TEACHER_ASSIGNED if request.is_class_teacher else NotificationType.GROUP_ASSIGNED,
         title=f"{'Class Teacher' if request.is_class_teacher else 'Group'} Assignment",
         message=f"You have been assigned to {group.name} by {current_user.full_name}",
         link=f"/hubs/{group.id}",
         related_id=group.id,
         related_type="group"
     )
-    db.add(notification)
-    
-    db.commit()
     
     return {
         "status": "success",
