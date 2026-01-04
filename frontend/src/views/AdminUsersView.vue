@@ -82,19 +82,54 @@
 
     <!-- Create User Modal -->
     <div v-if="showCreateModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-      <div class="bg-white rounded-lg p-6 w-full max-w-md">
+      <div class="bg-white rounded-lg p-6 w-full max-w-md max-h-[90vh] overflow-y-auto">
         <h3 class="text-lg font-semibold mb-4">Add New User</h3>
         <div class="space-y-4">
           <input v-model="newUser.full_name" placeholder="Full Name" class="w-full px-4 py-2 border rounded-lg">
           <input v-model="newUser.email" type="email" placeholder="Email" class="w-full px-4 py-2 border rounded-lg">
           <input v-model="newUser.password" type="password" placeholder="Password" class="w-full px-4 py-2 border rounded-lg">
-          <select v-model="newUser.role" class="w-full px-4 py-2 border rounded-lg">
+          <select v-model="newUser.role" @change="onRoleChange" class="w-full px-4 py-2 border rounded-lg">
             <option value="">Select Role</option>
             <option value="STUDENT">Student</option>
             <option value="TEACHER">Teacher</option>
             <option value="ADMIN">Admin</option>
           </select>
-          <input v-if="newUser.role === 'STUDENT'" v-model.number="newUser.grade" type="number" placeholder="Level (1-6)" class="w-full px-4 py-2 border rounded-lg">
+          
+          <!-- Student Fields -->
+          <template v-if="newUser.role === 'STUDENT'">
+            <input v-model.number="newUser.grade" type="number" placeholder="Level (1-6)" class="w-full px-4 py-2 border rounded-lg">
+          </template>
+          
+          <!-- Teacher Fields -->
+          <template v-if="newUser.role === 'TEACHER'">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">Department/Trade</label>
+              <select v-model="newUser.selected_trade" class="w-full px-4 py-2 border rounded-lg">
+                <option value="">Select department...</option>
+                <option v-for="trade in schoolTrades" :key="trade" :value="trade">{{ trade }}</option>
+              </select>
+              <p class="text-xs text-gray-500 mt-1">Teacher will see only students in this department</p>
+            </div>
+            
+            <div class="flex items-center space-x-2">
+              <input v-model="newUser.is_class_teacher" type="checkbox" id="newIsClassTeacher" 
+                     @change="onClassTeacherChange" class="rounded">
+              <label for="newIsClassTeacher" class="text-sm font-medium text-gray-700">
+                Is Class Teacher? (Full permissions)
+              </label>
+            </div>
+            
+            <div v-if="newUser.is_class_teacher">
+              <label class="block text-sm font-medium text-gray-700 mb-2">Managed Class</label>
+              <select v-model="newUser.managed_class_id" class="w-full px-4 py-2 border rounded-lg">
+                <option :value="null">Select class to manage...</option>
+                <option v-for="group in availableClasses" :key="group.id" :value="group.id">
+                  {{ group.name }} ({{ group.type }})
+                </option>
+              </select>
+              <p class="text-xs text-gray-500 mt-1">Class teacher can create modules and manage students</p>
+            </div>
+          </template>
         </div>
         <div class="flex justify-end space-x-3 mt-6">
           <button @click="showCreateModal = false" class="px-4 py-2 text-gray-600 hover:text-gray-800">Cancel</button>
@@ -184,13 +219,38 @@ const filterGrade = ref('')
 const showCreateModal = ref(false)
 const showEditModal = ref(false)
 const showAssignModal = ref(false)
-const newUser = ref({ full_name: '', email: '', password: '', role: '', grade: null })
+const newUser = ref({ 
+  full_name: '', 
+  email: '', 
+  password: '', 
+  role: '', 
+  grade: null,
+  selected_trade: '',
+  selected_level: '',
+  is_class_teacher: false,
+  managed_class_id: null
+})
+const schoolTrades = ref([])
+const availableClasses = ref([])
 const editingUser = ref({ id: null, full_name: '', role: '', grade: null, is_active: 1 })
 const assigningTeacher = ref(null)
 const assignData = ref({ teacher_id: null, group_id: '', is_class_teacher: false })
 const availableGroups = ref([])
 
-onMounted(() => loadUsers())
+onMounted(() => {
+  loadUsers()
+  loadSchoolTrades()
+})
+
+async function loadSchoolTrades() {
+  try {
+    const res = await api.get(`/locations/schools/${authStore.user.school_id}`)
+    schoolTrades.value = res.data.trades || []
+  } catch (err) {
+    console.error('Failed to load school trades:', err)
+    schoolTrades.value = []
+  }
+}
 
 async function loadUsers() {
   try {
@@ -223,9 +283,26 @@ async function createUser() {
       payload.grade = newUser.value.grade
     }
     
+    if (newUser.value.role === 'TEACHER') {
+      payload.selected_trade = newUser.value.selected_trade || null
+      payload.is_class_teacher = newUser.value.is_class_teacher
+      payload.managed_class_id = newUser.value.managed_class_id || null
+    }
+    
     await api.post('/admin/users', payload)
+    alert('User created successfully!')
     showCreateModal.value = false
-    newUser.value = { full_name: '', email: '', password: '', role: '', grade: null }
+    newUser.value = { 
+      full_name: '', 
+      email: '', 
+      password: '', 
+      role: '', 
+      grade: null,
+      selected_trade: '',
+      selected_level: '',
+      is_class_teacher: false,
+      managed_class_id: null
+    }
     loadUsers()
   } catch (err) {
     const errorMsg = err.response?.data?.detail
@@ -234,6 +311,29 @@ async function createUser() {
     } else {
       alert(errorMsg || 'Failed to create user')
     }
+  }
+}
+
+async function onRoleChange() {
+  if (newUser.value.role === 'TEACHER' && newUser.value.is_class_teacher) {
+    await loadAvailableClasses()
+  }
+}
+
+async function onClassTeacherChange() {
+  if (newUser.value.is_class_teacher) {
+    await loadAvailableClasses()
+  } else {
+    newUser.value.managed_class_id = null
+  }
+}
+
+async function loadAvailableClasses() {
+  try {
+    const res = await api.get('/admin/groups/available')
+    availableClasses.value = res.data.filter(g => g.type === 'CLASS')
+  } catch (err) {
+    console.error('Failed to load classes:', err)
   }
 }
 
