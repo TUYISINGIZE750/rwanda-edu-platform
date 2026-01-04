@@ -359,42 +359,47 @@ async function loadDashboard() {
 
 async function loadSchoolDepartments() {
   try {
-    // Try to get school by ID first
-    let response
-    try {
-      response = await api.get(`/locations/schools/${authStore.user.school_id}`)
-      schoolDepartments.value = response.data.trades || []
-    } catch (err) {
-      // If school not found by ID, use fallback trades based on school type
-      console.warn('School not found, using default TVET trades')
-      schoolDepartments.value = [
-        'Software Development',
-        'Computer Systems and Architecture',
-        'Land Surveying',
-        'Electronics',
-        'Electrical Installation',
-        'Plumbing',
-        'Mechanical Engineering',
-        'Civil Engineering',
-        'Automotive Technology',
-        'Welding and Metal Fabrication',
-        'Carpentry and Joinery',
-        'Masonry',
-        'Hospitality Management',
-        'Culinary Arts',
-        'Agriculture',
-        'Animal Husbandry'
-      ]
+    console.log('Loading departments for school_id:', authStore.user.school_id)
+    const response = await api.get(`/locations/schools/${authStore.user.school_id}`)
+    console.log('School API response:', response.data)
+    
+    if (response.data.trades && response.data.trades.length > 0) {
+      schoolDepartments.value = response.data.trades
+      console.log('Loaded departments from API:', schoolDepartments.value)
+    } else {
+      throw new Error('No trades found for school')
     }
-    console.log('Loaded departments:', schoolDepartments.value)
   } catch (err) {
-    console.error('Failed to load departments:', err)
-    schoolDepartments.value = []
+    console.warn('School not found or no trades, using default TVET trades:', err.message)
+    schoolDepartments.value = [
+      'Software Development',
+      'Computer Systems and Architecture',
+      'Land Surveying',
+      'Electronics',
+      'Electrical Installation',
+      'Plumbing',
+      'Mechanical Engineering',
+      'Civil Engineering',
+      'Automotive Technology',
+      'Welding and Metal Fabrication',
+      'Carpentry and Joinery',
+      'Masonry',
+      'Hospitality Management',
+      'Culinary Arts',
+      'Agriculture',
+      'Animal Husbandry'
+    ]
+    console.log('Using fallback departments:', schoolDepartments.value.length)
   }
 }
 
 async function openCreateClassModal() {
-  await loadSchoolDepartments()
+  // Load departments first, then show modal
+  if (schoolDepartments.value.length === 0) {
+    await loadSchoolDepartments()
+  }
+  // Small delay to ensure state updates
+  await new Promise(resolve => setTimeout(resolve, 100))
   showCreateModuleModal.value = true
 }
 
