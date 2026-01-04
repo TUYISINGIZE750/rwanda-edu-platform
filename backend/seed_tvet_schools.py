@@ -1,14 +1,22 @@
-"""Seed database with TVET and TSS schools data"""
+"""Seed database with TVET schools from Excel file"""
 import sys
 import os
 sys.path.append(os.path.dirname(__file__))
 
+import pandas as pd
+from collections import defaultdict
 from app.core.database import SessionLocal, engine, Base
 from app.models.school import School
-from tvet_schools_data import TVET_TSS_SCHOOLS
 
 def seed_schools():
-    """Seed the database with TVET/TSS schools"""
+    """Seed the database with TVET schools from Excel"""
+    file_path = "10__3__22_UPDATED_LIST_OF_TVET_SCHOOLS_AND_TRADES_TO_BE_CHOSEN_BY_S3_CANDIDATES__2022_1_.xlsx"
+    
+    if not os.path.exists(file_path):
+        print(f"Excel file not found: {file_path}")
+        print("Skipping school seeding...")
+        return
+    
     db = SessionLocal()
     
     try:
@@ -18,40 +26,62 @@ def seed_schools():
         # Check if schools already exist
         existing_count = db.query(School).count()
         if existing_count > 0:
-            print(f"Database already has {existing_count} schools. Clearing...")
-            db.query(School).delete()
-            db.commit()
+            print(f"Database already has {existing_count} schools. Skipping seed.")
+            db.close()
+            return
         
-        # Add all schools
-        for school_data in TVET_TSS_SCHOOLS:
-            # Convert trades string to list
-            trades_str = school_data["trades"]
-            trades_list = [t.strip() for t in trades_str.split(",")] if isinstance(trades_str, str) else trades_str
+        print(f"Reading Excel file: {file_path}")
+        df = pd.read_excel(file_path, header=1)
+        df.columns = [col.strip() if isinstance(col, str) else col for col in df.columns]
+        
+        # Group trades by school
+        schools_data = defaultdict(lambda: {
+            'trades': [],
+            'school_code': None,
+            'name': None,
+            'province': None,
+            'district': None,
+            'gender': None
+        })
+        
+        for idx, row in df.iterrows():
+            if pd.isna(row['School Name']) or pd.isna(row['District']):
+                continue
             
+            school_key = (str(row['School Name']).strip(), str(row['District']).strip())
+            school_data = schools_data[school_key]
+            
+            school_data['school_code'] = str(row['School code']).strip() if pd.notna(row['School code']) else None
+            school_data['name'] = str(row['School Name']).strip()
+            school_data['province'] = str(row['Province']).strip()
+            school_data['district'] = str(row['District']).strip()
+            school_data['gender'] = str(row['Gender']).strip() if pd.notna(row['Gender']) else 'Mixt'
+            
+            if pd.notna(row['Trade in full']):
+                trade = str(row['Trade in full']).strip()
+                if trade and trade not in school_data['trades']:
+                    school_data['trades'].append(trade)
+        
+        # Insert schools
+        schools_added = 0
+        for (school_name, district), school_data in schools_data.items():
             school = School(
-                id=school_data["id"],
-                name=school_data["name"],
-                type=school_data["type"],
-                category=school_data["category"],
-                province=school_data["province"],
-                district=school_data["district"],
-                trades=trades_list
+                school_code=school_data['school_code'],
+                name=school_data['name'],
+                type='TVET',
+                category='Public',
+                province=school_data['province'],
+                district=school_data['district'],
+                trades=school_data['trades'],
+                gender=school_data['gender']
             )
             db.add(school)
+            schools_added += 1
         
         db.commit()
-        print(f"Successfully seeded {len(TVET_TSS_SCHOOLS)} TVET/TSS schools")
+        print(f"Successfully seeded {schools_added} TVET schools from Excel")
         
         # Print statistics
-        tvet_count = db.query(School).filter(School.type == "TVET").count()
-        tss_count = db.query(School).filter(School.type == "TSS").count()
-        
-        print(f"\nStatistics:")
-        print(f"  - TVET Schools: {tvet_count}")
-        print(f"  - TSS Schools: {tss_count}")
-        print(f"  - Total: {tvet_count + tss_count}")
-        
-        # Print schools by province
         print(f"\nSchools by Province:")
         provinces = db.query(School.province).distinct().all()
         for (province,) in provinces:
@@ -60,10 +90,12 @@ def seed_schools():
         
     except Exception as e:
         print(f"Error seeding schools: {e}")
+        import traceback
+        traceback.print_exc()
         db.rollback()
     finally:
         db.close()
 
 if __name__ == "__main__":
-    print("Seeding TVET/TSS schools...")
+    print("Seeding TVET schools from Excel...")
     seed_schools()

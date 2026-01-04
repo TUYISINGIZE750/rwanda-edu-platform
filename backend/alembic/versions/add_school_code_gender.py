@@ -16,14 +16,12 @@ depends_on = None
 
 
 def upgrade():
-    # Add school_code and gender columns to schools table
-    with op.batch_alter_table('schools', schema=None) as batch_op:
-        batch_op.add_column(sa.Column('school_code', sa.String(), nullable=True))
-        batch_op.add_column(sa.Column('gender', sa.String(), nullable=True))
+    # Add school_code and gender columns to schools table (PostgreSQL compatible)
+    op.add_column('schools', sa.Column('school_code', sa.String(), nullable=True))
+    op.add_column('schools', sa.Column('gender', sa.String(), nullable=True))
 
 
 def downgrade():
     # Remove columns
-    with op.batch_alter_table('schools', schema=None) as batch_op:
-        batch_op.drop_column('gender')
-        batch_op.drop_column('school_code')
+    op.drop_column('schools', 'gender')
+    op.drop_column('schools', 'school_code')
