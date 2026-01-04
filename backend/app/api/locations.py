@@ -192,7 +192,19 @@ def get_school_by_id(school_id: int, db: Session = Depends(get_db)):
     school = db.query(School).filter(School.id == school_id).first()
     if not school:
         raise HTTPException(status_code=404, detail="School not found")
-    return SchoolResponse.from_orm(school)
+    
+    # Directly construct response to ensure trades are included
+    return SchoolResponse(
+        id=school.id,
+        school_code=school.school_code if hasattr(school, 'school_code') else None,
+        name=school.name,
+        type=school.type,
+        category=school.category,
+        province=school.province,
+        district=school.district,
+        trades=school.trades if school.trades else [],
+        gender=school.gender if hasattr(school, 'gender') else None
+    )
 
 @router.get("/schools/{school_id}/trades")
 def get_school_trades(school_id: int, db: Session = Depends(get_db)):
