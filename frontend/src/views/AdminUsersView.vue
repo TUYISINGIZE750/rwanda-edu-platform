@@ -310,6 +310,7 @@ async function onDistrictChange() {
     try {
       const res = await api.get(`/locations/schools/district/${encodeURIComponent(newUser.value.province)}/${encodeURIComponent(newUser.value.district)}`)
       schools.value = res.data
+      console.log('Loaded schools:', schools.value)
     } catch (err) {
       console.error('Failed to load schools:', err)
     }
@@ -318,18 +319,25 @@ async function onDistrictChange() {
 
 async function onSchoolChange() {
   schoolTrades.value = []
+  newUser.value.selected_trade = ''
   if (newUser.value.school_id) {
+    console.log('Loading trades for school:', newUser.value.school_id)
     await loadSchoolTradesForSchool(newUser.value.school_id)
   }
 }
 
 async function loadSchoolTradesForSchool(schoolId) {
   try {
-    const res = await api.get(`/locations/schools/${schoolId}`)
-    schoolTrades.value = res.data.trades || []
+    const res = await api.get(`/teacher/school-info`)
+    // For now, get trades from the selected school object
+    const selectedSchool = schools.value.find(s => s.id === schoolId)
+    schoolTrades.value = selectedSchool?.trades || []
+    console.log('Loaded trades:', schoolTrades.value)
   } catch (err) {
     console.error('Failed to load school trades:', err)
-    schoolTrades.value = []
+    // Fallback: try to get from school object
+    const selectedSchool = schools.value.find(s => s.id === schoolId)
+    schoolTrades.value = selectedSchool?.trades || []
   }
 }
 
