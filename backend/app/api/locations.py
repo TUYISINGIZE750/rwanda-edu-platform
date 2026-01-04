@@ -186,6 +186,14 @@ def get_all_schools(db: Session = Depends(get_db)):
     schools = db.query(School).all()
     return [SchoolResponse.from_orm(school) for school in schools]
 
+@router.get("/schools/{school_id}", response_model=SchoolResponse)
+def get_school_by_id(school_id: int, db: Session = Depends(get_db)):
+    """Get a specific school by ID with its trades"""
+    school = db.query(School).filter(School.id == school_id).first()
+    if not school:
+        raise HTTPException(status_code=404, detail="School not found")
+    return SchoolResponse.from_orm(school)
+
 @router.get("/schools/{school_id}/trades")
 def get_school_trades(school_id: int, db: Session = Depends(get_db)):
     """Get all trades offered by a specific school"""
