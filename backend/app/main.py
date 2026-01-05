@@ -112,6 +112,11 @@ def wake_up():
         "version": settings.VERSION
     }
 
+@app.get("/cors-test")
+def cors_test():
+    """Test CORS configuration"""
+    return {"cors": "working", "timestamp": rwanda_now_iso()}
+
 @app.get("/api/v1/locations/schools/district/{province_name}/{district_name}")
 def get_schools_hotfix(province_name: str, district_name: str):
     """Hotfix endpoint for schools dropdown"""
