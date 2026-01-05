@@ -216,6 +216,15 @@ async function handleLogin() {
   error.value = ''
   
   try {
+    // Wake up backend first
+    error.value = 'Waking up server...'
+    try {
+      await axios.get(`${API_URL}/wake-up`, { timeout: 30000 })
+    } catch (wakeErr) {
+      console.log('Wake-up call made, proceeding with login')
+    }
+    
+    error.value = 'Logging in...'
     await authStore.login(form.value.email, form.value.password)
     
     // Verify user is admin
@@ -242,7 +251,7 @@ async function handleLogin() {
     
   } catch (err) {
     console.error('Login error:', err)
-    error.value = err.response?.data?.detail || 'Invalid DOS credentials'
+    error.value = err.response?.data?.detail || 'Server is starting up. Please wait 30 seconds and try again.'
   } finally {
     loading.value = false
   }
