@@ -213,45 +213,50 @@ async function onDistrictChange() {
 
 async function handleLogin() {
   loading.value = true
-  error.value = ''
+  error.value = 'Connecting to server...'
   
   try {
-    // Wake up backend first
-    error.value = 'Waking up server...'
-    try {
-      await axios.get(`${API_URL}/wake-up`, { timeout: 30000 })
-    } catch (wakeErr) {
-      console.log('Wake-up call made, proceeding with login')
+    // Direct fetch to bypass axios CORS issues
+    const response = await fetch(`${API_URL}/api/v1/auth/login`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        email: form.value.email,
+        password: form.value.password
+      })
+    })
+    
+    if (!response.ok) {
+      const data = await response.json().catch(() => ({}))
+      throw new Error(data.detail || 'Login failed')
     }
     
-    error.value = 'Logging in...'
-    await authStore.login(form.value.email, form.value.password)
+    const data = await response.json()
     
-    // Verify user is admin
-    if (authStore.user?.role?.toUpperCase() !== 'ADMIN') {
+    if (data.user?.role?.toUpperCase() !== 'ADMIN') {
       error.value = 'Access denied. DOS credentials required.'
-      authStore.logout()
       return
     }
     
-    // Update user with selected school
     const selectedSchool = schools.value.find(s => s.id === parseInt(selectedSchoolId.value))
     const updatedUser = {
-      ...authStore.user,
+      ...data.user,
       school_id: parseInt(selectedSchoolId.value),
       province: selectedProvince.value,
       district: selectedDistrict.value,
-      school_name: selectedSchool.name
+      school_name: selectedSchool?.name
     }
     
+    localStorage.setItem('token', data.access_token)
     localStorage.setItem('user', JSON.stringify(updatedUser))
     authStore.user = updatedUser
+    authStore.token = data.access_token
     
     router.push('/admin-dashboard')
     
   } catch (err) {
     console.error('Login error:', err)
-    error.value = err.response?.data?.detail || 'Server is starting up. Please wait 30 seconds and try again.'
+    error.value = err.message.includes('fetch') ? 'Backend server is sleeping. Wait 30 seconds and try again.' : err.message
   } finally {
     loading.value = false
   }

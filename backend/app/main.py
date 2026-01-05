@@ -18,22 +18,10 @@ except ImportError as e:
 
 app = FastAPI(title=settings.PROJECT_NAME, version=settings.VERSION)
 
-# Create uploads directory if it doesn't exist
-os.makedirs("uploads/resources", exist_ok=True)
-
-# Mount static files for uploads
-app.mount("/uploads", StaticFiles(directory="uploads"), name="uploads")
-
-# CORS - Must be after static files mount
+# CORS - MUST be first, before any other middleware or mounts
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "*",
-        "https://tssanywhere.pages.dev",
-        "https://*.tssanywhere.pages.dev",
-        "http://localhost:5173",
-        "http://localhost:8080"
-    ],
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -43,6 +31,12 @@ app.add_middleware(
 
 # Compression for low bandwidth
 app.add_middleware(GZipMiddleware, minimum_size=1000)
+
+# Create uploads directory if it doesn't exist
+os.makedirs("uploads/resources", exist_ok=True)
+
+# Mount static files for uploads
+app.mount("/uploads", StaticFiles(directory="uploads"), name="uploads")
 
 # Routers
 app.include_router(auth.router, prefix=settings.API_V1_STR)
