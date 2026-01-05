@@ -755,6 +755,21 @@ def get_available_groups(
         "department": g.department
     } for g in groups]
 
+@router.get("/schools/{school_id}/trades")
+def get_school_trades(
+    school_id: int,
+    current_user: User = Depends(require_admin),
+    db: Session = Depends(get_db)
+):
+    """Get trades/departments for a specific school"""
+    from ..models.school import School
+    
+    school = db.query(School).filter(School.id == school_id).first()
+    if not school:
+        raise HTTPException(status_code=404, detail="School not found")
+    
+    return {"trades": school.trades if school.trades else []}
+
 class GrantPermissionRequest(BaseModel):
     teacher_id: int
     can_create_groups: bool

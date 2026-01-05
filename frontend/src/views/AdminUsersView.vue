@@ -341,10 +341,8 @@ async function onSchoolChange() {
 
 async function loadSchoolTradesForSchool(schoolId) {
   try {
-    const res = await api.get(`/teacher/school-info`)
-    // For now, get trades from the selected school object
-    const selectedSchool = schools.value.find(s => s.id === schoolId)
-    schoolTrades.value = selectedSchool?.trades || []
+    const res = await api.get(`/admin/schools/${schoolId}/trades`)
+    schoolTrades.value = res.data.trades || []
     console.log('Loaded trades:', schoolTrades.value)
   } catch (err) {
     console.error('Failed to load school trades:', err)
